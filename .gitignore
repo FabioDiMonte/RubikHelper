@@ -4,6 +4,6 @@
 .idea/
 /nbproject/
 node_modules/
-bower_components/
+src/modules/
 target/
 build/
