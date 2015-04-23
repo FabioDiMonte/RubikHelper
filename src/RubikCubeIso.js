@@ -143,7 +143,7 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
         var isFull = true;
 
         if(!this.iso.layer._children['_piece_'+position])
-            this.addCube(position, origin.add([size*px,size*py,size*pz]), size, isFull);
+            this.addCube(position, origin.add(new Point(size*px,size*py,size*pz)), size, isFull);
 
         this.drawCube(position, stickers, size, {fills:fills,stroke:RubikUtils.colors.core}, isFull);
     };
@@ -153,13 +153,13 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
         cube.set('position',name);
 
         if(full_cube){
-            cube.addChild(new Shape('_face_D')).set('position','D').position = origin.add([0, 0, 0]);
-            cube.addChild(new Shape('_face_B')).set('position','B').position = origin.add([0, 0, 0]);
-            cube.addChild(new Shape('_face_L')).set('position','L').position = origin.add([0, 0, 0]);
+            cube.addChild(new Shape('_face_D')).set('position','D').position = origin.add(new Point(0, 0, 0));
+            cube.addChild(new Shape('_face_B')).set('position','B').position = origin.add(new Point(0, 0, 0));
+            cube.addChild(new Shape('_face_L')).set('position','L').position = origin.add(new Point(0, 0, 0));
         }
-        cube.addChild(new Shape('_face_U')).set('position','U').position = origin.add([0, 0, size]);
-        cube.addChild(new Shape('_face_R')).set('position','R').position = origin.add([size, 0, 0]);
-        cube.addChild(new Shape('_face_F')).set('position','F').position = origin.add([0, size, 0]);
+        cube.addChild(new Shape('_face_U')).set('position','U').position = origin.add(new Point(0, 0, size));
+        cube.addChild(new Shape('_face_R')).set('position','R').position = origin.add(new Point(size, 0, 0));
+        cube.addChild(new Shape('_face_F')).set('position','F').position = origin.add(new Point(0, size, 0));
 
         this.iso.layer.addChild(cube);
 
