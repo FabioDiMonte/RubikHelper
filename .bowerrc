@@ -1,4 +1,4 @@
 {
-    "directory" : "src/modules",
+    "directory" : "dependencies",
     "json"      : "bower.json"
 }

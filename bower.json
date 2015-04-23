@@ -14,6 +14,6 @@
     "tests"
   ],
   "devDependencies": {
-    "GraphicEngine" : "https://raw.githubusercontent.com/FabioDiMonte/GraphicEngine/release_0.1.0/public/0.1.0/graphicengine-0.1.0.min.js"
+    "GraphicEngine" : "https://github.com/FabioDiMonte/GraphicEngine.git#release_0.1.0"
   }
 }

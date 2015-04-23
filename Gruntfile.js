@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                     'return RubikCubeIso;}());'
                 },
                 src: [
-                    'src/modules/GraphicEngine/index.js',
+                    'dependencies/GraphicEngine/public/0.1.0/graphicengine-0.1.0.min.js',
                     'target/temp/rh_package.js'
                 ],
                 dest: 'target/<%= pkg.name %>-<%= pkg.version %>.js'

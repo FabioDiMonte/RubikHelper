@@ -4,6 +4,6 @@
 .idea/
 /nbproject/
 node_modules/
-src/modules/
+dependencies/
 target/
 build/
