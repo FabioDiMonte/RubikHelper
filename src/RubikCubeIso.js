@@ -33,11 +33,11 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
             worldSizeWidth: 400,
             worldSizeHeight: 300
         });
-        this.iso.layer = this.iso.engine.addLayer('cube');
+        this.iso.layer = this.iso.engine.addLayer('cube',true);
         this.iso.console = this.iso.engine.addLayer('console');
 
         var info = this.iso.console.addChild(new Text('cubeletInfo'));
-        info.position = new Point(-200,120);
+        info._position = new Point(-200,120);
         info.setFont('Open Sans',20);
 
         this.render();
@@ -58,7 +58,7 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
     RubikCubeISO.prototype.willRender = function(){};
     RubikCubeISO.prototype.didRender = function(){
         this.iso.layer._render();
-        this.options.showAxis && this.iso.engine.draw.axis(this.iso.layer,200);
+        this.options.showAxis && this.iso.engine.drawUtils.axis(this.iso.layer,200);
     };
     RubikCubeISO.prototype.render = function(piecesToRender){
         var stickers;
@@ -153,13 +153,13 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
         cube.set('position',name);
 
         if(full_cube){
-            cube.addChild(new Shape('_face_D')).set('position','D').position = origin.add(new Point(0, 0, 0));
-            cube.addChild(new Shape('_face_B')).set('position','B').position = origin.add(new Point(0, 0, 0));
-            cube.addChild(new Shape('_face_L')).set('position','L').position = origin.add(new Point(0, 0, 0));
+            cube.addChild(new Shape('_face_D')).set('position','D')._position = origin.add(new Point(0, 0, 0));
+            cube.addChild(new Shape('_face_B')).set('position','B')._position = origin.add(new Point(0, 0, 0));
+            cube.addChild(new Shape('_face_L')).set('position','L')._position = origin.add(new Point(0, 0, 0));
         }
-        cube.addChild(new Shape('_face_U')).set('position','U').position = origin.add(new Point(0, 0, size));
-        cube.addChild(new Shape('_face_R')).set('position','R').position = origin.add(new Point(size, 0, 0));
-        cube.addChild(new Shape('_face_F')).set('position','F').position = origin.add(new Point(0, size, 0));
+        cube.addChild(new Shape('_face_U')).set('position','U')._position = origin.add(new Point(0, 0, size));
+        cube.addChild(new Shape('_face_R')).set('position','R')._position = origin.add(new Point(size, 0, 0));
+        cube.addChild(new Shape('_face_F')).set('position','F')._position = origin.add(new Point(0, size, 0));
 
         this.iso.layer.addChild(cube);
 
@@ -192,7 +192,7 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
         if(!fill)
             child.setRenderInfo( null );
         else
-            child.setRenderInfo( this.iso.engine.draw[squareType](size), {strokeColor:fill==null?null:stroke, fillColor:fill, strokeSize:1} );
+            child.setRenderInfo( this.iso.engine.drawUtils[squareType](size), {strokeColor:fill==null?null:stroke, fillColor:fill, strokeSize:1} );
 
         child.set('sticker',value);
 
