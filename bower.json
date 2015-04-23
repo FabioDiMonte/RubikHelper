@@ -1,0 +1,19 @@
+{
+  "name": "RubikHelper",
+  "version": "0.1.0",
+  "homepage": "https://github.com/FabioDiMonte/RubikHelper",
+  "authors": [
+    "Fabio Di Monte <fdimonte@expedia.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "GraphicEngine" : "https://raw.githubusercontent.com/FabioDiMonte/GraphicEngine/release_0.1.0/public/0.1.0/graphicengine-0.1.0.min.js"
+  }
+}
