@@ -36,7 +36,7 @@ module.exports = function(grunt) {
             main: {
                 options: {
                     banner: '<%= opt.header %><%= opt.nl %>'+
-                    'var <%= pkg.title %> = (function(){' + '<%= opt.nl %>'+
+                    'var RubikCubeIso = (function(){' + '<%= opt.nl %>'+
                     'var rhVersion = "v<%= pkg.version %>";' + '<%= opt.nl %>',
                     footer: '<%= opt.nl %>'+
                     'return RubikCubeIso;}());'
