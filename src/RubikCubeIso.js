@@ -57,7 +57,7 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
 
     RubikCubeISO.prototype.willRender = function(){};
     RubikCubeISO.prototype.didRender = function(){
-        this.iso.layer.render();
+        this.iso.layer._render();
         this.options.showAxis && this.iso.engine.draw.axis(this.iso.layer,200);
     };
     RubikCubeISO.prototype.render = function(piecesToRender){
