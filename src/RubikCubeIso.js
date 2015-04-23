@@ -192,7 +192,7 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
         if(!fill)
             child.setRenderInfo( null );
         else
-            child.setRenderInfo( this.iso.engine[squareType](size), {strokeColor:fill==null?null:stroke, fillColor:fill, strokeSize:1} );
+            child.setRenderInfo( this.iso.engine.draw[squareType](size), {strokeColor:fill==null?null:stroke, fillColor:fill, strokeSize:1} );
 
         child.set('sticker',value);
 
