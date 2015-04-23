@@ -58,7 +58,7 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
     RubikCubeISO.prototype.willRender = function(){};
     RubikCubeISO.prototype.didRender = function(){
         this.iso.layer.render();
-        this.options.showAxis && this.iso.engine.drawAxis(200);
+        this.options.showAxis && this.iso.engine.draw.axis(this.iso.layer,200);
     };
     RubikCubeISO.prototype.render = function(piecesToRender){
         var stickers;
@@ -178,13 +178,13 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
         };
 
         if(full_cube && style.fills && style.fills.length==6) {
-            this.setShape( cube._children['_face_D'], arrayLastValue(names, 3), 'polygonSquare'     , size, !style.fills ? null : arrayLastValue(style.fills, 3), style.color );
-            this.setShape( cube._children['_face_B'], arrayLastValue(names, 4), 'polygonSquareLeft' , size, !style.fills ? null : arrayLastValue(style.fills, 4), style.color );
-            this.setShape( cube._children['_face_L'], arrayLastValue(names, 5), 'polygonSquareRight', size, !style.fills ? null : arrayLastValue(style.fills, 5), style.color );
+            this.setShape( cube._children['_face_D'], arrayLastValue(names, 3), 'get3DPolygonSquare'     , size, !style.fills ? null : arrayLastValue(style.fills, 3), style.color );
+            this.setShape( cube._children['_face_B'], arrayLastValue(names, 4), 'get3DPolygonSquareLeft' , size, !style.fills ? null : arrayLastValue(style.fills, 4), style.color );
+            this.setShape( cube._children['_face_L'], arrayLastValue(names, 5), 'get3DPolygonSquareRight', size, !style.fills ? null : arrayLastValue(style.fills, 5), style.color );
         }
-        this.setShape( cube._children['_face_U'], arrayLastValue(names, 0), 'polygonSquare'     , size, !style.fills ? null : arrayLastValue(style.fills, 0), style.color );
-        this.setShape( cube._children['_face_R'], arrayLastValue(names, 1), 'polygonSquareRight', size, !style.fills ? null : arrayLastValue(style.fills, 1), style.color );
-        this.setShape( cube._children['_face_F'], arrayLastValue(names, 2), 'polygonSquareLeft' , size, !style.fills ? null : arrayLastValue(style.fills, 2), style.color );
+        this.setShape( cube._children['_face_U'], arrayLastValue(names, 0), 'get3DPolygonSquare'     , size, !style.fills ? null : arrayLastValue(style.fills, 0), style.color );
+        this.setShape( cube._children['_face_R'], arrayLastValue(names, 1), 'get3DPolygonSquareRight', size, !style.fills ? null : arrayLastValue(style.fills, 1), style.color );
+        this.setShape( cube._children['_face_F'], arrayLastValue(names, 2), 'get3DPolygonSquareLeft' , size, !style.fills ? null : arrayLastValue(style.fills, 2), style.color );
 
     };
     RubikCubeISO.prototype.setShape = function(child, value, squareType, size, fill, stroke) {
