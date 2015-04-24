@@ -4,11 +4,11 @@
 
 var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
 
-    var ge = new GraphicEngine(),
-        Point  = ge.packages.core.Point,
-        Sprite = ge.packages.display.Sprite,
-        Shape  = ge.packages.display.Shape,
-        Text   = ge.packages.display.Text;
+    var Engine = GraphicEngine.core.Engine,
+        Point  = GraphicEngine.core.Point,
+        Sprite = GraphicEngine.display.Sprite,
+        Shape  = GraphicEngine.display.Shape,
+        Text   = GraphicEngine.display.Text;
 
     /**
      * RubikCubeISO Class
@@ -26,7 +26,7 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
 
         this.iso = {
             container: this.$el,
-            engine: ge
+            engine: new Engine()
         };
 
         this.iso.engine.init(this.iso.container,{
@@ -208,4 +208,4 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
 
     return RubikCubeISO;
 
-}(RubikUtils, RubikCube, GraphicEngine.core.Engine));
+}(RubikUtils, RubikCube, GraphicEngine));
