@@ -4,7 +4,7 @@
 
 var RubikUtils = (function(){
 
-    var RubikUtils = {
+    return {
 
         /**
          * All colors used by RubikCube and UI
@@ -1013,7 +1013,5 @@ var RubikUtils = (function(){
         }
 
     };
-
-    return RubikUtils;
 
 }());
