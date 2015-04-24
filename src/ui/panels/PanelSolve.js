@@ -81,4 +81,4 @@ var PanelSolve = (function(RubikSolver, PanelSequenceToMoves, PUIPanelComponent,
 
     return PanelSolve;
 
-}(RubikSolver, PanelSequenceToMoves, PUIPanelComponent, PUIPanelComponentGroup, RHAnalyze, RHReplay));
+}(RubikSolver, PanelSequenceToMoves, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHAnalyze, RHReplay));

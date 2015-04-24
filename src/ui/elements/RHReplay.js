@@ -74,4 +74,4 @@ var RHReplay = (function($, PUIElement){
 
     return RHReplay;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));

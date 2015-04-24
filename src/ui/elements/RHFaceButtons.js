@@ -78,4 +78,4 @@ var RHFaceButtons = (function($, PUIElement){
 
     return RHFaceButtons;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));

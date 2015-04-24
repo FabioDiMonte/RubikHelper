@@ -108,4 +108,4 @@ var RHGroupButtons = (function($, PUIElement){
 
     return RHGroupButtons;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));

@@ -74,4 +74,4 @@ var PanelHighlights = (function(PUIPanel, PUIPanelComponent, PUIPanelComponentGr
 
     return PanelHighlights;
 
-}(PUIPanel, PUIPanelComponent, PUIPanelComponentGroup, RHHighlightList, RHHighlightPieces));
+}(PanelUI.panels.PUIPanel, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHHighlightList, RHHighlightPieces));

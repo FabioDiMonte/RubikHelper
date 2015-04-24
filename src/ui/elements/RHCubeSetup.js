@@ -71,4 +71,4 @@ var RHCubeSetup = (function($, PUIElement){
 
     return RHCubeSetup;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));

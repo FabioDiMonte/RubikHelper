@@ -119,4 +119,4 @@ var RHExplainList = (function($, PUIElement){
 
     return RHExplainList;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));

@@ -122,4 +122,4 @@ var RHHighlightPieces = (function($, PUIElement, RHPieceButton, RubikUtils){
 
     return RHHighlightPieces;
 
-}(jQuery, PUIElement, RHPieceButton, RubikUtils));
+}(jQuery, PanelUI.core.PUIElement, RHPieceButton, RubikUtils));

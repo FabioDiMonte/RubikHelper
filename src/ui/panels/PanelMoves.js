@@ -127,4 +127,4 @@ var PanelMoves = (function(PanelSequenceToMoves, PUIPanelComponent, PUIPanelComp
 
     return PanelMoves;
 
-}(PanelSequenceToMoves, PUIPanelComponent, PUIPanelComponentGroup, RHFaceButtons, RHPieceButton, RHGroupButtons));
+}(PanelSequenceToMoves, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHFaceButtons, RHPieceButton, RHGroupButtons));

@@ -61,4 +61,4 @@ var RHExplainPriority = (function($, PUIElement){
 
     return RHExplainPriority;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));

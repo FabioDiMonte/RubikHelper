@@ -66,4 +66,4 @@ var PanelExplain = (function(PUIPanel, PUIPanelComponent, PUIPanelComponentGroup
 
     return PanelExplain;
 
-}(PUIPanel, PUIPanelComponent, PUIPanelComponentGroup, RHExplainPriority, RHExplainList));
+}(PanelUI.panels.PUIPanel, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHExplainPriority, RHExplainList));

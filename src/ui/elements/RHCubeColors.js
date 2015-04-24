@@ -117,4 +117,4 @@ var RHCubeColors = (function($, PUIElement, RubikUtils){
 
     return RHCubeColors;
 
-}(jQuery, PUIElement, RubikUtils));
+}(jQuery, PanelUI.core.PUIElement, RubikUtils));

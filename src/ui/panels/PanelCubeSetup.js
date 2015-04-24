@@ -253,4 +253,4 @@ var PanelCubeSetup = (function(PUIPanel, PUIPanelComponent, PUIPanelComponentGro
 
     return PanelCubeSetup;
 
-}(PUIPanel, PUIPanelComponent, PUIPanelComponentGroup, RHCubeSetup, RHFaceButtons, RHPieceButton, RHCubeColors));
+}(PanelUI.panels.PUIPanel, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHCubeSetup, RHFaceButtons, RHPieceButton, RHCubeColors));

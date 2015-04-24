@@ -100,4 +100,4 @@ var PanelSequenceToMoves = (function(RubikUtils, PUIPanel, PUIPanelComponent, PU
 
     return PanelSequenceToMoves;
 
-}(RubikUtils, PUIPanel, PUIPanelComponent, PUIPanelComponentGroup, RHSequenceInput, RHMovesList));
+}(RubikUtils, PanelUI.panels.PUIPanel, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHSequenceInput, RHMovesList));

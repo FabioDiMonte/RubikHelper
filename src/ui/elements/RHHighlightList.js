@@ -83,4 +83,4 @@ var RHHighlightList = (function($, PUIElement){
 
     return RHHighlightList;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));

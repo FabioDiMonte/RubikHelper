@@ -39,4 +39,4 @@ var RHMovesList = (function($, PUIElement){
 
     return RHMovesList;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));

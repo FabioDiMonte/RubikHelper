@@ -89,4 +89,4 @@ var RHPieceButton = (function($, PUIElement, RHFaceButtons, RubikUtils){
 
     return RHPieceButton;
 
-}(jQuery, PUIElement, RHFaceButtons, RubikUtils));
+}(jQuery, PanelUI.core.PUIElement, RHFaceButtons, RubikUtils));

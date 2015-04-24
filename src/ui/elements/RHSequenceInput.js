@@ -62,4 +62,4 @@ var RHSequenceInput = (function($, PUIElement){
 
     return RHSequenceInput;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));

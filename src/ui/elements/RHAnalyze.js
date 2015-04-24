@@ -45,4 +45,4 @@ var RHAnalyze = (function($, PUIElement){
 
     return RHAnalyze;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
