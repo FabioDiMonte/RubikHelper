@@ -208,4 +208,4 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
 
     return RubikCubeISO;
 
-}(RubikUtils, RubikCube, GraphicEngine));
+}(RubikUtils, RubikCube, GraphicEngine.core.Engine));

@@ -13,25 +13,28 @@ module.exports = function(grunt) {
         opt: {
             nl: grunt.util.linefeed,
 
-            header: '/*! <%= pkg.title %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
-            footer: '',
+            path_graphicengine: 'dependencies/GraphicEngine/public/graphicengine-latest.min.js',
 
-            header_tool: '/*! <%= toolName %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
-            footer_tool: '',
+            // header for minified full package
+            header_min: '/*! <%= pkg.title %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */<%= opt.nl %>',
 
-            header_main: '<%= opt.header %><%= opt.nl %>'+
+            // header for minified standalone tools
+            header_min_sa: '/*! <%= toolName %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */<%= opt.nl %>',
+
+            // wrapper for full package
+            header_main: '<%= opt.header_min %>'+
             'var <%= pkg.title %> = (function(){' + '<%= opt.nl %>'+
             'var pkgVersion = "v<%= pkg.version %>";' + '<%= opt.nl %>',
             footer_main: '<%= opt.nl %>'+
-            'return RubikHelper;}());',
+            'return <%= pkg.title %>Package;}());',
 
-            header_sa: '<%= opt.header_tool %>' + '<%= opt.nl %>'+
+            // wrapper for standalone tool
+            header_sa: '<%= opt.header_min_sa %>'+
             'var <%= toolName %> = (function(){' + '<%= opt.nl %>'+
             'var pkgVersion = "v<%= pkg.version %>";' + '<%= opt.nl %>',
             footer_sa: '<%= opt.nl %>'+
-            'return <%= toolName %>;}());',
+            'return <%= toolName %>;}());'
 
-            path_graphicengine: 'dependencies/GraphicEngine/public/graphicengine-latest.min.js'
         },
 
         /********************
@@ -60,8 +63,7 @@ module.exports = function(grunt) {
                 src: [
                     '<%= opt.path_graphicengine %>',
                     'target/temp/packages.js',
-                    'target/RHPackage.js',
-                    'src/RubikHelper.js'
+                    'target/<%= pkg.title %>Package.js'
                 ],
                 dest: 'target/<%= pkg.name %>-<%= pkg.version %>.js'
             },
@@ -116,12 +118,12 @@ module.exports = function(grunt) {
         uglify: {
 
             main: {
-                options: { banner: '<%= opt.header %><%= opt.nl %>' },
+                options: { banner: '<%= opt.header_min %>' },
                 files: {'target/<%= pkg.name %>-<%= pkg.version %>.min.js': ['target/<%= pkg.name %>-<%= pkg.version %>.js']}
             },
 
             tool: {
-                options: { banner: '<%= opt.header_tool %><%= opt.nl %>' },
+                options: { banner: '<%= opt.header_min_sa %>' },
                 files: {'target/sa/<%= toolName %>-<%= pkg.version %>.min.js':['target/sa/<%= toolName %>-<%= pkg.version %>.js']}
             }
 
@@ -210,7 +212,7 @@ module.exports = function(grunt) {
     grunt.loadTasks('tasks');
 
     // Full tasks
-    grunt.registerTask('build', ['clean:target', 'create_package:rh', 'concat:packages', 'concat:main', 'uglify:main', 'copy:main', 'clean:target']);
+    grunt.registerTask('build', ['clean:target', 'create_package', 'concat:packages', 'concat:main', 'uglify:main', 'copy:main', 'clean:target']);
     grunt.registerTask('deploy', ['clean:deploy', 'build', 'tools', 'copy:deploy']);
 
     // Default task
