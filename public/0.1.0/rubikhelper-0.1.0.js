@@ -4,7 +4,437 @@ var pkgVersion = "v0.1.0";
 /*! GraphicEngine Package - v0.1.0 - 2015-04-24 */
 var GraphicEngine=function(){var a=function(){function a(){this._attributes={}}return a.prototype={set:function(a,b){return this._attributes[a]=b,this},get:function(a){return this._attributes[a]},_extend:function(a,b){if(b)for(var c in b)b.hasOwnProperty(c)&&(a[c]&&a[c]instanceof Object&&!(a[c]instanceof Array)?this._extend(a[c],b[c]):a[c]=b[c])}},a}(),b=function(){function a(a,b,c){this.x=parseFloat(a)||0,this.y=parseFloat(b)||0,this.z=parseFloat(c)||0}return a.prototype={toOrtho:function(){return new a(this.x-this.y,(this.x+this.y)/2-1.25*this.z,0)},toIso:function(){return new a(this.y+this.x/2,this.y-this.x/2,0)},toString:function(){return"{x:"+this.x+", y:"+this.y+", z:"+this.z+"}"},toObject:function(){return{x:this.x,y:this.y,z:this.z}},toArray:function(){return[this.x,this.y,this.z]},add:function(b){return new a(this.x+b.x,this.y+b.y,this.z+b.z)},subtract:function(b){return new a(this.x-b.x,this.y-b.y,this.z-b.z)},multiply:function(b){return new a(this.x*b.x,this.y*b.y,this.z*b.z)},distance:function(a){var b=Math.abs(this.x-a.x),c=Math.abs(this.y-a.y),d=Math.abs(this.z-a.z),e=Math.sqrt(Math.pow(b,2)+Math.pow(c,2));return Math.sqrt(Math.pow(e,2)+Math.pow(d,2))}},a}(),c=function(){function a(a){this._stepCallback=null,this._animation=null,this._startTime=0,a&&this.setCallback(a),window.requestAnimFrame=function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(a){return window.setTimeout(a,1e3/60)}}(),window.cancelRequestAnimFrame=function(){return window.cancelAnimationFrame||window.cancelRequestAnimationFrame||window.webkitCancelRequestAnimationFrame||window.mozCancelRequestAnimationFrame||window.oCancelRequestAnimationFrame||window.msCancelRequestAnimationFrame||clearTimeout}()}return a.prototype={setCallback:function(a){this._stepCallback=a},start:function(a){this._startTime=(new Date).getTime(),this._animate(),a&&setTimeout(function(){this.stop()}.bind(this),a)},stop:function(){cancelRequestAnimFrame(this._animation),this._animation=null},_animate:function(){this._stepRender(),this._animation=requestAnimFrame(this._animate.bind(this))},_stepRender:function(){var a=(new Date).getTime()-this._startTime;this._stepCallback&&this._stepCallback(a)}},a}(),d=function(){function a(a){this.context=a,this.message=null,this.messageOrigin={x:0,y:0},this.isPath=!1,this.isStroke=!1}return a.prototype={setup:function(a){a||(a={});var b=null==a.fillColor?null:this.castToColor(a.fillColor),c=null==a.strokeColor?null:this.castToColor(a.strokeColor),d=a.strokeSize;this.context.restore(),this.context.fillStyle=b,this.context.strokeStyle=c,this.context.lineWidth=d,this.context.globalAlpha=a.alpha||1,this.context.font=a.font||"20px Open Sans",this.context.save(),this.isStroke=null!=c,this.isPath=null!=b,this.isPath&&this.context.beginPath()},render:function(){this.message&&(this.isPath&&this.context.fillText(this.message,this.messageOrigin.x,this.messageOrigin.y),this.isStroke&&this.context.strokeText(this.message,this.messageOrigin.x,this.messageOrigin.y),this.message=null),this.isPath&&this.context.closePath(),this.isPath&&this.context.fill(),this.isPath=!1,this.isStroke&&this.context.stroke(),this.isStroke=!1},moveTo:function(a,b){var c=this.isPath||this.isStroke;return c&&this.context.moveTo(a,b),c},lineTo:function(a,b){var c=this.isPath||this.isStroke;return c&&this.context.lineTo(a,b),c},text:function(a,b){if(!a)return[];b||(b=[0,0]),b=this.castToPoint(b),this.messageOrigin=b,this.message=a;var c=this.context.measureText(a),d=this.context.font,e=Math.ceil(c.width),f=parseInt(d);return isNaN(f)&&(d=d.substr(d.indexOf(" ")),f=parseInt(d)),[b.add([0,0]),b.add([e,0]),b.add([e,-f]),b.add([0,-f])]},line:function(a,b,c){return a&&b?(a=this.castToPoint(a),b=this.castToPoint(b),c&&(a=a.toOrtho(),b=b.toOrtho()),this.moveTo(a.x,a.y)&&this.lineTo(b.x,b.y)):!1},polygon:function(a,b,c){if(!a)return[];b||(b=[0,0,0]),b=this.castToPoint(b),a=a.map(function(a){return this.castToPoint(a)}.bind(this)),c&&(b=b.toOrtho()),c&&(a=a.map(function(a){return a.toOrtho()}));var d,e,f=b.add(a[0]),g=[];for(this.moveTo(f.x,f.y)&&g.push(f),d=1;d<a.length;d++)e=b.add(a[d]),this.lineTo(e.x,e.y)&&g.push(e);return this.lineTo(f.x,f.y),g},image:function(){},castToColor:function(a){var b="string"==typeof a?a:"number"==typeof a?a.toString(16):null;return null!=b&&"#"==b.substr(0,1)&&(b=b.substr(1)),null!=b&&(b="#"+("00000"+b).substr(-6)),b},castToPoint:function(a){var c;return a instanceof b?c=a:"object"==typeof a&&null!=a.x&&null!=a.y?c=new b(parseFloat(a.x),parseFloat(a.y),parseFloat(a.z)):"object"==typeof a&&a.length>1&&a.length<4&&(c=new b(parseFloat(a[0]),parseFloat(a[1]),parseFloat(a[2]))),c}},a}(),e=function(a,b){function c(c){if(!c)throw new Error('no "name" provided for this displayObject:',this);if(a.call(this),this._name=c,this._parent=null,this._zIndex=0,this._position=new b,this._shape=null,this._info={stepCallback:null,renderMethod:null,renderInfo:null},this._options={strokeColor:0,fillColor:0,strokeSize:1,alpha:1,font:"14px Arial"},this[c])throw new Error('property "%s" already exists on',c,this)}return c.prototype=Object.create(a.prototype),c.prototype.setOptions=function(a){return a?(this._extend(this._options,a),!0):!1},c.prototype.setRenderInfo=function(a,b){b&&this.setOptions(b),this._info.renderInfo=a},c.prototype.setAnimationStep=function(a){this._info.stepCallback=a},c.prototype._addTo=function(a,b){this._zIndex=b||0,this._parent=a},c.prototype._remove=function(){delete this},c.prototype._render=function(a,b){if(!this._info.renderMethod)throw new Error("no renderMethod set for this instance of DisplayObject: ",this);return this._info.renderInfo?(a._info.draw.setup(this._options),this._shape=a._info.draw[this._info.renderMethod](this._info.renderInfo,this._position,b),a._info.draw.render(),!0):!1},c.prototype._step=function(a){return this._info.stepCallback&&this._info.stepCallback(a),!0},c}(a,b),f=function(a){function b(b){a.call(this,b),this._info.renderMethod="image"}return b.prototype=Object.create(a.prototype),b.prototype.render=function(){},b}(e),g=function(a){function b(b){a.call(this,b),this._options.font=this.getFont("Verdana",14),this._options.fillColor=0,this._options.strokeColor=null,this._info.renderMethod="text"}return b.prototype=Object.create(a.prototype),b.prototype.getFont=function(a,b,c){return a?(c||(c=""),b||(b=""),"number"==typeof b&&(b+="px"),[c,b,a].join(" ")):""},b.prototype.setFont=function(a,b,c){return a?(this._options.font=this.getFont(a,b,c),!0):!1},b}(e),h=function(a){function b(b){a.call(this,b),this._options.fillColor=null,this._options.strokeColor=0,this._info.renderMethod="polygon"}return b.prototype=Object.create(a.prototype),b}(e),i=function(a){function b(b){a.call(this,b),this._children={},this._childrenLength=function(){var a=0;return c(this,function(){a++}),a}.bind(this._children),this._childrenArray=function(){var a=[];return c(this,function(b){a.push(b)}),a.sort(function(a,b){return a._zIndex-b._zIndex})}.bind(this._children)}function c(a,b){if(a&&b)for(var c in a)a.hasOwnProperty(c)&&b(a[c])}return b.prototype=Object.create(a.prototype),b.prototype._render=function(a,b){this._childrenArray().forEach(function(c){c._render(a,b)})},b.prototype._step=function(b){return this._childrenArray().forEach(function(a){a._step(b)}),a.prototype._step.call(this,b),!0},b.prototype.addChild=function(b,c){if(!(b instanceof a))throw new Error("adding child with unsupported type:",typeof b);if(this[b._name])throw new Error('property "',b._name,'" already exists on',this);return c||(c=this._childrenLength()),this._children[b._name]=b,this[b._name]=b,b._addTo(this,c),this._reorderChildren(),b},b.prototype.removeChild=function(b){b instanceof String&&(b=this[b]),b&&this[b._name]&&this[b._name]instanceof a&&(delete this._children[b._name],delete this[b._name],b._remove())},b.prototype._reorderChildren=function(){this._childrenArray().forEach(function(a,b){a._info.index=b})},b.prototype._getShapes=function(){for(var a,c=[],d=0;d<this._children.length;d++)a=this._children[d],a._shape&&c.push(a._shape),a instanceof b&&(c=c.concat(a._getShapes()));return c},b.prototype._getShapesWithObjects=function(){for(var a,c=[],d=0;d<this._children.length;d++)a=this._children[d],a._shape&&c.push(a),a instanceof b&&(c=c.concat(a._getShapesWithObjects()));return c},b}(e),j=function(a,b){function e(e,f){b.call(this,"_stage_"+e),this._engine=null,this._info.size={w:0,h:0},this._info.canvas=document.createElement("canvas"),this._info.context=this._info.canvas.getContext("2d"),this._info.draw=new d(this._info.context),this._info.animator=new c(this.renderTime.bind(this)),this._info.modes={ORTHOGONAL:"ORTHOGONAL",ISOMETRIC:"ISOMETRIC"},this._info.mode=f?this._info.modes.ISOMETRIC:this._info.modes.ORTHOGONAL,this.$el=a("<div/>").addClass("iso-layer").css({position:"absolute",top:0,left:0}).append(this._info.canvas)}return e.prototype=Object.create(b.prototype),e.prototype._render=function(){this.clear(),b.prototype._render.call(this,this,this._info.mode==this._info.modes.ISOMETRIC)},e.prototype._remove=function(){this.$el.remove()},e.prototype._addTo=function(a){if(a){var b=a.worldSize();this.setSize(b.w,b.h),this.$el.appendTo(a.$el),this._engine=a}},e.prototype.toggleMode=function(a){this._info.modes[a]&&this.mode!=a&&(this.mode=a,this._render())},e.prototype.clear=function(){this._info.context.clearRect(-this._info.size.w/2,-this._info.size.h/2,this._info.size.w,this._info.size.h)},e.prototype.getCanvas=function(){return this._info.canvas},e.prototype.renderTime=function(a){this._step(a)&&this._render()},e.prototype.startAnimation=function(a){this._info.animator.start(a)},e.prototype.stopAnimation=function(){this._info.animator.stop()},e.prototype.setSize=function(a,b){this._info.size={w:a,h:b},this._info.canvas.width=a.toString(),this._info.canvas.height=b.toString(),this._info.context.translate(a/2,b/2)},e.prototype.setShadow=function(a,b,c,d){this._info.context.shadowColor=a||"#999",this._info.context.shadowBlur=b||20,this._info.context.shadowOffsetX=c||15,this._info.context.shadowOffsetY=d||c||15},e}(jQuery,i),k=function(a){function b(b){a.call(this,b)}return b.prototype=Object.create(a.prototype),b}(i),l=function(a,b){function c(){this.$el=a("<div/>"),this.layers={},this.fpsInterval=null,this.fpsLogInterval=null,this.utils={worldSizeWidth:400,worldSizeHeight:400}}function d(a,b){for(var c=!1,d=-1,e=a.length,f=e-1;++d<e;f=d)(a[d].y<=b.y&&b.y<a[f].y||a[f].y<=b.y&&b.y<a[d].y)&&b.x<(a[f].x-a[d].x)*(b.y-a[d].y)/(a[f].y-a[d].y)+a[d].x&&(c=!c);return c}return c.prototype={init:function(b,c){if(!b)throw new Error('no "elem" param passed to new Engine instance');c&&a.extend(!0,this.utils,c),this.setWorld(b)},setWorld:function(b){if(this.$el){var c=this.worldSize();this.$el.css("position","relative").width(c.w).height(c.h).appendTo(a(b))}},worldSize:function(){return{w:this.utils.worldSizeWidth,h:this.utils.worldSizeHeight}},render:function(){for(var a in this.layers)this.layers.hasOwnProperty(a)&&this.layers[a]._render()},addLayer:function(a,c){var d=new b(a,c);return d._addTo(this),this.layers[a]=d,d},removeLayer:function(a){var b=this.layers[a];return b?(b.remove(),delete this.layers[a],!0):!1},showFPS:function(a){a||(a=console.log);var b=0;this.fpsInterval=setInterval(function(){b++},1),this.fpsLogInterval=setInterval(function(){a(b/10),b=0},1e3)},hideFPS:function(){clearInterval(this.fpsInterval),clearInterval(this.fpsLogInterval)},screenToWorld:function(a,b){var c=this.worldSize(),d=this.$el.offset();return{x:a-(d.left+c.w/2),y:b-(d.top+c.h/2)}},getObjectsAtScreenCoord:function(a){var b=this.screenToWorld(a.x,a.y),c=[];for(var e in this.layers)this.layers.hasOwnProperty(e)&&(c=c.concat(this.layers[e].getShapesWithObjects()));for(var f=[],g=0;g<c.length;g++)c[g].shape&&d(c[g].shape,b)&&f.push(c[g]);return f.sort(function(a,b){return b.zindex-a.zindex}),f},drawUtils:{grid:function(a,b,c,d,e){if(!a)throw new Error("calling draw method without providing a Stage instance");b||(b=[10,10]),c||(c=10),d||(d={}),d.strokeSize||(d.strokeSize=1),d.strokeColor||(d.strokeColor=0),d.alpha||(d.alpha=.8),a._info.draw.setup(d);for(var f=0;f<=b[0];f++)a._info.draw.line([f*c,0],[f*c,b[0]*c],e);for(var g=0;g<=b[1];g++)a._info.draw.line([0,g*c],[b[1]*c,g*c],e);a._info.draw.render()},line:function(a,b,c,d,e){if(!a)throw new Error("calling draw method without providing a Stage instance");null!=b&&null!=c&&(d&&a._info.draw.setup(d),a._info.draw.line(b,c,e),a._info.draw.render())},axis:function(a,b,c){if(!a)throw new Error("calling draw method without providing a Stage instance");b||(b=100);var d=[b,0,0],e=[0,b,0],f=[0,0,b];a._info.draw.setup({strokeColor:0}),a._info.draw.line([0,0,0],d,c),a._info.draw.line([0,0,0],e,c),a._info.draw.line([0,0,0],f,c),a._info.draw.render()},get3DPolygonSquare:function(a){return[[0,0,0],[a,0,0],[a,a,0],[0,a,0]]},get3DPolygonSquareRight:function(a){return[[0,0,0],[0,a,0],[0,a,a],[0,0,a]]},get3DPolygonSquareLeft:function(a){return[[0,0,0],[0,0,a],[a,0,a],[a,0,0]]}}},c}(jQuery,j),m=function(a,b,c,d,e,f,g,h,i,j,k,l){var m={};return m.core={},m.core.Engine=a,m.core.ObjectModel=b,m.core.Point=c,m.display={},m.display.Bitmap=d,m.display.DisplayObject=e,m.display.DisplayObjectContainer=f,m.display.Shape=g,m.display.Sprite=h,m.display.Stage=i,m.display.Text=j,m.utils={},m.utils.Animator=k,m.utils.Draw=l,m}(l,a,b,f,e,i,h,k,j,g,c,d);return m}();
 /*! PanelUI Package - v0.1.0 - 2015-04-24 */
-var PanelUI=function(){var a=function(){function a(a,b){this.name=a,this.title=b||a,this.parent=null,this.mainUI=null,this.enabled=!0,this.elements=[],this.elementsMap={},this.listeners={},this.$el=this.getElement(),this.initEvents()}return a.prototype={getElement:function(){return null},initEvents:function(){},setValue:function(){},getValue:function(){},addTo:function(a){this.parent=a,this.mainUI=a.mainUI||a,this.updateChildrenHierarchy()},addChild:function(a){this.elements.push(a);var b;if(a.components)for(var c=0;c<a.components.length;c++)b=a.components[c],b.addTo(this),this.elementsMap[b.name]=b;else a.addTo(this),this.elementsMap[a.name]=a},updateChildrenHierarchy:function(){for(var a,b=this.components?this.components:this.elements,c=0;c<b.length;c++)a=b[c],a.mainUI=this.mainUI,a.updateChildrenHierarchy()},toDom:function(){for(var a=0;a<this.elements.length;a++)this.$el.append(this.elements[a].toDom());return this.$el},enable:function(){this.enabled=!0,this.$el.addClass("enabled"),this.$el.removeClass("disabled")},disable:function(){this.enabled=!1,this.$el.addClass("disabled"),this.$el.removeClass("enabled")},toggle:function(){this.enabled?this.disable():this.enable()},setEvent:function(a,b,c){"function"==typeof b?this.$el.on(a,b.bind(this)):"string"==typeof b&&this.$el.on(a,b,c.bind(this))},on:function(a,b){this.listeners[a]||(this.listeners[a]=[]),this.listeners[a].push(b)},off:function(a){this.listeners[a]=null},trigger:function(a,b){if(this.listeners[a]){this.mainUI&&this.mainUI.eventlog&&console.log("trigger: ",this.name,a,b);for(var c=0;c<this.listeners[a].length;c++)this.listeners[a][c](b,a)}}},a}(),b=function(a,b){function c(a,c,d){this.type=d,b.call(this,a,c)}return c.prototype=Object.create(b.prototype),c.prototype.getElement=function(){return a("<div/>").attr("id","ic-"+this.name).addClass("ic-"+this.type).append(a("<p/>").text(this.title))},c}(a),c=function(a){function b(b,c){a.call(this,b,c,"panel"),this.addComponents()}return b.prototype=Object.create(a.prototype),b.prototype.addComponents=function(){},b}(b),d=function(a){function b(b,c,d){a.call(this,b+"-"+c,d,"panel-component")}return b.prototype=Object.create(a.prototype),b}(b),e=function(a,b){function c(a){this.components=a,b.call(this,"group")}return c.prototype=Object.create(b.prototype),c.prototype.getElement=function(){for(var b=a("<div/>").addClass("block"),c=0;c<this.components.length;c++)b.append(this.components[c].toDom());return b},c}(jQuery,a),f=function(a){function b(){a.call(this,"navigation","navigation","navigation")}return b.prototype=Object.create(a.prototype),b.prototype.getElement=function(){return $("<nav/>").append("<ul/>")},b.prototype.initEvents=function(){this.setEvent("click","a",function(a){this.trigger("click",$(a.currentTarget).data("panel"))})},b.prototype.addTab=function(a,b){this.$el.find("ul").append($("<li/>").append($("<a/>").data("panel",a).text(b)))},b}(b),g=function(a,b){function c(b){if(this.ID=b,this.$el=a("#"+b),0==this.$el.length)throw new Error("main UI not initialized: probably given ID does not exists in dom");this.panels=[],this.panelsMap={},this.currentPanel=null,this.eventlog=!1,this.nav=null}return c.prototype={init:function(){this.initNavigation()},initNavigation:function(){this.nav=new b,this.nav.on("click",function(a){this.changePanel(a,200)}.bind(this)),this.addPanel(this.nav)},logEvents:function(a){this.eventlog=a},changePanel:function(b,c){var d=a("#"+b),e=null==this.currentPanel||this.currentPanel.attr("id")!=b;e&&(this.currentPanel&&this.currentPanel.fadeOut(c),this.currentPanel=d,c?this.currentPanel.fadeIn(c):this.currentPanel.show())},addPanel:function(a,c){return c||(c=a.name),!(a instanceof b)&&this.nav&&this.nav.addTab(a.name,c),this.panels.push(a),this.panelsMap[a.name]=a,a.addTo(this),this.$el.append(a.toDom()),a}},c}(jQuery,f),h=function(a,b,c,d,e,f,g){var h={};return h.core={},h.core.PUIElement=a,h.core.PUIElementContainer=b,h.core.PUIMain=c,h.panels={},h.panels.PUINavigation=d,h.panels.PUIPanel=e,h.panels.PUIPanelComponent=f,h.panels.PUIPanelComponentGroup=g,h}(a,b,g,f,c,d,e);return h}();
+var PanelUI = (function(){
+var pkgVersion = "v0.1.0";
+/**
+ * Created by fdimonte on 24/04/2015.
+ */
+
+var PUIElement = (function(){
+
+    /**
+     * PUIElement Class
+     *
+     * @param name
+     * @param title
+     * @constructor
+     */
+    function PUIElement(name,title) {
+
+        this.name = name;
+        this.title = title || name;
+
+        this.parent = null;
+        this.mainUI = null;
+        this.enabled = true;
+        this.elements = [];
+        this.elementsMap = {};
+
+        this.listeners = {};
+        this.$el = this.getElement();
+        this.initEvents();
+
+    }
+
+    /**
+     * PUIElement prototype
+     *
+     * @type {{getElement: getElement, initEvents: initEvents, addChild: addChild, toDom: toDom, setEvent: setEvent, on: on, off: off, trigger: trigger}}
+     */
+    PUIElement.prototype = {
+
+        // overridable methods
+
+        getElement: function() {return null;},
+        initEvents: function() {/* does nothing right now */},
+        setValue: function() {/* it must be overridden */},
+        getValue: function() {/* it must be overridden */},
+
+        // public methods
+
+        addTo: function(parent) {
+            this.parent = parent;
+            this.mainUI = parent.mainUI || parent;
+            this.updateChildrenHierarchy();
+        },
+
+        addChild: function(child) {
+            this.elements.push(child);
+
+            var comp;
+            if(child.components){
+                for(var c=0;c<child.components.length;c++){
+                    comp = child.components[c];
+                    comp.addTo(this);
+                    this.elementsMap[comp.name] = comp;
+                }
+            }else {
+                child.addTo(this);
+                this.elementsMap[child.name] = child;
+            }
+        },
+
+        updateChildrenHierarchy: function() {
+            var child,
+                elems = this.components ? this.components : this.elements;
+
+            for(var i=0;i<elems.length;i++){
+                child = elems[i];
+                child.mainUI = this.mainUI;
+                child.updateChildrenHierarchy();
+            }
+        },
+
+        toDom: function() {
+            for(var c=0;c<this.elements.length;c++){
+                this.$el.append(this.elements[c].toDom());
+            }
+            return this.$el;
+        },
+
+        enable: function() {
+            this.enabled = true;
+            this.$el.addClass('enabled');
+            this.$el.removeClass('disabled');
+        },
+        disable: function() {
+            this.enabled = false;
+            this.$el.addClass('disabled');
+            this.$el.removeClass('enabled');
+        },
+        toggle: function() {
+            this.enabled ? this.disable() : this.enable();
+        },
+
+        setEvent: function(event,child,callback){
+            if(typeof(child)=='function')
+                this.$el.on(event,child.bind(this));
+            else if(typeof(child)=='string')
+                this.$el.on(event,child,callback.bind(this));
+        },
+        on: function(event,callback) {
+            this.listeners[event] || (this.listeners[event]=[]);
+            this.listeners[event].push(callback);
+        },
+        off: function(event) {
+            this.listeners[event] = null;
+        },
+        trigger: function(event,data) {
+            if(!this.listeners[event]) return;
+            this.mainUI && this.mainUI.eventlog && console.log('trigger: ',this.name,event,data);
+            for(var c=0; c<this.listeners[event].length; c++){
+                this.listeners[event][c](data,event);
+            }
+        }
+    };
+
+    return PUIElement;
+
+}());
+
+/**
+ * Created by fdimonte on 24/04/2015.
+ */
+
+var PUIElementContainer = (function($, PUIElement){
+
+    /**
+     * PUIElementContainer Class
+     *
+     * @param name
+     * @param title
+     * @param type
+     * @constructor
+     */
+    function PUIElementContainer(name,title,type) {
+        this.type = type;
+        PUIElement.call(this,name,title);
+    }
+
+    /**
+     * PUIElementContainer prototype
+     *
+     * @type {PUIElement}
+     */
+    PUIElementContainer.prototype = Object.create(PUIElement.prototype);
+
+    /* *******************************
+     * OVERRIDE SUPER CLASS METHODS
+     * *******************************/
+
+    PUIElementContainer.prototype.getElement = function() {
+
+        return $('<div/>').attr('id','ic-'+this.name).addClass('ic-'+this.type)
+            .append(
+            $('<p/>').text(this.title)
+        );
+
+    };
+
+    return PUIElementContainer;
+
+}(PUIElement));
+
+/**
+ * Created by fdimonte on 24/04/2015.
+ */
+
+var PUIPanel = (function(PUIElementContainer){
+
+    /**
+     * PUIPanel Class
+     *
+     * @param name
+     * @param title
+     * @constructor
+     */
+    function PUIPanel(name,title) {
+        PUIElementContainer.call(this,name,title,'panel');
+        this.addComponents();
+    }
+
+    /**
+     * PUIPanel prototype
+     *
+     * @type {PUIElementContainer}
+     */
+    PUIPanel.prototype = Object.create(PUIElementContainer.prototype);
+
+    /* *******************************
+     * IMPLEMENT CUSTOM METHODS
+     * *******************************/
+
+    PUIPanel.prototype.addComponents = function() {
+        // this method must be overridden in order to add
+        // every child needed by the PUIPanel instance
+    };
+
+    return PUIPanel;
+
+}(PUIElementContainer));
+
+/**
+ * Created by fdimonte on 24/04/2015.
+ */
+
+var PUIPanelComponent = (function(PUIElementContainer){
+
+    /**
+     * PUIPanelComponent Class
+     *
+     * @param panel
+     * @param name
+     * @param title
+     * @constructor
+     */
+    function PUIPanelComponent(panel,name,title) {
+        PUIElementContainer.call(this,panel+'-'+name,title,'panel-component');
+    }
+
+    /**
+     * PUIPanelComponent prototype
+     *
+     * @type {PUIElementContainer}
+     */
+    PUIPanelComponent.prototype = Object.create(PUIElementContainer.prototype);
+
+    return PUIPanelComponent;
+
+}(PUIElementContainer));
+
+/**
+ * Created by fdimonte on 24/04/2015.
+ */
+
+var PUIPanelComponentGroup = (function($, PUIElement){
+
+    /**
+     * PUIPanelComponentGroup Class
+     *
+     * @param components
+     * @constructor
+     */
+    function PUIPanelComponentGroup(components) {
+        this.components = components;
+        PUIElement.call(this,'group');
+    }
+
+    /**
+     * PUIPanelComponentGroup prototype
+     *
+     * @type {PUIElement}
+     */
+    PUIPanelComponentGroup.prototype = Object.create(PUIElement.prototype);
+
+    /* *******************************
+     * OVERRIDE SUPER CLASS METHODS
+     * *******************************/
+
+    PUIPanelComponentGroup.prototype.getElement = function() {
+        var $block = $('<div/>').addClass('block');
+        for(var i=0;i<this.components.length;i++){
+            $block.append(this.components[i].toDom());
+        }
+        return $block;
+    };
+
+    return PUIPanelComponentGroup;
+
+}(jQuery, PUIElement));
+
+/**
+ * Created by fdimonte on 24/04/2015.
+ */
+
+var PUINavigation = (function(PUIElementContainer){
+
+    /**
+     * PUINavigation Class
+     *
+     * @constructor
+     */
+    function PUINavigation() {
+        PUIElementContainer.call(this,'navigation','navigation','navigation');
+    }
+
+    /**
+     * PUINavigation prototype
+     *
+     * @type {PUIElementContainer}
+     */
+    PUINavigation.prototype = Object.create(PUIElementContainer.prototype);
+
+    /* *******************************
+     * OVERRIDE SUPER CLASS METHODS
+     * *******************************/
+
+    PUINavigation.prototype.getElement = function() {
+        return $('<nav/>').append('<ul/>');
+    };
+
+    PUINavigation.prototype.initEvents = function() {
+        this.setEvent('click','a',function(e){
+            this.trigger('click',$(e.currentTarget).data('panel'));
+        });
+    };
+
+    /* *******************************
+     * IMPLEMENT CUSTOM METHODS
+     * *******************************/
+
+    PUINavigation.prototype.addTab = function(name,label) {
+        this.$el.find('ul').append(
+            $('<li/>').append($('<a/>').data('panel',name).text(label))
+        );
+    };
+
+    return PUINavigation;
+
+}(PUIElementContainer));
+
+/**
+ * Created by fdimonte on 24/04/2015.
+ */
+
+var PUIMain = (function($, PUINavigation){
+
+    /**
+     * PUIMain Class
+     *
+     * @constructor
+     */
+    function PUIMain(ID) {
+
+        this.ID = ID;
+        this.$el = $('#'+ID);
+        if(this.$el.length==0) throw new Error('main UI not initialized: probably given ID does not exists in dom');
+
+        this.panels = [];
+        this.panelsMap = {};
+        this.currentPanel = null;
+        this.eventlog = false;
+
+        this.nav = null;
+
+    }
+
+    /**
+     * PUIMain prototype
+     *
+     * @type {{logEvents: logEvents, init: init, initNavigation: initNavigation, changePanel: changePanel, addPanel: addPanel}}
+     */
+    PUIMain.prototype = {
+
+        init: function() {
+            this.initNavigation();
+        },
+
+        initNavigation: function() {
+
+            this.nav = new PUINavigation();
+
+            this.nav.on('click',function(data,event){
+                this.changePanel(data,200);
+            }.bind(this));
+
+            this.addPanel(this.nav);
+
+        },
+
+        logEvents: function(toggle) {
+            this.eventlog = toggle;
+        },
+
+        changePanel: function(name,velocity) {
+
+            var $next = $('#'+name);
+            var canContinue = this.currentPanel == null || this.currentPanel.attr('id')!=name;
+
+            if(canContinue) {
+                this.currentPanel && this.currentPanel.fadeOut(velocity);
+                this.currentPanel = $next;
+                if(velocity) this.currentPanel.fadeIn(velocity);
+                else this.currentPanel.show();
+            }
+
+        },
+
+        addPanel: function(puiElement,name) {
+
+            name || (name=puiElement.name);
+            !(puiElement instanceof PUINavigation) && this.nav && this.nav.addTab(puiElement.name,name);
+
+            this.panels.push(puiElement);
+            this.panelsMap[puiElement.name] = puiElement;
+
+            puiElement.addTo(this);
+
+            this.$el.append(puiElement.toDom());
+
+            return puiElement;
+
+        }
+
+    };
+
+    return PUIMain;
+
+}(jQuery, PUINavigation));
+
+var PanelUIPackage = (function(PUIElement,PUIElementContainer,PUIMain,PUINavigation,PUIPanel,PUIPanelComponent,PUIPanelComponentGroup){
+    var pkg={};
+    pkg["core"]={};
+    pkg["core"]["PUIElement"]=PUIElement;
+    pkg["core"]["PUIElementContainer"]=PUIElementContainer;
+    pkg["core"]["PUIMain"]=PUIMain;
+    pkg["panels"]={};
+    pkg["panels"]["PUINavigation"]=PUINavigation;
+    pkg["panels"]["PUIPanel"]=PUIPanel;
+    pkg["panels"]["PUIPanelComponent"]=PUIPanelComponent;
+    pkg["panels"]["PUIPanelComponentGroup"]=PUIPanelComponentGroup;
+    return pkg;
+}(PUIElement,PUIElementContainer,PUIMain,PUINavigation,PUIPanel,PUIPanelComponent,PUIPanelComponentGroup));
+return PanelUIPackage;}());
 /**
  * Created by fdimonte on 23/04/2015.
  */
