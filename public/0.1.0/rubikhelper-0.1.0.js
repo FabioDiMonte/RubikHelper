@@ -2065,7 +2065,7 @@ var RHAnalyze = (function($, PUIElement){
 
     return RHAnalyze;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -2186,7 +2186,7 @@ var RHCubeColors = (function($, PUIElement, RubikUtils){
 
     return RHCubeColors;
 
-}(jQuery, PUIElement, RubikUtils));
+}(jQuery, PanelUI.core.PUIElement, RubikUtils));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -2261,7 +2261,7 @@ var RHCubeSetup = (function($, PUIElement){
 
     return RHCubeSetup;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -2384,7 +2384,7 @@ var RHExplainList = (function($, PUIElement){
 
     return RHExplainList;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -2449,7 +2449,7 @@ var RHExplainPriority = (function($, PUIElement){
 
     return RHExplainPriority;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -2531,7 +2531,7 @@ var RHFaceButtons = (function($, PUIElement){
 
     return RHFaceButtons;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -2643,7 +2643,7 @@ var RHGroupButtons = (function($, PUIElement){
 
     return RHGroupButtons;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -2730,7 +2730,7 @@ var RHHighlightList = (function($, PUIElement){
 
     return RHHighlightList;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -2856,7 +2856,7 @@ var RHHighlightPieces = (function($, PUIElement, RHPieceButton, RubikUtils){
 
     return RHHighlightPieces;
 
-}(jQuery, PUIElement, RHPieceButton, RubikUtils));
+}(jQuery, PanelUI.core.PUIElement, RHPieceButton, RubikUtils));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -2899,7 +2899,7 @@ var RHMovesList = (function($, PUIElement){
 
     return RHMovesList;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -2992,7 +2992,7 @@ var RHPieceButton = (function($, PUIElement, RHFaceButtons, RubikUtils){
 
     return RHPieceButton;
 
-}(jQuery, PUIElement, RHFaceButtons, RubikUtils));
+}(jQuery, PanelUI.core.PUIElement, RHFaceButtons, RubikUtils));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -3070,7 +3070,7 @@ var RHReplay = (function($, PUIElement){
 
     return RHReplay;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -3136,7 +3136,7 @@ var RHSequenceInput = (function($, PUIElement){
 
     return RHSequenceInput;
 
-}(jQuery, PUIElement));
+}(jQuery, PanelUI.core.PUIElement));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -3240,7 +3240,7 @@ var PanelSequenceToMoves = (function(RubikUtils, PUIPanel, PUIPanelComponent, PU
 
     return PanelSequenceToMoves;
 
-}(RubikUtils, PUIPanel, PUIPanelComponent, PUIPanelComponentGroup, RHSequenceInput, RHMovesList));
+}(RubikUtils, PanelUI.panels.PUIPanel, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHSequenceInput, RHMovesList));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -3371,7 +3371,7 @@ var PanelMoves = (function(PanelSequenceToMoves, PUIPanelComponent, PUIPanelComp
 
     return PanelMoves;
 
-}(PanelSequenceToMoves, PUIPanelComponent, PUIPanelComponentGroup, RHFaceButtons, RHPieceButton, RHGroupButtons));
+}(PanelSequenceToMoves, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHFaceButtons, RHPieceButton, RHGroupButtons));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -3456,7 +3456,7 @@ var PanelSolve = (function(RubikSolver, PanelSequenceToMoves, PUIPanelComponent,
 
     return PanelSolve;
 
-}(RubikSolver, PanelSequenceToMoves, PUIPanelComponent, PUIPanelComponentGroup, RHAnalyze, RHReplay));
+}(RubikSolver, PanelSequenceToMoves, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHAnalyze, RHReplay));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -3713,7 +3713,7 @@ var PanelCubeSetup = (function(PUIPanel, PUIPanelComponent, PUIPanelComponentGro
 
     return PanelCubeSetup;
 
-}(PUIPanel, PUIPanelComponent, PUIPanelComponentGroup, RHCubeSetup, RHFaceButtons, RHPieceButton, RHCubeColors));
+}(PanelUI.panels.PUIPanel, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHCubeSetup, RHFaceButtons, RHPieceButton, RHCubeColors));
 
 /**
  * Created by fdimonte on 24/04/2015.
@@ -3783,7 +3783,7 @@ var PanelExplain = (function(PUIPanel, PUIPanelComponent, PUIPanelComponentGroup
 
     return PanelExplain;
 
-}(PUIPanel, PUIPanelComponent, PUIPanelComponentGroup, RHExplainPriority, RHExplainList));
+}(PanelUI.panels.PUIPanel, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHExplainPriority, RHExplainList));
 
 var RubikHelperPackage = (function(RubikCube,RubikCubeIso,RubikSolver,RubikTeacher,RubikUtils,RHMainUI,RHAnalyze,RHCubeColors,RHCubeSetup,RHExplainList,RHExplainPriority,RHFaceButtons,RHGroupButtons,RHHighlightList,RHHighlightPieces,RHMovesList,RHPieceButton,RHReplay,RHSequenceInput,PanelCubeSetup,PanelExplain,PanelHighlights,PanelMoves,PanelSequenceToMoves,PanelSolve){
 var pkg={};
