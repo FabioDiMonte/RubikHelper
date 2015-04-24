@@ -1,10 +1,23 @@
 
 module.exports = function(grunt) {
 
+    function getPackageName(path,base){
+        var name = path.replace(base,'');
+        if(name.substr(name.length-1)=='/') name = name.substr(0,name.length-1);
+        return name;
+    }
+    function getPackageProps(name){
+        var props = name.split('/');
+        props = props.map(function(v){
+            return '["'+v+'"]';
+        }).join('');
+        return props;
+    }
+
     function filesList(path,base){
         base || (base=path);
 
-        var className,packageName,
+        var className,packageName,packageProps,
             fs = require('fs'),
             files = fs.readdirSync(path),
             ret = {
@@ -14,15 +27,20 @@ module.exports = function(grunt) {
 
         files.forEach(function(v){
             var s = fs.statSync(path+v);
+
             if(s.isFile()){
                 className = v.replace('.js','');
-                packageName = path.replace(base,'').replace('/','');
+                packageName = getPackageName(path,base);
+                packageProps = getPackageProps(packageName);
                 path!=base && ret.packages.push(className);
-                path!=base && ret.rows.push('pkg["'+packageName+'"]["'+className+'"]='+className+';');
+                path!=base && ret.rows.push('pkg'+packageProps+'["'+className+'"]='+className+';');
             }
             else if(s.isDirectory()){
-                var fl = filesList(path+v+'/',base);
-                ret.rows.push('pkg["'+v+'"]={};');
+                var subPath = path+v+'/';
+                var fl = filesList(subPath,base);
+                packageName = getPackageName(subPath,base);
+                packageProps = getPackageProps(packageName);
+                ret.rows.push('pkg'+packageProps+'={};');
                 ret.rows = ret.rows.concat(fl.rows);
                 ret.packages = ret.packages.concat(fl.packages);
             }
