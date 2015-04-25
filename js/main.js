@@ -1,5 +1,6 @@
-var isoCube;
+var rCube,rUI;
 
 $(document).ready(function(){
-    isoCube = new RubikHelper.cube.RubikCubeIso( 'isocube', {pieceSize:40} );
+    rCube = new RubikHelper.cube.RubikCubeIso( 'isocube', {pieceSize:40} );
+    rUI   = new RubikHelper.ui.RHMainUI( 'isocube-ui', rCube );
 });
