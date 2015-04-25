@@ -74,7 +74,7 @@ module.exports = function(grunt) {
                     'src/ui/panels/PanelSolve.js',
                     'src/ui/panels/PanelCubeSetup.js',
                     'src/ui/panels/PanelExplain.js',
-                    'src/ui/panels/PanelHighlight.js',
+                    'src/ui/panels/PanelHighlights.js',
 
                     'src/ui/RHMainUI.js'
                 ],
