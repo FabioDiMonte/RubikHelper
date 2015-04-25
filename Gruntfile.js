@@ -62,10 +62,10 @@ module.exports = function(grunt) {
                     'src/ui/elements/RHExplainPriority.js',
                     'src/ui/elements/RHFaceButtons.js',
                     'src/ui/elements/RHGroupButtons.js',
+                    'src/ui/elements/RHPieceButton.js',
                     'src/ui/elements/RHHighlightList.js',
                     'src/ui/elements/RHHighlightPieces.js',
                     'src/ui/elements/RHMovesList.js',
-                    'src/ui/elements/RHPieceButton.js',
                     'src/ui/elements/RHReplay.js',
                     'src/ui/elements/RHSequenceInput.js',
 
