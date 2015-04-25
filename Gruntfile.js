@@ -76,7 +76,7 @@ module.exports = function(grunt) {
                     'src/ui/panels/PanelExplain.js',
                     'src/ui/panels/PanelHighlight.js',
 
-                    'src/RHMainUI.js'
+                    'src/ui/RHMainUI.js'
                 ],
                 dest: 'target/temp/packages.js'
             },
@@ -186,7 +186,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,flatten: true,filter: 'isFile',
                         src: ['target/sa/*'],
-                        dest: 'build/<%= pkg.version %>/'
+                        dest: 'build/<%= pkg.version %>/tools/'
                     }
                 ]
             },
@@ -206,7 +206,7 @@ module.exports = function(grunt) {
                     },
                     {
                         expand: true,flatten: true,filter: 'isFile',
-                        src: ['build/<%= pkg.version %>/Rubik*-<%= pkg.version %>.min.js'],
+                        src: ['build/<%= pkg.version %>/tools/Rubik*-<%= pkg.version %>.min.js'],
                         dest: 'public/<%= pkg.version %>/tools/'
                     }
                 ]
