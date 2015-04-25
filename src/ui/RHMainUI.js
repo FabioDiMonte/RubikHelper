@@ -2,7 +2,7 @@
  * Created by fdimonte on 24/04/2015.
  */
 
-var RHMainUI = (function($, RubikUtils, RubikTeacher, PUIMain, PanelMoves, PanelSolve, PanelExplain, PanelHighlights, PanelCubeSetup){
+var RHMainUI = (function($, RubikUtils, PUIMain, PanelMoves, PanelSolve, PanelExplain, PanelHighlights, PanelCubeSetup){
 
     /**
      * RHMainUI Class
@@ -35,7 +35,6 @@ var RHMainUI = (function($, RubikUtils, RubikTeacher, PUIMain, PanelMoves, Panel
         this.initStyles();
 
         this.isocube = isocube;
-        this.teacher = new RubikTeacher({consoleLog:false});
 
         this.addPanel( new PanelMoves(),      'scramble'  );
         this.addPanel( new PanelSolve(),      'solve'     ).on('get_pattern',explainHandler.bind(this));
@@ -111,4 +110,4 @@ var RHMainUI = (function($, RubikUtils, RubikTeacher, PUIMain, PanelMoves, Panel
 
     return RHMainUI;
 
-}(jQuery, RubikUtils, RubikTeacher, PanelUI.core.PUIMain, PanelMoves, PanelSolve, PanelExplain, PanelHighlights, PanelCubeSetup));
+}(jQuery, RubikUtils, PanelUI.core.PUIMain, PanelMoves, PanelSolve, PanelExplain, PanelHighlights, PanelCubeSetup));

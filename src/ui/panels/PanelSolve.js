@@ -2,7 +2,7 @@
  * Created by fdimonte on 24/04/2015.
  */
 
-var PanelSolve = (function(RubikSolver, PanelSequenceToMoves, PUIPanelComponent, PUIPanelComponentGroup, RHAnalyze, RHReplay){
+var PanelSolve = (function(RubikSolver, RubikTeacher, PanelSequenceToMoves, PUIPanelComponent, PUIPanelComponentGroup, RHAnalyze, RHReplay){
 
     /**
      * PanelSolve Class
@@ -62,7 +62,7 @@ var PanelSolve = (function(RubikSolver, PanelSequenceToMoves, PUIPanelComponent,
         var exp = obj.e;
         this.sequence.setValue(seq);
 
-        this.mainUI.teacher && this.trigger('get_pattern',this.mainUI.teacher.explainAll(exp));
+        this.trigger('get_pattern',RubikTeacher.explainAll(exp));
     }
 
     function executeReplay(data,event) {
@@ -81,4 +81,4 @@ var PanelSolve = (function(RubikSolver, PanelSequenceToMoves, PUIPanelComponent,
 
     return PanelSolve;
 
-}(RubikSolver, PanelSequenceToMoves, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHAnalyze, RHReplay));
+}(RubikSolver, RubikTeacher, PanelSequenceToMoves, PanelUI.panels.PUIPanelComponent, PanelUI.panels.PUIPanelComponentGroup, RHAnalyze, RHReplay));
