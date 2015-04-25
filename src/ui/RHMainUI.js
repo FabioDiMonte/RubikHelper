@@ -111,4 +111,4 @@ var RHMainUI = (function($, RubikUtils, RubikTeacher, PUIMain, PanelMoves, Panel
 
     return RHMainUI;
 
-}(jQuery, RubikUtils, RubikTeacher, PUIMain, PanelMoves, PanelSolve, PanelExplain, PanelHighlights, PanelCubeSetup));
+}(jQuery, RubikUtils, RubikTeacher, PanelUI.core.PUIMain, PanelMoves, PanelSolve, PanelExplain, PanelHighlights, PanelCubeSetup));
