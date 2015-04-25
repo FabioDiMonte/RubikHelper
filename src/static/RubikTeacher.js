@@ -59,8 +59,6 @@ var RubikTeacher = (function(){
         constants: explainConstants,
 
         explain: function(name,value){
-            name=='BEGIN' && this.willExplain();
-
             var priority=0,
                 grouping=0,
                 message=name;
@@ -93,8 +91,6 @@ var RubikTeacher = (function(){
             }else{
                 grouping = -1;
             }
-
-            name=='END' && this.didExplain();
 
             return {m:final_msg,g:grouping,p:priority};
         },
