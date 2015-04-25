@@ -1,0 +1,382 @@
+/*******************************************************************
+ *
+ * GENERIC ISOCUBE UI STYLE
+ *
+ * TODO: get a real clean code and refactor in order to use IDs as less as possible!! (eg. #ic-cubesetup-faces, #ic-moves-faces, ...)
+ *
+ ******************************************************************/
+
+/* #################### isocube-ui container #################### */
+
+#isocube-ui {
+    font-family: 'Open Sans',sans-serif;
+    margin: 0 auto 13px;
+    max-width: 600px;
+    min-width: 400px;
+    position: relative;
+    width: auto;
+}
+
+#isocube-ui .block {
+    display: block;
+    font-size: 0;
+}
+
+#isocube-ui .disabled {
+    cursor: default !important;
+    opacity: 0.21;
+}
+#isocube-ui .unselected {
+    opacity: 0.34;
+}
+
+/* #################### isocube-ui nav #################### */
+
+#isocube-ui nav ul {
+    font-size: 0;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#isocube-ui nav ul li {
+    border: 1px solid #777;
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    height: 30px;
+    line-height: 27px;
+    margin: 0 5px 0 0;
+    padding: 0 13px;
+    text-align: center;
+}
+
+/* #################### iscoube-ui face button custom rules #################### */
+
+#isocube-ui .ic-ui-face:not(.disabled) {
+    cursor: pointer;
+    opacity: 1;
+}
+#isocube-ui .ic-ui-face {
+    border: 1px solid #777;
+    border-radius: 4px;
+    color: #222;
+    display: inline-block;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #fff, -1px -1px 1px #fff, 1px -1px 1px #fff, -1px 1px 1px #fff;
+    width: 30px;
+}
+
+/*  iscoube-ui face button colors */
+#isocube-ui .ic-ui-slice-M,
+#isocube-ui .ic-ui-slice-E,
+#isocube-ui .ic-ui-slice-S,
+#isocube-ui .ic-ui-axis-X,
+#isocube-ui .ic-ui-axis-Y,
+#isocube-ui .ic-ui-axis-Z  {background-color: #dedede; color: #222;}
+
+#isocube-ui .ic-ui-face-U:after  {content:'U';}
+#isocube-ui .ic-ui-face-D:after  {content:'D';}
+#isocube-ui .ic-ui-face-F:after  {content:'F';}
+#isocube-ui .ic-ui-face-B:after  {content:'B';}
+#isocube-ui .ic-ui-face-L:after  {content:'L';}
+#isocube-ui .ic-ui-face-R:after  {content:'R';}
+
+#isocube-ui .ic-ui-slice-M:after {content:'M';}
+#isocube-ui .ic-ui-slice-E:after {content:'E';}
+#isocube-ui .ic-ui-slice-S:after {content:'S';}
+
+#isocube-ui .ic-ui-axis-X:after  {content:'x';}
+#isocube-ui .ic-ui-axis-Y:after  {content:'y';}
+#isocube-ui .ic-ui-axis-Z:after  {content:'z';}
+
+/* #################### iscoube-ui piece button custom rules #################### */
+
+#isocube-ui .ic-ui-piece {
+    border: 1px solid #777;
+    border-radius: 4px;
+    color: #222;
+    cursor: default;
+    display: inline-block;
+    font-size: 0;
+    font-weight: 600;
+    height: 30px;
+    line-height: 28px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    width: auto;
+}
+/* iscoube-ui piece button not-a-piece */
+#isocube-ui .ic-ui-piece:empty {
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 8px;
+}
+#isocube-ui .ic-ui-piece:empty:after {
+    content: "new";
+}
+
+/* iscoube-ui piece button rules */
+#isocube-ui .ic-ui-piece .ic-ui-face {
+    border: none;
+    border-radius: 0;
+    cursor: default;
+    margin: 0;
+    width: 22px;
+}
+#ic-moves-piece .ic-ui-piece .ic-ui-face {
+    cursor: pointer;
+}
+
+/* #################### common text inputs #################### */
+
+#isocube-ui .ic-ui-textfield,
+#isocube-ui .ic-ui-sequence {
+    background-color: #eee;
+    border: 1px solid #777;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #222;
+    font-family: monospace;
+    font-size: 14px;
+    height: 26px;
+    margin-bottom: 3px;
+    margin-right: 2px;
+    padding: 5px 5px 4px;
+    width: 100%;
+}
+#isocube-ui .ic-ui-textarea,
+#isocube-ui .ic-ui-moves {
+    background-color: #ffff99;
+    border: 1px solid #777;
+    border-radius: 4px;
+    display: block;
+    font-family: monospace;
+    margin: 0;
+    padding: 5px 8px 3px;
+    word-wrap: break-word;
+}
+
+/*******************************************************************
+ *
+ * ISOCUBE UI PANEL & COMPONENT STYLES (common)
+ *
+ ******************************************************************/
+
+/* #################### panels rules #################### */
+
+/* isocube-ui panel */
+#isocube-ui .ic-panel {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    display: none;
+    margin-bottom: 8px;
+    padding: 8px;
+    position: absolute;
+    top: 35px;
+    width: 100%;
+}
+
+/* isocube-ui panel title */
+#isocube-ui .ic-panel > p {
+    border-bottom: 1px solid #999;
+    margin: 0 0 8px;
+}
+
+/* #################### components rules #################### */
+
+/* isocube-ui panel component */
+#isocube-ui .ic-panel-component {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* isocube-ui panel component title */
+#isocube-ui .ic-panel .ic-panel-component > p {
+    font-size: 13px;
+    margin: 0;
+}
+
+.ic-panel-component label > span {
+    font-size: 12px;
+}
+
+/*******************************************************************
+ *
+ * ISOCUBE UI PANEL & COMPONENT STYLES
+ *
+ ******************************************************************/
+
+/* #################### panel rules #################### */
+
+/* panel : moves */
+#ic-moves {}
+#ic-editcube-piece .ic-ui-piece,
+#ic-editcube-faces .ic-ui-face,
+#ic-cubesetup-colors .ic-ui-face,
+#ic-moves .ic-ui-face {
+    margin-right: 5px;
+}
+
+/* panel : solve */
+#ic-solve {}
+
+/* panel : highlights */
+#ic-highlights {}
+
+/* panel : cubesetup */
+#ic-cubesetup-setup button {
+    margin-right: 8px;
+}
+#ic-cubesetup-colors .ic-ui-face {
+    margin-bottom: 8px;
+}
+#ic-cubesetup-colors .ic-ui-face.active {
+    box-shadow: 0 0 8px 2px #777;
+}
+#ic-cubesetup-colors canvas {
+    cursor: crosshair;
+}
+
+/* #################### components rules #################### */
+
+/* panel : moves */
+#ic-moves-faces,
+#ic-moves-slices {
+    margin-right: 8px;
+}
+#ic-editcube-piece {
+    margin-right: 13px;
+}
+
+#ic-cubesetup-colors ul,
+#ic-editcube-faces ul,
+#ic-moves-faces ul,
+#ic-moves-slices ul,
+#ic-moves-axis ul {
+    font-size: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#ic-moves-piece .ic-ui-piece {
+    cursor: pointer;
+}
+
+#ic-moves-group label {
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    width: 50px;
+}
+#ic-moves-group button {
+    border: 1px solid #777;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    height: 30px;
+    margin: 0 auto;
+    width: 30px;
+}
+#ic-moves-group button[data-action=open]:after     {content:"(";}
+#ic-moves-group button[data-action=close]:after    {content:")";}
+#ic-moves-group button[data-action=negative]:after {content:")'";}
+#ic-moves-group button[data-action=inverse]:after  {content:")i";}
+#ic-moves-group button[data-action=mirror]:after   {content:")m";}
+
+/* panel : output/solve */
+#ic-moves-sequence,
+#ic-moves-moveslist,
+#ic-solve-sequence,
+#ic-solve-moveslist {
+    width: 100%;
+}
+#ic-solve-replay label {
+    display: block;
+}
+#ic-solve-replay .ic-ui-textfield {
+    font-family: 'Open Sans',sans-serif;
+    font-size: 12px;
+    margin: 0 5px;
+    width: 30px;
+}
+
+/* panel : explain */
+#ic-explain-priority label {
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+}
+#ic-explain-priority label > span {
+    display: block;
+}
+
+#ic-explain-list div {
+    margin: 6px 0;
+    padding-left: 10px;
+}
+#ic-explain-list div strong {
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: -10px;
+}
+#ic-explain-list div p {
+    font-size: 12px;
+    margin: 0;
+}
+
+#ic-explain-list div.showall > div.showall {
+    padding-left: 0;
+}
+#ic-explain-list div.showall,
+#ic-explain-list div.showall > div,
+#ic-explain-list div.showall > p:not(.hidden),
+#ic-explain-list div.showall > strong:not(.hidden) {
+    display: block !important;
+}
+#ic-explain-list div p.hidden,
+#ic-explain-list div strong.hidden {
+    display: none !important;
+}
+
+/* panel : highlights */
+#ic-highlights-predefined {}
+#ic-highlights-predefined ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#ic-highlights-predefined ul li {
+    display: inline-block;
+}
+#ic-highlights label {
+    background-color: #eee;
+    border: 1px solid #777;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0 3px 3px 0;
+    padding: 2px 4px 3px;
+    white-space: nowrap;
+}
+#ic-highlights-pieces .ic-highlights-pieces-container {
+    margin-bottom: 5px;
+}
+#ic-highlights-pieces .ic-highlights-pieces-container:last-child {
+    margin-bottom: 0;
+}
+#ic-highlights-pieces .ic-highlights-pieces-container .ic-ui-piece {
+    margin-right: 5px;
+}
