@@ -3898,7 +3898,7 @@ var RHMainUI = (function($, RubikUtils, RubikTeacher, PUIMain, PanelMoves, Panel
 
     return RHMainUI;
 
-}(jQuery, RubikUtils, RubikTeacher, PUIMain, PanelMoves, PanelSolve, PanelExplain, PanelHighlights, PanelCubeSetup));
+}(jQuery, RubikUtils, RubikTeacher, PanelUI.core.PUIMain, PanelMoves, PanelSolve, PanelExplain, PanelHighlights, PanelCubeSetup));
 
 var RubikHelperPackage = (function(RubikCube,RubikCubeIso,RubikSolver,RubikTeacher,RubikUtils,RHMainUI,RHAnalyze,RHCubeColors,RHCubeSetup,RHExplainList,RHExplainPriority,RHFaceButtons,RHGroupButtons,RHHighlightList,RHHighlightPieces,RHMovesList,RHPieceButton,RHReplay,RHSequenceInput,PanelCubeSetup,PanelExplain,PanelHighlights,PanelMoves,PanelSequenceToMoves,PanelSolve){
 var pkg={};
