@@ -14,7 +14,6 @@ module.exports = function(grunt) {
             nl: grunt.util.linefeed,
 
             path_graphicengine: 'dependencies/GraphicEngine/public/graphicengine-latest.min.js',
-            path_panelui: 'dependencies/PanelUI/public/panelui-latest.min.js',
 
             // header for minified full package
             header_min: '/*! <%= pkg.title %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */<%= opt.nl %>',
@@ -53,30 +52,7 @@ module.exports = function(grunt) {
                     'src/static/RubikSolver.js',
                     'src/static/RubikTeacher.js',
                     'src/cube/RubikCube.js',
-                    'src/cube/RubikCubeIso.js',
-
-                    'src/ui/elements/RHAnalyze.js',
-                    'src/ui/elements/RHCubeColors.js',
-                    'src/ui/elements/RHCubeSetup.js',
-                    'src/ui/elements/RHExplainList.js',
-                    'src/ui/elements/RHExplainPriority.js',
-                    'src/ui/elements/RHFaceButtons.js',
-                    'src/ui/elements/RHGroupButtons.js',
-                    'src/ui/elements/RHPieceButton.js',
-                    'src/ui/elements/RHHighlightList.js',
-                    'src/ui/elements/RHHighlightPieces.js',
-                    'src/ui/elements/RHMovesList.js',
-                    'src/ui/elements/RHReplay.js',
-                    'src/ui/elements/RHSequenceInput.js',
-
-                    'src/ui/panels/PanelSequenceToMoves.js',
-                    'src/ui/panels/PanelMoves.js',
-                    'src/ui/panels/PanelSolve.js',
-                    'src/ui/panels/PanelCubeSetup.js',
-                    'src/ui/panels/PanelExplain.js',
-                    'src/ui/panels/PanelHighlights.js',
-
-                    'src/ui/RHMainUI.js'
+                    'src/cube/RubikCubeIso.js'
                 ],
                 dest: 'target/temp/packages.js'
             },
@@ -86,7 +62,6 @@ module.exports = function(grunt) {
                 options: {banner: '<%= opt.header_main %>', footer: '<%= opt.footer_main %>'},
                 src: [
                     '<%= opt.path_graphicengine %>',
-                    '<%= opt.path_panelui %>',
                     'target/temp/packages.js',
                     'target/<%= pkg.title %>Package.js'
                 ],
