@@ -107,11 +107,11 @@ var PanelCubeSetup = (function(PUIPanel, PUIPanelComponent, PUIPanelComponentGro
 
     PanelCubeSetup.prototype.setPiece = function(stickers,position) {
 
-        this.mainUI.isocube.iso.console.childrenMap['cubeletInfo'].setRenderInfo(position + ' : ' + stickers);
-        this.mainUI.isocube.iso.console.render();
+        this.mainUI.isocube.iso.console._children['cubeletInfo'].setRenderInfo(position + ' : ' + stickers);
+        this.mainUI.isocube.iso.console._render();
 
         // animation testing purposes
-        this.mainUI.isocube.iso.console.childrenMap['cubeletInfo'].setAnimationStep(function(time){
+        this.mainUI.isocube.iso.console._children['cubeletInfo'].setAnimationStep(function(time){
             this.setOptions({alpha:1-(time/1000)});
         });
         this.mainUI.isocube.iso.console.startAnimation(1000);
@@ -175,13 +175,13 @@ var PanelCubeSetup = (function(PUIPanel, PUIPanelComponent, PUIPanelComponentGro
         if(poly.length>0) {
 
             if(this.mainUI.isocube.backfaceState()) {
-                poly.sort(function(a, b) {return (a.zindex - b.zindex);});//ASCENDING
+                poly.sort(function(a, b) {return (a._zIndex - b._zIndex);});//ASCENDING
             } else {
-                poly.sort(function(a, b) {return (b.zindex - a.zindex);});//DESCENDING
+                poly.sort(function(a, b) {return (b._zIndex - a._zIndex);});//DESCENDING
             }
 
             var face = poly[0];
-            var piece = face.parent;
+            var piece = face._parent;
             var stickers = getPieceName(piece.get('sticker'), face.get('sticker'));
             var position = getPieceName(piece.get('position'), face.get('position'));
 
