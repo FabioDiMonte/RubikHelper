@@ -9,9 +9,9 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "dependencies",
+    "build",
+    "target"
   ],
   "devDependencies": {
     "GraphicEngine" : "https://github.com/FabioDiMonte/GraphicEngine.git#release_0.1.0"

@@ -13,7 +13,9 @@ module.exports = function(grunt) {
         opt: {
             nl: grunt.util.linefeed,
 
-            path_graphicengine: 'dependencies/GraphicEngine/public/graphicengine-latest.min.js',
+            libs: {
+                graphicengine: 'dependencies/GraphicEngine/public/graphicengine-latest.min.js'
+            },
 
             // header for minified full package
             header_min: '/*! <%= pkg.title %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */<%= opt.nl %>',
@@ -61,7 +63,7 @@ module.exports = function(grunt) {
             main: {
                 options: {banner: '<%= opt.header_main %>', footer: '<%= opt.footer_main %>'},
                 src: [
-                    '<%= opt.path_graphicengine %>',
+                    '<%= opt.libs.graphicengine %>',
                     'target/temp/packages.js',
                     'target/<%= pkg.title %>Package.js'
                 ],
@@ -102,7 +104,7 @@ module.exports = function(grunt) {
             sa_cubeIso: {
                 options: {banner: '<%= opt.header_sa %>', footer: '<%= opt.footer_sa %>'},
                 src: [
-                    '<%= opt.path_graphicengine %>',
+                    '<%= opt.libs.graphicengine %>',
                     'src/static/RubikUtils.js',
                     'src/cube/RubikCube.js',
                     'src/cube/RubikCubeIso.js'
