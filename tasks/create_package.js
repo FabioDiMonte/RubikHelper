@@ -7,11 +7,7 @@ module.exports = function(grunt) {
         return name;
     }
     function getPackageProps(name){
-        var props = name.split('/');
-        props = props.map(function(v){
-            return '["'+v+'"]';
-        }).join('');
-        return props;
+        return '.'+name.split('/').join('.');
     }
 
     function filesList(path,base){
@@ -31,9 +27,9 @@ module.exports = function(grunt) {
             if(s.isFile()){
                 className = v.replace('.js','');
                 packageName = getPackageName(path,base);
-                packageProps = getPackageProps(packageName);
-                path!=base && ret.packages.push(className);
-                path!=base && ret.rows.push('pkg'+packageProps+'["'+className+'"]='+className+';');
+                packageProps = path==base?'':getPackageProps(packageName);
+                ret.packages.push(className);
+                ret.rows.push('pkg'+packageProps+'.'+className+'='+className+';');
             }
             else if(s.isDirectory()){
                 var subPath = path+v+'/';
