@@ -13,31 +13,31 @@ Rubik Helper tools
 - slices: **M**edian, **E**quator, **S**tanding (o **S**ide)
 
 Front:  
-![Front](readme/face-f.png)
+![Front](readme/small/face-f.png)
 
 Back:  
-![Back](readme/face-b.png)
+![Back](readme/small/face-b.png)
 
 Up:  
-![Up](readme/face-u.png)
+![Up](readme/small/face-u.png)
 
 Down:  
-![Down](readme/face-d.png)
+![Down](readme/small/face-d.png)
 
 Left:  
-![Left](readme/face-l.png)
+![Left](readme/small/face-l.png)
 
 Right:  
-![Right](readme/face-r.png)
+![Right](readme/small/face-r.png)
 
 Median:  
-![Median](readme/slice-m.png)
+![Median](readme/small/slice-m.png)
 
 Equator:  
-![Equator](readme/slice-e.png)
+![Equator](readme/small/slice-e.png)
 
 Standing (or Side):  
-![Standing](readme/slice-s.png)
+![Standing](readme/small/slice-s.png)
 
 ### Pezzi
 - centri (1 colore), spigoli (2 colori), angoli (3 colori)  
@@ -51,13 +51,13 @@ per prendere dimestichezza, posizionare il pollice sul primo colore, l’indice 
 eg. `FR`, `BL`, `UL`, `DF`, `UB`, … sono orientati correttamente
 
 Centri:  
-![Centers](readme/centers.png)
+![Centers](readme/small/centers.png)
 
 Spigoli:  
-![Edges](readme/edges.png)
+![Edges](readme/small/edges.png)
 
 Angoli:  
-![Corners](readme/corners.png)
+![Corners](readme/small/corners.png)
 
 ### Mosse
 - orario (`F`, `R`, `U`) e antiorario (`F'`, `R'`, `U'` o `Fi`, `Ri`, `Ui`)
@@ -79,7 +79,7 @@ Angoli:
 - in questo modo è possibile memorizzare la sequenza di pezzi da permutare per risolvere il cubo
 - la convenzione è avere sempre il cubo tra le mani posizionato con la faccia F sul rosso e la faccia U sul giallo (di conseguenza `L`=blu, `R`=verde, `B`=arancio, `D`=bianco)
 
-![Cube colors](readme/cube-colors.png)
+![Cube colors](readme/small/cube-colors.png)
 
 ### Come funziona il metodo M2R2 (le basi)
 - tutti i pattern di permutazione per spigoli e angoli delle facce L e R sono composti da:  
@@ -119,12 +119,12 @@ se `URF` è il secondo pezzo (quindi `R` è girato), eseguire il pattern opposto
 ### orientare 2 spigoli sulla stessa faccia
 - `[M'U]*3 U [MU]*3 U`
 
-![Orient 2 edges](readme/o2e.png)
+![Orient 2 edges](readme/small/o2e.png)
 
 ### opzionale: 4 spigoli sulla stessa faccia
 - `[M'U]*4 [MU]*4`
 
-![Orient 4 edges](readme/o4e.png)
+![Orient 4 edges](readme/small/o4e.png)
 
 ### opzionale: 4 spigoli su 2 facce diverse
 - `[M'U]*4` oppure `[MU]*4`
@@ -248,10 +248,10 @@ NB: i pattern per URF e DRB sono rispettivamente uno l’inverso dell’altro
     - UnSetup: `F2U`
 
 Parity:  
-![Parity](readme/parity.png)
+![Parity](readme/small/parity.png)
 
 J-perm:  
-![J-perm](readme/j-perm.png)
+![J-perm](readme/small/j-perm.png)
 
 ## Riepilogo
 TOTALE PATTERNS: 45  
