@@ -9,8 +9,12 @@ Rubik Helper tools
 ## Nomenclatura e introduzione
 
 ### Facce e Slices
-- facce: *F*ront, *B*ack, *U*p, *D*own, *L*eft, *R*ight
-- slices: *M*edian, *E*quator, *S*tanding (o Side)
+- facce: **F**ront, **B**ack, **U**p, **D**own, **L**eft, **R**ight
+- slices: **M**edian, **E**quator, **S**tanding (o **S**ide)
+
+(front)[readme/face-f.png]
+(right)[readme/face-r.png]
+(up)[readme/face-u.png]
 
 ### Pezzi
 - centri (1 colore), spigoli (2 colori), angoli (3 colori)  
