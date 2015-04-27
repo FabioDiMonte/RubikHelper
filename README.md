@@ -77,6 +77,8 @@ Angoli:
 - in questo modo è possibile memorizzare la sequenza di pezzi da permutare per risolvere il cubo
 - la convenzione è avere sempre il cubo tra le mani posizionato con la faccia F sul rosso e la faccia U sul giallo (di conseguenza `L`=blu, `R`=verde, `B`=arancio, `D`=bianco)
 
+![Cube colors](readme/cube-colors.png)
+
 ### Come funziona il metodo M2R2 (le basi)
 - tutti i pattern di permutazione per spigoli e angoli delle facce L e R sono composti da:  
 Setup -> M2 o R2 -> UnSetup
