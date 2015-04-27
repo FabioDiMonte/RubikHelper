@@ -6,7 +6,7 @@ Rubik Helper tools
 # Rubik Blindfold Tutorial
 #### vademecum for beginners
 
-## Nomenclatura e introduzione
+## Nomenclatura
 
 ### Facce e Slices
 - facce: **F**ront, **B**ack, **U**p, **D**own, **L**eft, **R**ight
@@ -72,6 +72,8 @@ Angoli:
     - `z` e `S` = `F`
 - NB: la nomenclatura in minuscolo per le facce è per lo più utilizzata con i cubi più grandi del 3x3 (4x4, 5x5, …) dove però non viene considerato lo slice M: quindi per esempio `r` indica la rotazione della faccia `R` e di quelle ad essa adiacente fino ad `M` escluso (nel 4x4 non esiste M, nel 5x5 sono le 2 facce a destra, nel 6x6 sono 3 e così via)
 
+## Introduzione
+
 ### Come funziona il metodo blindfold (le basi)
 - questo metodo permette di risolvere il cubo senza ruotarlo tra le mani, come avviene per gli altri metodi più comuni ([“a strati”](http://www.youcandothecube.com/secret-unlocked/solution-stage-one.aspx), [Fridrich](http://en.wikipedia.org/wiki/CFOP_Method), …) e posizionando sempre un pezzo alla volta senza intaccare il resto del cubo
 - in questo modo è possibile memorizzare la sequenza di pezzi da permutare per risolvere il cubo
@@ -117,13 +119,18 @@ se `URF` è il secondo pezzo (quindi `R` è girato), eseguire il pattern opposto
 ### orientare 2 spigoli sulla stessa faccia
 - `[M'U]*3 U [MU]*3 U`
 
+![Orient 2 edges](readme/o2e.png)
+
 ### opzionale: 4 spigoli sulla stessa faccia
 - `[M'U]*4 [MU]*4`
+
+![Orient 4 edges](readme/o4e.png)
 
 ### opzionale: 4 spigoli su 2 facce diverse
 - `[M'U]*4` oppure `[MU]*4`
 
-## Permutazione spigoli già orientati correttamente (10 patterns)
+## Permutazione spigoli già orientati correttamente
+(10 patterns)
 
 ### Permutazione spigoli L e R
 NB: tutti i pattern della faccia `L` avranno la prima mossa di `U` in senso antiorario  
@@ -150,7 +157,8 @@ NB: i pattern per `UF` e `DB` sono rispettivamente uno l’inverso dell’altro
 - `UF`: `[U2M']*2`
 - `DB`: `[MU2]*2`
 
-## Orientamento angoli (4 patterns)
+## Orientamento angoli
+(4 patterns)
 
 ### determinare quali angoli orientare
 - per ogni angolo da orientare, verificarne i colori e la loro posizione sulle facce
@@ -171,7 +179,8 @@ NB: i pattern per `UF` e `DB` sono rispettivamente uno l’inverso dell’altro
 - `R'U' RU R'U' RU` (orario)
 - `U'R' UR U'R' UR` (antiorario)
 
-## Permutazione angoli già orientati correttamente (6 patterns)
+## Permutazione angoli già orientati correttamente
+(6 patterns)
 
 ### permutare angoli faccia L
 NB: la prima parte dei pattern Setup di `DBL` e `UFL` portano il relativo pezzo in posizione `ULB`  
@@ -191,8 +200,8 @@ NB: i pattern per URF e DRB sono rispettivamente uno l’inverso dell’altro
 - `URF`: `U'RF'rU      R2  U'r'FRU R2`
 - `DRB`: `R2 U'R'F'rU  R2  U'r'FR'U`
 
-## Orientamento + permutazione spigoli (8 patterns)
-(1 nuovo pattern per ogni spigolo di L e R)
+## Orientamento + permutazione spigoli
+(8 patterns: 1 nuovo pattern per ogni spigolo di L e R)
 
 #### Faccia L
 - `LB`: `x L'ULU'  M2  UL'U'L x'`
@@ -206,8 +215,8 @@ NB: i pattern per URF e DRB sono rispettivamente uno l’inverso dell’altro
 - `RD`: `x U'R'U   M2  U'RU   x'`
 - `RU`: `x U'RU    M2  U'R'U  x'`
 
-## Orientamento + permutazione angoli (14 patterns)
-(2 nuovi patterns per ogni angolo ad esclusione del buffer)
+## Orientamento + permutazione angoli
+(14 patterns: 2 nuovi patterns per ogni angolo ad esclusione del buffer)
 
 ### permutare e orientare angoli faccia L
 - `BUL`: `y RU R2 U'R'  F2  RU R2 U'R' y'`
@@ -229,12 +238,20 @@ NB: i pattern per URF e DRB sono rispettivamente uno l’inverso dell’altro
 - `BDR`: `RUR' D L2 x2 U'RU L2 x2 U' D' R`
 - `RBD`: `R'U R2 U'R'F' RU R2 U'R'F`
 
-## Parità (1 pattern)
+## Parità
+(1 pattern)
+
 - questo pattern è più noto come J-Perm, che scambia 2 spigoli e 2 angoli tra di loro posizionati a forma di J (o di L), ereditato direttamente dal metodo Fridrich (PLL)
 - la mossa di Setup sposta i 4 pezzi interessati nella posizione adatta per il J-Perm e l’Unsetup li riporta alla loro posizione corretta.
     - Setup:   `U'F2`
     - J-perm:  `L'U2 LU L'U2 RU' LUR'`
     - UnSetup: `F2U`
+
+Parity:  
+![Parity](readme/parity.png)
+
+J-perm:  
+![J-perm](readme/j-perm.png)
 
 ## Riepilogo
 TOTALE PATTERNS: 45  
