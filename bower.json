@@ -14,6 +14,6 @@
     "target"
   ],
   "devDependencies": {
-    "GraphicEngine" : "https://github.com/FabioDiMonte/GraphicEngine.git#release_0.1.0"
+    "GraphicEngine" : "https://github.com/FabioDiMonte/GraphicEngine.git#v0.1.0"
   }
 }
