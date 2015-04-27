@@ -12,6 +12,17 @@ Rubik Helper tools
 - facce: **F**ront, **B**ack, **U**p, **D**own, **L**eft, **R**ight
 - slices: **M**edian, **E**quator, **S**tanding (o **S**ide)
 
+![Front](readme/face-f.jpg)
+![Back](readme/face-b.jpg)
+![Up](readme/face-u.jpg)
+![Down](readme/face-d.jpg)
+![Left](readme/face-l.jpg)
+![Right](readme/face-r.jpg)
+
+![Median](readme/slice-m.jpg)
+![Equator](readme/slice-e.jpg)
+![Standing](readme/slice-s.jpg)
+
 ### Pezzi
 - centri (1 colore), spigoli (2 colori), angoli (3 colori)  
 per gli spigoli e per gli angoli si segue un criterio ben preciso per identificare un pezzo già orientato o meno (vedi punti 1 e 3)
