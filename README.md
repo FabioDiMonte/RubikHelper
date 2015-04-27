@@ -6,10 +6,15 @@ Rubik Helper tools
 # Rubik Blindfold Tutorial
 #### vademecum for beginners
 
-## Nomenclatura
+Table of contents:
+- [Naming](#naming)
+- [Introduction](#introduction)
+- [Edges orientation](#edges-orientation)
 
-### Facce e Slices
-- facce: **F**ront, **B**ack, **U**p, **D**own, **L**eft, **R**ight
+## Naming
+
+### Faces and Slices
+- faces: **F**ront, **B**ack, **U**p, **D**own, **L**eft, **R**ight
 - slices: **M**edian, **E**quator, **S**tanding (o **S**ide)
 
 | Front | Up | Right |
@@ -24,71 +29,71 @@ Rubik Helper tools
 | --- | --- | --- |
 | ![Median](readme/small/slice-m.png) | ![Equator](readme/small/slice-e.png) | ![Standing](readme/small/slice-s.png) |
 
-### Pezzi
-- centri (1 colore), spigoli (2 colori), angoli (3 colori)  
-per gli spigoli e per gli angoli si segue un criterio ben preciso per identificare un pezzo già orientato o meno (vedi punti 1 e 3)
-- per nominare un pezzo bisogna:
-    - per gli angoli, leggere i colori partendo da quello in posizione `U` o `D` e proseguire in senso orario  
-eg. `UFL`, `URF`, `ULB`, `DLF`, `DRB`, … sono orientati correttamente.  
-eg. `LUF` bisogna orientarlo in senso antiorario. `FLU` invece in senso orario.  
-per prendere dimestichezza, posizionare il pollice sul primo colore, l’indice sul secondo e il medio sul terzo: in questo modo si leggeranno i colori sempre in senso orario  
-    - per gli spigoli, leggere i colori partendo da quello in posizione `U`, `D`, `F` o `B`  
-eg. `FR`, `BL`, `UL`, `DF`, `UB`, … sono orientati correttamente
+### Pieces
+- centers (1 color), edges (2 colors), corners (3 colors)  
+there is a specific criteria in order to check a correctly oriented piece (for [edges](#orient-edges) and [corners](orient-corners))
+- to determine a piece's name:
+    - corners: read stickers colors starting from the one in position `U` or `D` and go on clockwise
+eg. `UFL`, `URF`, `ULB`, `DLF`, `DRB`, ... are correctly oriented.  
+eg. `LUF` should be oriented counterclockwise. `FLU` should be oriented clockwise.  
+to get practice, place your thumb on the first sticker, your index finger on the second one and the middle finger on the third: this way you'll read colors clockwise
+    - edges, read stickers colors starting from the one in position `U`, `D`, `F` or `B`  
+eg. `FR`, `BL`, `UL`, `DF`, `UB`, ... are correctly oriented.
 
-| Centri | Spigoli | Angoli |
+| Centers | Edges | Corners |
 | --- | --- | --- |
 | ![Centers](readme/small/centers.png) | ![Edges](readme/small/edges.png) | ![Corners](readme/small/corners.png) |
 
-### Mosse
-- orario (`F`, `R`, `U`) e antiorario (`F'`, `R'`, `U'` o `Fi`, `Ri`, `Ui`)
-- la rotazione dell’intero cubo è indicata con l’asse di rotazione in minuscolo: dopo la rotazione del cubo, il nome delle facce non corrisponderà più al colore originale
-    - eg. dopo aver eseguito `x'`, la faccia `B` diventa `U`, la faccia `U` diventa `F` e così via…
-- di tanto in tanto si possono trovare le lettere delle facce in minuscolo (`f`, `r`, `u`, …): questa nomenclatura serve ad indicare che la rotazione prevede la faccia indicata insieme a `M`, `E` o `S`
-- per esempio, il pattern `x'L'` corrisponde a `r'` (o `R'M`)
-- NB: il senso di rotazione in alcuni casi potrebbe non essere chiaro:
+### Moves
+- clockwise (`F`, `R`, `U`) and counterclockwise (`F'`, `R'`, `U'` or `Fi`, `Ri`, `Ui`)
+- the full cube rotation is specified with the rotation axis in lower case: after the cube rotation, faces names won't matches anymore their original colors.
+    - eg. after executing `x'`, face `B` became `U`, face `U` became `F` and so on...
+- eventually lower case letters can be used (`f`, `r'`, `ui`, ...): this is intended for specify more than one face or slice
+    - eg. the pattern `x'L'` equals `r'` (or `R'M`)
+- Note: keep in mind these comparisons when thinking about face/slice/cube rotation
     - `M` = `L`
     - `x` = `R`
     - `y` e `E` = `U`
     - `z` e `S` = `F`
-- NB: la nomenclatura in minuscolo per le facce è per lo più utilizzata con i cubi più grandi del 3x3 (4x4, 5x5, …) dove però non viene considerato lo slice M: quindi per esempio `r` indica la rotazione della faccia `R` e di quelle ad essa adiacente fino ad `M` escluso (nel 4x4 non esiste M, nel 5x5 sono le 2 facce a destra, nel 6x6 sono 3 e così via)
+- Note: lower case letters are mostly used referring to bigger cubes (4x4, 5x5, ...) where, for instance, `r` means face `R` rotation along with all other slices between `R` and `M` (M not included)
 
-## Introduzione
+## Introduction
 
-### Come funziona il metodo blindfold (le basi)
-- questo metodo permette di risolvere il cubo senza ruotarlo tra le mani, come avviene per gli altri metodi più comuni ([“a strati”](http://www.youcandothecube.com/secret-unlocked/solution-stage-one.aspx), [Fridrich](http://en.wikipedia.org/wiki/CFOP_Method), …) e posizionando sempre un pezzo alla volta senza intaccare il resto del cubo
-- in questo modo è possibile memorizzare la sequenza di pezzi da permutare per risolvere il cubo
-- la convenzione è avere sempre il cubo tra le mani posizionato con la faccia F sul rosso e la faccia U sul giallo (di conseguenza `L`=blu, `R`=verde, `B`=arancio, `D`=bianco)
+### How the blindfold method works (basis)
+- this method allows to solve the cube without rotate it, as other methods do ([“beginners”](http://www.youcandothecube.com/secret-unlocked/solution-stage-one.aspx), [Fridrich](http://en.wikipedia.org/wiki/CFOP_Method), ...), and placing on piece at a time keeping the rest of the cube unmodified.
+- this way is possible memorize the full sequence of pieces in order to solve the whole cube
+- convention wants to have the cube facing the red face on position `F` and the yellow one on position `U` (so  `L`=blue, `R`=green, `B`=orange, `D`=white)
 
 ![Cube colors](readme/small/cube-colors.png)
 
-### Come funziona il metodo M2R2 (le basi)
-- tutti i pattern di permutazione per spigoli e angoli delle facce L e R sono composti da:  
-Setup -> M2 o R2 -> UnSetup
-- ogni singolo pezzo ha una sua mossa di Setup
-- la mossa di UnSetup corrisponde all’inverso di quella di Setup  
+### How M2R2 works (basis)
+- all permutation patterns for edges and corners of `L` and `R` faces are composed this way:  
+Setup -> M2 or R2 -> UnSetup
+- every single piece have a Setup move
+- the Unsetup move is the exact inverse of its Setup move  
 eg. U’LU -> M2 -> U’L’U
-- ogni pattern di permutazione include la mossa M2 o R2, di conseguenza vanno eseguiti sempre 2 pattern consecutivi per avere sempre la situazione del cubo invariata per i pezzi non interessati
+- every permutation pattern include `M2` or `R2` move, this way it needs 2 patterns to be executed in order to have the cube exactly the same it was before concerning pieces not interested in the patterns
 
-### Cosa sono e a cosa servono i pezzi "buffer"
-- i pezzi nella posizione `DF` per gli spigoli e `DFR` per gli angoli sono nominati _*buffer*_
-- il metodo M2R2 prevede la permutazione di un pezzo alla volta dalla posizione _buffer_ alla posizione _“target”_ (corretta)
-- il pezzo buffer e quello nella posizione di target vengono scambiati ad ogni permutazione
-- la mossa di Setup serve a posizionare il pezzo della posizione _target_ alla posizione opposta al _buffer_
-- quando il secondo pezzo da posizionare è un _buffer_ e tutti gli altri dello stesso tipo (spigoli o angoli) sono già alla rispettiva posizione di _target_ (ad esclusione del pezzo opposto al _buffer_), allora si incorre nella _*parità*_ (circa il 50% dei casi)
+### What are and "buffer" pieces and what's their purpose
+- pieces in position `DF` (edge) and `DFR` (corner) are named _*buffer*_
+- M2R2 method foresee the permutation of one piece at a time from _buffer_ position to _"target"_ position (the correct one)
+- the buffer piece will be swapped with the one in target position at every permutation
+- the Setup move swap the piece in the _target_ position with the one opposite to _buffer_
+- when the second piece of a couple of permutations is the _buffer_ piece and every other piece of the same kind (edges or corners) are in their respective _target_ position (excluded the piece opposed to _buffer_), then is the case of _*parity*_ (about 50% of solving processes)
 
-### Prima di iniziare
-- prendere dimestichezza con la nomenclatura dei pezzi e tutti i pattern, partendo dal cubo risolto.
-- provare ad eseguire ciascuno dei pattern riportati di seguito 2 volte (la prima volta per capirne lo scopo, la seconda volta per ripristinare il cubo alla situazione di partenza)
-- dal momento che questo metodo posiziona correttamente 2 pezzi per volta, per la permutazione dei pezzi appartenenti alle facce `M` (spigoli) e `R` (angoli) considerare la posizione di target in quanto nella seconda permutazione `M` o `R` saranno girate di 180°
-    - eg. per gli spigoli:  
-se il primo dei 2 pezzi da permutare è `UF`, eseguire direttamente il pattern `UF`  
-se `UF` è il secondo pezzo (quindi `M` è girato), eseguire il pattern opposto (ovvero `DB`)
-    - eg. per gli angoli:  
-se il primo dei 2 pezzi da permutare è `URF`, eseguire direttamente il pattern `URF`  
-se `URF` è il secondo pezzo (quindi `R` è girato), eseguire il pattern opposto (ovvero `DRB`)
+### Before starting
+- get familiarity with pieces and moves naming starting with a solved cube
+- try to execute each following pattern twice (first time to understand its purpose, second one to get the cube back to initial state)
+- given this method place 2 pieces at a time, in order to permutate pieces on `M` slice (edges) or `R` face (corners) keep in mind their target position for in the second permutation `M` or `R` will be rotated by 180°
+    - eg. edges:  
+if the first of 2 pieces to be permutated is `UF`, execute pattern `UF`  
+if `UF` is the second one (and so `M` is rotated), execute the opposite pattern (that is `DB`)
+    - eg. corners:  
+if the first of 2 pieces to be permutated is `URF`, execute pattern `URF`  
+if `URF` is the second one (and so `R` is rotated), execute the opposite pattern (that is `DRB`)
 
-## Orientamento spigoli
-(1 pattern di uso comune, 2 patterns più rari)
+## Edges orientation
+(1 common use pattern, 2 rare patterns)
 
 ### determinare quali spigoli orientare
 - per ogni spigolo da orientare, verificarne i colori e la loro posizione sulle facce
