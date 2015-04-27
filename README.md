@@ -12,32 +12,17 @@ Rubik Helper tools
 - facce: **F**ront, **B**ack, **U**p, **D**own, **L**eft, **R**ight
 - slices: **M**edian, **E**quator, **S**tanding (o **S**ide)
 
-Front:  
-![Front](readme/small/face-f.png)
+| Front | Up | Right |
+| --- | --- | --- |
+| ![Front](readme/small/face-f.png) | ![Up](readme/small/face-u.png) | ![Right](readme/small/face-r.png) |
 
-Back:  
-![Back](readme/small/face-b.png)
+| Back | Down | Left |
+| --- | --- | --- |
+|![Back](readme/small/face-b.png) | ![Down](readme/small/face-d.png) | ![Left](readme/small/face-l.png) |
 
-Up:  
-![Up](readme/small/face-u.png)
-
-Down:  
-![Down](readme/small/face-d.png)
-
-Left:  
-![Left](readme/small/face-l.png)
-
-Right:  
-![Right](readme/small/face-r.png)
-
-Median:  
-![Median](readme/small/slice-m.png)
-
-Equator:  
-![Equator](readme/small/slice-e.png)
-
-Standing (or Side):  
-![Standing](readme/small/slice-s.png)
+| Median | Equator | Standing |
+| --- | --- | --- |
+| ![Median](readme/small/slice-m.png) | ![Equator](readme/small/slice-e.png) | ![Standing](readme/small/slice-s.png) |
 
 ### Pezzi
 - centri (1 colore), spigoli (2 colori), angoli (3 colori)  
@@ -50,14 +35,9 @@ per prendere dimestichezza, posizionare il pollice sul primo colore, l’indice 
     - per gli spigoli, leggere i colori partendo da quello in posizione `U`, `D`, `F` o `B`  
 eg. `FR`, `BL`, `UL`, `DF`, `UB`, … sono orientati correttamente
 
-Centri:  
-![Centers](readme/small/centers.png)
-
-Spigoli:  
-![Edges](readme/small/edges.png)
-
-Angoli:  
-![Corners](readme/small/corners.png)
+| Centri | Spigoli | Angoli |
+| --- | --- | --- |
+| ![Centers](readme/small/centers.png) | ![Edges](readme/small/edges.png) | ![Corners](readme/small/corners.png) |
 
 ### Mosse
 - orario (`F`, `R`, `U`) e antiorario (`F'`, `R'`, `U'` o `Fi`, `Ri`, `Ui`)
@@ -247,11 +227,9 @@ NB: i pattern per URF e DRB sono rispettivamente uno l’inverso dell’altro
     - J-perm:  `L'U2 LU L'U2 RU' LUR'`
     - UnSetup: `F2U`
 
-Parity:  
-![Parity](readme/small/parity.png)
-
-J-perm:  
-![J-perm](readme/small/j-perm.png)
+| Parity | J-perm |
+| --- | --- |
+| ![Parity](readme/small/parity.png) | ![J-perm](readme/small/j-perm.png) |
 
 ## Riepilogo
 TOTALE PATTERNS: 45  
