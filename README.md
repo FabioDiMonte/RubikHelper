@@ -12,16 +12,32 @@ Rubik Helper tools
 - facce: **F**ront, **B**ack, **U**p, **D**own, **L**eft, **R**ight
 - slices: **M**edian, **E**quator, **S**tanding (o **S**ide)
 
-![Front](readme/face-f.jpg)
-![Back](readme/face-b.jpg)
-![Up](readme/face-u.jpg)
-![Down](readme/face-d.jpg)
-![Left](readme/face-l.jpg)
-![Right](readme/face-r.jpg)
+Front:  
+![Front](readme/face-f.png)
 
-![Median](readme/slice-m.jpg)
-![Equator](readme/slice-e.jpg)
-![Standing](readme/slice-s.jpg)
+Back:  
+![Back](readme/face-b.png)
+
+Up:  
+![Up](readme/face-u.png)
+
+Down:  
+![Down](readme/face-d.png)
+
+Left:  
+![Left](readme/face-l.png)
+
+Right:  
+![Right](readme/face-r.png)
+
+Median:  
+![Median](readme/slice-m.png)
+
+Equator:  
+![Equator](readme/slice-e.png)
+
+Standing (or Side):  
+![Standing](readme/slice-s.png)
 
 ### Pezzi
 - centri (1 colore), spigoli (2 colori), angoli (3 colori)  
@@ -33,6 +49,15 @@ eg. `LUF` bisogna orientarlo in senso antiorario. `FLU` invece in senso orario.
 per prendere dimestichezza, posizionare il pollice sul primo colore, l’indice sul secondo e il medio sul terzo: in questo modo si leggeranno i colori sempre in senso orario  
     - per gli spigoli, leggere i colori partendo da quello in posizione `U`, `D`, `F` o `B`  
 eg. `FR`, `BL`, `UL`, `DF`, `UB`, … sono orientati correttamente
+
+Centri:  
+![Centers](readme/centers.png)
+
+Spigoli:  
+![Edges](readme/edges.png)
+
+Angoli:  
+![Corners](readme/corners.png)
 
 ### Mosse
 - orario (`F`, `R`, `U`) e antiorario (`F'`, `R'`, `U'` o `Fi`, `Ri`, `Ui`)
