@@ -139,10 +139,10 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 ## Edges permutation
 (10 patterns)
 
-### Edges for faces L e R
+### R and L faces' edges
 Note:
-- all pattern for `L` face have the first `U` move counterclockwise
 - all pattern for `R` face have the first `U` move clockwise
+- all pattern for `L` face have the first `U` move counterclockwise
 
 #### R face
 | piece | RH Setup | SM full |
@@ -165,7 +165,6 @@ Note:
 - keep in mind the _target_ position
 - patterns `UF` and `DB` are respectively one the inverse of the other
 
-Patterns:
 | piece | RH Setup | SM full |
 | --- | --- | --- |
 | `DF` (_buffer_) | - | - |
@@ -191,26 +190,19 @@ Note:
 - if the corner in `UFL` needs a clockwise orientation, start with the pattern with `R` clockwise (and viceversa)
 
 ### 2 corner orientation
-- `U' RUR'U'R  U` (clockwise)
-- `U' R'URU'R' U` (counterclockwise)
+| scope | RH Setup | SM full |
+| --- | --- | --- |
+| `CW2` (_clockwise_) | `(U'RU) R' (U'RU)` | `U' RUR'U'R  U` |
+| `CC2` (_counterclockwise_) | `([CW2])i` | `U' R'URU'R' U` |
 
 ### 3 corners orientation
-- `R'U' RU R'U' RU` (clockwise)
-- `U'R' UR U'R' UR` (counterclockwise)
+| scope | RH Setup | SM full |
+| --- | --- | --- |
+| `CW3` (_clockwise_) | `((UR)'UR)2` | `R'U' RU R'U' RU` |
+| `CC3` (_counterclockwise_) | `([CW3])i` | `U'R' UR U'R' UR` |
 
 ## Corners permutation
 (6 patterns)
-
-### L face
-Note for `DBL` and `UFL` patterns:
-- first half of these Setup patterns move the piece in `ULB` position
-- second half of these Setup patterns **is** the `ULB` pattern
-
-Patterns:
-- `ULB`: `L'U'LU         R2  U'L'UL`
-- `DLF`: `U'L2U          R2  U'L2U`
-- `DBL`: `U'L2U  L'U'LU  R2  U'L'UL U'L2U`
-- `UFL`: `LU'L'U L'U'LU  R2  U'L'UL U'LUL'`
 
 ### R face
 Note:
@@ -223,14 +215,19 @@ Patterns:
 - `URF`: `U'RF'rU      R2  U'r'FRU R2`
 - `DRB`: `R2 U'R'F'rU  R2  U'r'FR'U`
 
+### L face
+Note for `DBL` and `UFL` patterns:
+- first half of these Setup patterns move the piece in `ULB` position
+- second half of these Setup patterns **is** the `ULB` pattern
+
+Patterns:
+- `ULB`: `L'U'LU         R2  U'L'UL`
+- `DLF`: `U'L2U          R2  U'L2U`
+- `DBL`: `U'L2U  L'U'LU  R2  U'L'UL U'L2U`
+- `UFL`: `LU'L'U L'U'LU  R2  U'L'UL U'LUL'`
+
 ## Edges orientation and permutation
 (8 patterns: 1 new pattern for every edge of L and R)
-
-#### L face
-- `LB`: `x L'ULU'  M2  UL'U'L x'`
-- `LF`: `x UL2U'   M2  UL2U'  x'`
-- `LD`: `x ULU'    M2  UL'U'  x'`
-- `LU`: `x UL'U'   M2  ULU'   x'`
 
 #### R face
 - `RB`: `x RU'R'U  M2  U'RUR' x'`
@@ -238,18 +235,14 @@ Patterns:
 - `RD`: `x U'R'U   M2  U'RU   x'`
 - `RU`: `x U'RU    M2  U'R'U  x'`
 
+#### L face
+- `LB`: `x L'ULU'  M2  UL'U'L x'`
+- `LF`: `x UL2U'   M2  UL2U'  x'`
+- `LD`: `x ULU'    M2  UL'U'  x'`
+- `LU`: `x UL'U'   M2  ULU'   x'`
+
 ## Corners orientation and permutation
 (14 patterns: 2 new patterns for every corner but the buffer)
-
-### L face
-- `BUL`: `y RU R2 U'R'  F2  RU R2 U'R' y'`
-- `LBU`: `U' L' U       R2  U' L U`
-- `FDL`: `U'L' U L'U' LU  R2  U'L' UL U' LU`
-- `LFD`: `L2 U'L'U        R2  U'LU L2`
-- `LDB`: `LU'L'U  R2  U'LUL'`
-- `BLD`: `U'LU    R2  U'L'U`
-- `LUF`: `L'U'L'U  R2  U'LUL`
-- `FLU`: `R' ULU'  R2  UL'U' R`
 
 ### R face
 - `RDF`: _buffer_
@@ -260,6 +253,16 @@ Patterns:
 - `RFU`: `F'RU R2 U'R'F RU R2 U'R`
 - `BDR`: `RUR' D L2 x2 U'RU L2 x2 U' D' R`
 - `RBD`: `R'U R2 U'R'F' RU R2 U'R'F`
+
+### L face
+- `BUL`: `y RU R2 U'R'  F2  RU R2 U'R' y'`
+- `LBU`: `U' L' U       R2  U' L U`
+- `FDL`: `U'L' U L'U' LU  R2  U'L' UL U' LU`
+- `LFD`: `L2 U'L'U        R2  U'LU L2`
+- `LDB`: `LU'L'U  R2  U'LUL'`
+- `BLD`: `U'LU    R2  U'L'U`
+- `LUF`: `L'U'L'U  R2  U'LUL`
+- `FLU`: `R' ULU'  R2  UL'U' R`
 
 ## Parity
 (1 pattern)
