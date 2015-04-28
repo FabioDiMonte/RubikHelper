@@ -131,10 +131,10 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 - following patterns will orient 2 or 4 pieces on `U` face
 - apply Setup/Unsetup logic to bring on the `U` face all edges that need orientation (this can include eventually the full cube rotation)
 
-| scope | RH | SM |
-| --- | --- | --- |
-| `O2U` ![Orient 2 edges](readme/tiny/o2e.png) | `(M'U)3 U (MU)3 U` | `M'U M'U M'U2 MU MU MU2` |
-| `O4E` ![Orient 4 edges](readme/tiny/o4e.png) | `(M'U)4 (MU)4` | `M'U M'U M'U M'U MU MU MU MU` |
+| pieces | name | RH | SM |
+| --- | --- | --- | --- |
+| ![Orient 2 edges](readme/tiny/o2e.png) | `O2U` | `(M'U)3 U (MU)3 U` | `M'U M'U M'U2 MU MU MU2` |
+| ![Orient 4 edges](readme/tiny/o4e.png) | `O4E` | `(M'U)4 (MU)4` | `M'U M'U M'U M'U MU MU MU MU` |
 
 ## Edges permutation
 (10 patterns)
@@ -142,22 +142,22 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 #### R face edges permutation
 Note: all patterns for `R` face have the first `U` move clockwise
 
-| piece | RH Setup | RH full | SM full |
-| --- | --- | --- | --- |
-| `UR` | `(R'U RU')` | `[UR] M2 ([UR])i` | `R'URU'  M2  UR'U'R` |
-| `DR` | `(U R2 U')` | `[DR] M2 ([DR])i` | `UR2U'   M2  UR2U'` |
-| `FR` | `(U R U')` | `[FR] M2 ([FR])i` | `URU'    M2  UR'U'` |
-| `BR` | `([FR])i` | `[BR] M2 ([BR])i` | `UR'U'   M2  URU'` |
+| piece | name | RH Setup | RH full | SM full |
+| --- | --- | --- | --- | --- |
+| ![Edge UR](readme/tiny/edge-UR.png) | `UR` | `(R'U RU')` | `[UR] M2 ([UR])i` | `R'URU'  M2  UR'U'R` |
+| ![Edge DR](readme/tiny/edge-DR.png) | `DR` | `(U R2 U')` | `[DR] M2 ([DR])i` | `UR2U'   M2  UR2U'` |
+| ![Edge FR](readme/tiny/edge-FR.png) | `FR` | `(U R U')` | `[FR] M2 ([FR])i` | `URU'    M2  UR'U'` |
+| ![Edge BR](readme/tiny/edge-BR.png) | `BR` | `([FR])i` | `[BR] M2 ([BR])i` | `UR'U'   M2  URU'` |
 
 #### L face edges permutation
 Note: all patterns for `L` face have the first `U` move counterclockwise
 
-| piece | RH Setup | RH full | SM full |
-| --- | --- | --- | --- |
-| `UL` | `([UR])m` | `[UL] M2 ([UL])i` | `LU'L'U  M2  U'LUL'` |
-| `DL` | `([DR])m` | `[DL] M2 ([DL])i` | `U'L2U   M2  U'L2U` |
-| `FL` | `([FR])m` | `[FL] M2 ([FL])i` | `U'L'U   M2  U'LU` |
-| `BL` | `([BR])m` | `[BL] M2 ([BL])i` | `U'LU    M2  U'L'U` |
+| piece | name | RH Setup | RH full | SM full |
+| --- | --- | --- | --- | --- |
+| ![Edge UL](readme/tiny/edge-UL.png) | `UL` | `([UR])m` | `[UL] M2 ([UL])i` | `LU'L'U  M2  U'LUL'` |
+| ![Edge DL](readme/tiny/edge-DL.png) | `DL` | `([DR])m` | `[DL] M2 ([DL])i` | `U'L2U   M2  U'L2U` |
+| ![Edge FL](readme/tiny/edge-FL.png) | `FL` | `([FR])m` | `[FL] M2 ([FL])i` | `U'L'U   M2  U'LU` |
+| ![Edge BL](readme/tiny/edge-BL.png) | `BL` | `([BR])m` | `[BL] M2 ([BL])i` | `U'LU    M2  U'L'U` |
 
 #### M-edges permutation
 Notes:
@@ -166,15 +166,15 @@ Notes:
 - patterns `UF` and `DB` are respectively one the inverse of the other
 - patterns `UF` and `DB` don't have the usual format `Setup / M2 / Unsetup`
 
-| piece | RH Setup | RH full | SM full |
-| --- | --- | --- | --- |
-| `DF` (_buffer_) | – | – | – |
-| `UB` | – | `[UB] M2 ([UB])i` | `M2` |
+| piece | name | RH Setup | RH full | SM full |
+| --- | --- | --- | --- | --- |
+| ![Edge DF](readme/tiny/edge-DF.png) | `DF` (_buffer_) | – | – | – |
+| ![Edge UB](readme/tiny/edge-UB.png) | `UB` | – | `[UB] M2 ([UB])i` | `M2` |
 
-| piece | RH | SM |
-| --- | --- | --- |
-| `UF` | `(U2M')2` | `U2M' U2M'` |
-| `DB` | `([UF])i` | `MU2 MU2` |
+| piece | name | RH | SM |
+| --- | --- | --- | --- |
+| ![Edge UF](readme/tiny/edge-UF.png) | `UF` | `(U2M')2` | `U2M' U2M'` |
+| ![Edge DB](readme/tiny/edge-DB.png) | `DB` | `([UF])i` | `MU2 MU2` |
 
 ## Corners orientation
 (4 patterns)
@@ -186,24 +186,24 @@ Notes:
 - if 2 corners need to be oriented, then they'll have **inverse** orientation
 - if 3 corners need to be oriented, then they'll have **the same** orientation
 - following patterns will orient the corner in `UFL` position
+- apply Setup/Unsetup logic to bring on the `L` face all corners that need orientation (this can include eventually the full cube rotation)
 - in order to orient 2 or 3 corners, execute the right pattern and rotate `L` face to swap pieces
-- apply Setup/Unsetup logic to bring on the `U` face all edges that need orientation (this can include eventually the full cube rotation)
 
 Note:
 - in every pattern couple, one is the inverse of the other
 - if the corner in `UFL` needs a clockwise orientation, start with the pattern with `R` clockwise (and viceversa)
 
 #### 2 corner orientation
-| scope | RH | SM |
-| --- | --- | --- |
-| `CW2` (_clockwise_) | `(U'RU) R' (U'RU)` | `U'RU R' U'RU` |
-| `CC2` (_counterclockwise_) | `([CW2])i` | `U'R'U R U'R'U` |
+| pieces | name | RH | SM |
+| --- | --- | --- | --- |
+| ![2 Corners Orientation](readme/tiny/corner-UFL.png) | `CW2` (_clockwise_) | `(U'RU) R' (U'RU)` | `U'RU R' U'RU` |
+| ![2 Corners Orientation](readme/tiny/corner-UFL.png) | `CC2` (_counterclockwise_) | `([CW2])i` | `U'R'U R U'R'U` |
 
 #### 3 corners orientation
-| scope | RH | SM |
-| --- | --- | --- |
-| `CW3` (_clockwise_) | `((UR)' UR)2` | `U'R' UR U'R' UR` |
-| `CC3` (_counterclockwise_) | `([CW3])i` | `R'U' RU R'U' RU` |
+| pieces | name | RH | SM |
+| --- | --- | --- | --- |
+| ![3 Corners Orientation](readme/tiny/corner-UFL.png) | `CW3` (_clockwise_) | `((UR)' UR)2` | `U'R' UR U'R' UR` |
+| ![3 Corners Orientation](readme/tiny/corner-UFL.png) | `CC3` (_counterclockwise_) | `([CW3])i` | `R'U' RU R'U' RU` |
 
 ## Corners permutation
 (6 patterns)
@@ -214,27 +214,27 @@ Note:
 - patterns `URF` and `DRB` are respectively one the inverse of the other
 - patterns `URF` and `DRB` don't have the usual format `Setup / R2 / Unsetup`
 
-| piece | RH Setup | RH full | SM full |
-| --- | --- | --- | --- |
-| `DFR` (_buffer_) | – | – | – |
-| `UBR` | – | `[UBR] R2 ([UBR])i` | `R2` |
+| piece | name | RH Setup | RH full | SM full |
+| --- | --- | --- | --- | --- |
+| ![Corner DFR](readme/tiny/corner-DFR.png) | `DFR` (_buffer_) | – | – | – |
+| ![Corner UBR](readme/tiny/corner-UBR.png) | `UBR` | – | `[UBR] R2 ([UBR])i` | `R2` |
 
-| piece | RH | SM |
-| --- | --- | --- |
-| `URF` | `U'R (F'RM'U) R2 (F'RM'U)i RU R2` | `U'R F'rU R2 U'r'F RU R2` |
-| `DRB` | `([URF])i` | `R2 U'R' F'rU R2 U'r'F R'U` |
+| piece | name | RH | SM |
+| --- | --- | --- | --- |
+| ![Corner URF](readme/tiny/corner-URF.png) | `URF` | `U'R (F'RM'U) R2 (F'RM'U)i RU R2` | `U'R F'rU R2 U'r'F RU R2` |
+| ![Corner DRB](readme/tiny/corner-DRB.png) | `DRB` | `([URF])i` | `R2 U'R' F'rU R2 U'r'F R'U` |
 
 #### L face
 Note for `DBL` and `UFL` patterns:
 - first half of these Setup patterns move the piece in `ULB` position
 - second half of these Setup patterns **is** the `ULB` pattern
 
-| piece | RH Setup | RH full | SM full |
-| --- | --- | --- | --- |
-| `ULB` | `(LU)' (LU)` | `[ULB] R2 ([ULB])i` | `L'U'LU         R2  U'L'UL` |
-| `DLF` | `[DL]` | `[DLF] R2 ([DLF])i` | `U'L2U          R2  U'L2U` |
-| `UFL` | `L [FL] [ULB]` | `[UFL] R2 ([UFL])i` | `L U'L'U L'U'LU  R2  U'L'UL U'LU L'` |
-| `DBL` | `[DLF] [ULB]` | `[DBL] R2 ([DBL])i` | `U'L2U  L'U'LU  R2  U'L'UL U'L2U` |
+| piece | name | RH Setup | RH full | SM full |
+| --- | --- | --- | --- | --- |
+| ![Corner ULB](readme/tiny/corner-ULB.png) | `ULB` | `(LU)' (LU)` | `[ULB] R2 ([ULB])i` | `L'U'LU         R2  U'L'UL` |
+| ![Corner DLF](readme/tiny/corner-DLF.png) | `DLF` | `[DL]` | `[DLF] R2 ([DLF])i` | `U'L2U          R2  U'L2U` |
+| ![Corner UFL](readme/tiny/corner-UFL.png) | `UFL` | `L [FL] [ULB]` | `[UFL] R2 ([UFL])i` | `L U'L'U L'U'LU  R2  U'L'UL U'LU L'` |
+| ![Corner DBL](readme/tiny/corner-DBL.png) | `DBL` | `[DLF] [ULB]` | `[DBL] R2 ([DBL])i` | `U'L2U  L'U'LU  R2  U'L'UL U'L2U` |
 
 ## Edges orientation and permutation
 (8 patterns: 1 new pattern for every edge of L and R)
