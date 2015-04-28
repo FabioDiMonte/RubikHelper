@@ -166,10 +166,13 @@ Notes:
 - patterns `UF` and `DB` are respectively one the inverse of the other
 - patterns `UF` and `DB` don't have the usual format `Setup / M2 / Unsetup`
 
+| piece | RH Setup | RH full | SM full |
+| --- | --- | --- | --- |
+| `DF` (_buffer_) | – | – | – |
+| `UB` | – | `[UB] M2 ([UB])i` | `M2` |
+
 | piece | RH | SM |
 | --- | --- | --- |
-| `DF` (_buffer_) | – | – |
-| `UB` | `M2` | `M2`  |
 | `UF` | `(U2M')2` | `U2M' U2M'` |
 | `DB` | `([UF])i` | `MU2 MU2` |
 
@@ -211,10 +214,13 @@ Note:
 - patterns `URF` and `DRB` are respectively one the inverse of the other
 - patterns `URF` and `DRB` don't have the usual format `Setup / R2 / Unsetup`
 
+| piece | RH Setup | RH full | SM full |
+| --- | --- | --- | --- |
+| `DFR` (_buffer_) | – | – | – |
+| `UBR` | – | `[UBR] R2 ([UBR])i` | `R2` |
+
 | piece | RH | SM |
 | --- | --- | --- |
-| `DFR` (_buffer_) | – | – |
-| `UBR` | `R2` | `R2` |
 | `URF` | `U'R (F'RM'U) R2 (F'RM'U)i RU R2` | `U'R F'rU R2 U'r'F RU R2` |
 | `DRB` | `([URF])i` | `R2 U'R' F'rU R2 U'r'F R'U` |
 
@@ -261,10 +267,13 @@ note: patterns for pieces `URF` and `DRB` don't have the usual format `Setup / R
 | `FRD` (_buffer_) | – | – | – |
 | `BRU` | `[LBU] L [LBU]` | `[BRU] R2 ([BRU])i` | `U'L' UL U'L' U  R2  U' LU L'U' LU` |
 | `RUB` | `([BRU])i` | `[RUB] R2 ([RUB])i` | `U' LU L'U' LU   R2  U'L' UL U'L' U` |
-| `RFU` | – | `(F'R) (UR2U') R' (FR) (UR2U') R` | `F'RU R2 U'R'F RU R2 U'R` |
-| `FUR` | – | `R2 U' RM'x L2M2 (ULU') R' (UL'U') L'R'U` | `R2 U'R M' x L2M2 ULU' R' UL'U'L' R' U` |
-| `RBD` | – | `R'U R2 (URF)' (RU R2 (RU)i) F` | `R'U R2 U'R'F' RU R2 U'R'F` |
-| `BDR` | – | `RUR' D (L2x2) U'RU (L2x2) U'D'R` | `RUR' D L2 x2 U'RU L2 x2 U' D' R` |
+
+| piece | RH | SM |
+| --- | --- | --- |
+| `RFU` | `(F'R) (UR2U') R' (FR) (UR2U') R` | `F'RU R2 U'R'F RU R2 U'R` |
+| `FUR` | `R2 U' RM'x L2M2 (ULU') R' (UL'U') L'R'U` | `R2 U'R M' x L2M2 ULU' R' UL'U'L' R' U` |
+| `RBD` | `R'U R2 (URF)' (RU R2 (RU)i) F` | `R'U R2 U'R'F' RU R2 U'R'F` |
+| `BDR` | `RUR' D (L2x2) U'RU (L2x2) U'D'R` | `RUR' D L2 x2 U'RU L2 x2 U' D' R` |
 
 #### L face
 | piece | RH Setup | RH full | SM full |
