@@ -57,6 +57,7 @@ eg. `FR`, `BL`, `UL`, `DF`, `UB`, ... are correctly oriented
 eg. `UFL`, `URF`, `ULB`, `DLF`, `DRB`, ... are correctly oriented  
 however `LUF` should be oriented counterclockwise and `FLU` should be oriented clockwise
 - to get practice, place your thumb on the first sticker, your index finger on the second one and the middle finger on the third: this way you'll read colors clockwise
+- note: the same notation is used to indicate a cube's position, not concerning colors 
 
 | Centers | Edges | Corners |
 | --- | --- | --- |
@@ -66,17 +67,18 @@ however `LUF` should be oriented counterclockwise and `FLU` should be oriented c
 - there are many ways to write down a sequence of moves (or _pattern_), but the most commonly used is the ["Singmaster notation"](http://en.wikipedia.org/wiki/Rubik%27s_Cube#Move_notation)
 - to represent a clockwise rotation is used just the face name (`F`, `R`, `U`, ...)
 - to represent a counterclockwise rotation is used the face name followed by a `'` (prime sign) or `i` (`F'`, `R'`, `U'`, ... or `Fi`, `Ri`, `Ui`, ...)
-- the full cube rotation is specified with the rotation axis in lower case: after the cube rotation, faces names won't matches anymore their original colors.
-    - note: after executing `x'`, face `B` became `U`, face `U` became `F` and so on.
+- the full cube rotation is specified with the rotation axis in lower case (`x`, `y`, `z`)
+- after the cube rotation, faces names won't matches anymore their original colors
+    - note: after executing `x'`, face `B` became `U`, face `U` became `F` and so on
 - eventually lower case letters can be used (`f`, `r'`, `ui`, ...)
     - this is intended for specify the face and all other layers until the M-slice
-    - eg. `r'` equals `x'L'` (or `R'M`)
-    - lower case letters are mostly used referring to bigger cubes (4x4, 5x5, ...) where, for instance, `r` means face `R` rotation along with all other layers between `R` and `M` (latter not included)
+    - eg. for a 3x3 cube, `r'` = `R'M` = `x'L'`
+    - lower case letters are mostly used referring to bigger cubes (4x4, 5x5, ...) where, for instance, `r` means `R` face rotation along with all other layers between `R` and `M` (latter not included)
 - keep in mind these comparisons when thinking about face/slice/cube rotations
     - `M` = `L`
     - `x` = `R`
-    - `y` e `E` = `U`
-    - `z` e `S` = `F`
+    - `y` and `E` = `U`
+    - `z` and `S` = `F`
 - in this guide is used the Singmaster notation (referenced as **SM**) along with the one used by the [RubikHelper](http://fabiodimonte.github.io/RubikHelper/) tool (referenced as **RH**)
     - the RubikHelper notation use the same as Singmaster for simple rotations
     - uses parenthesis for grouping
@@ -94,7 +96,7 @@ however `LUF` should be oriented counterclockwise and `FLU` should be oriented c
 `[FR]` = `URU'`  
 `[BR]` = `([FR])i` = `UR'U'`
 
-Please note that RubikHelper threats lower case letters as upper case (aka face rotations).
+Please note that RubikHelper threats lower case letters as upper case (face rotations).
 
 ## Introduction
 
@@ -139,7 +141,7 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 
 - Evaluate which edges need to be oriented
     - check every piece's colors and their positions on its faces
-    - on faces `U`, `D`, `F` and `B` there shouldn't be neither `L` neither `R`
+    - on faces `U`, `D`, `F` and `B` there shouldn't be `L` neither `R` colors
     - edges that need to be oriented are always in pairs (can be 2, 4, 6, ...)
 - following patterns will orient 2 or 4 pieces on `U` face
 - apply Setup/Unsetup logic to bring on the `U` face all edges that need orientation (this can include eventually the full cube rotation)
@@ -189,8 +191,8 @@ Note: all patterns for `R` face have the first `U` move clockwise
 | piece | name | RH Setup | RH full | SM full |
 | --- | --- | --- | --- | --- |
 | ![Edge UR](readme/tiny/edge-UR.png) | `UR` | `(R'U RU')` | `[UR] M2 ([UR])i` | `R'URU'  M2  UR'U'R` |
-| ![Edge DR](readme/tiny/edge-DR.png) | `DR` | `(U R2 U')` | `[DR] M2 ([DR])i` | `UR2U'   M2  UR2U'` |
 | ![Edge FR](readme/tiny/edge-FR.png) | `FR` | `(U R U')` | `[FR] M2 ([FR])i` | `URU'    M2  UR'U'` |
+| ![Edge DR](readme/tiny/edge-DR.png) | `DR` | `(U R2 U')` | `[DR] M2 ([DR])i` | `UR2U'   M2  UR2U'` |
 | ![Edge BR](readme/tiny/edge-BR.png) | `BR` | `([FR])i` | `[BR] M2 ([BR])i` | `UR'U'   M2  URU'` |
 
 #### L face edges permutation
@@ -199,8 +201,8 @@ Note: all patterns for `L` face have the first `U` move counterclockwise
 | piece | name | RH Setup | RH full | SM full |
 | --- | --- | --- | --- | --- |
 | ![Edge UL](readme/tiny/edge-UL.png) | `UL` | `([UR])m` | `[UL] M2 ([UL])i` | `LU'L'U  M2  U'LUL'` |
-| ![Edge DL](readme/tiny/edge-DL.png) | `DL` | `([DR])m` | `[DL] M2 ([DL])i` | `U'L2U   M2  U'L2U` |
 | ![Edge FL](readme/tiny/edge-FL.png) | `FL` | `([FR])m` | `[FL] M2 ([FL])i` | `U'L'U   M2  U'LU` |
+| ![Edge DL](readme/tiny/edge-DL.png) | `DL` | `([DR])m` | `[DL] M2 ([DL])i` | `U'L2U   M2  U'L2U` |
 | ![Edge BL](readme/tiny/edge-BL.png) | `BL` | `([BR])m` | `[BL] M2 ([BL])i` | `U'LU    M2  U'L'U` |
 
 #### M-edges permutation
@@ -246,8 +248,8 @@ Notes for `DBL` and `UFL` patterns:
 
 | piece | name | RH Setup | RH full | SM full |
 | --- | --- | --- | --- | --- |
-| ![Corner ULB](readme/tiny/corner-ULB.png) | `ULB` | `(LU)' (LU)` | `[ULB] R2 ([ULB])i` | `L'U'LU         R2  U'L'UL` |
 | ![Corner DLF](readme/tiny/corner-DLF.png) | `DLF` | `[DL]` | `[DLF] R2 ([DLF])i` | `U'L2U          R2  U'L2U` |
+| ![Corner ULB](readme/tiny/corner-ULB.png) | `ULB` | `(LU)' (LU)` | `[ULB] R2 ([ULB])i` | `L'U'LU         R2  U'L'UL` |
 | ![Corner UFL](readme/tiny/corner-UFL.png) | `UFL` | `L [FL] [ULB]` | `[UFL] R2 ([UFL])i` | `L U'L'U L'U'LU  R2  U'L'UL U'LU L'` |
 | ![Corner DBL](readme/tiny/corner-DBL.png) | `DBL` | `[DLF] [ULB]` | `[DBL] R2 ([DBL])i` | `U'L2U  L'U'LU  R2  U'L'UL U'L2U` |
 
@@ -257,20 +259,20 @@ Notes for `DBL` and `UFL` patterns:
 (8 patterns: 1 new pattern for every edge of L and R)
 
 #### R face edges orientation and permutation
-| piece | RH Setup | RH full | SM full |
-| --- | --- | --- | --- |
-| `RB` | `x' ([UR])'` | `[RB] M2 ([RB])i` | `x RU'R'U  M2  U'RUR' x'` |
-| `RF` | `x' ([DR])'` | `[RF] M2 ([RF])i` | `x U'R2U   M2  U'R2U  x'` |
-| `RD` | `x' ([FR])'` | `[RD] M2 ([RD])i` | `x U'R'U   M2  U'RU   x'` |
-| `RU` | `x' ([BR])'` | `[RU] M2 ([RU])i` | `x U'RU    M2  U'R'U  x'` |
+| piece | name | RH Setup | RH full | SM full |
+| --- | --- | --- | --- | --- |
+| ![Edge UR](readme/tiny/edge-UR.png) | `RU` | `x' ([BR])'` | `[RU] M2 ([RU])i` | `x U'RU    M2  U'R'U  x'` |
+| ![Edge FR](readme/tiny/edge-FR.png) | `RF` | `x' ([DR])'` | `[RF] M2 ([RF])i` | `x U'R2U   M2  U'R2U  x'` |
+| ![Edge DR](readme/tiny/edge-DR.png) | `RD` | `x' ([FR])'` | `[RD] M2 ([RD])i` | `x U'R'U   M2  U'RU   x'` |
+| ![Edge BR](readme/tiny/edge-BR.png) | `RB` | `x' ([UR])'` | `[RB] M2 ([RB])i` | `x RU'R'U  M2  U'RUR' x'` |
 
 #### L face edges orientation and permutation
-| piece | RH Setup | RH full | SM full |
-| --- | --- | --- | --- |
-| `LB` | `x' (([UR])')m` | `[LB] M2 ([LB])i` | `x L'ULU'  M2  UL'U'L x'` |
-| `LF` | `x' (([DR])')m` | `[LF] M2 ([LF])i` | `x UL2U'   M2  UL2U'  x'` |
-| `LD` | `x' (([FR])')m` | `[LD] M2 ([LD])i` | `x ULU'    M2  UL'U'  x'` |
-| `LU` | `x' (([BR])')m` | `[LU] M2 ([LU])i` | `x UL'U'   M2  ULU'   x'` |
+| piece | name | RH Setup | RH full | SM full |
+| --- | --- | --- | --- | --- |
+| ![Edge UL](readme/tiny/edge-UL.png) | `LU` | `x' (([BR])')m` | `[LU] M2 ([LU])i` | `x UL'U'   M2  ULU'   x'` |
+| ![Edge FL](readme/tiny/edge-FL.png) | `LF` | `x' (([DR])')m` | `[LF] M2 ([LF])i` | `x UL2U'   M2  UL2U'  x'` |
+| ![Edge DL](readme/tiny/edge-DL.png) | `LD` | `x' (([FR])')m` | `[LD] M2 ([LD])i` | `x ULU'    M2  UL'U'  x'` |
+| ![Edge BL](readme/tiny/edge-BL.png) | `LB` | `x' (([UR])')m` | `[LB] M2 ([LB])i` | `x L'ULU'  M2  UL'U'L x'` |
 
 ### Corners orientation and permutation
 (14 patterns: 2 new patterns for every corner but the buffer)
@@ -278,31 +280,31 @@ Notes for `DBL` and `UFL` patterns:
 #### R face corners orientation and permutation
 Note: patterns for pieces `URF` and `DRB` don't have the usual format `Setup / R2 / Unsetup`
 
-| piece | RH Setup | RH full | SM full |
-| --- | --- | --- | --- |
-| `RDF` (_buffer_) | – | – | – |
-| `FRD` (_buffer_) | – | – | – |
-| `BRU` | `[LBU] L [LBU]` | `[BRU] R2 ([BRU])i` | `U'L' UL U'L' U  R2  U' LU L'U' LU` |
-| `RUB` | `([BRU])i` | `[RUB] R2 ([RUB])i` | `U' LU L'U' LU   R2  U'L' UL U'L' U` |
+| piece | name | RH Setup | RH full | SM full |
+| --- | --- | --- | --- | --- |
+| ![Corner DFR](readme/tiny/corner-DFR.png) | `RDF` (_buffer_) | – | – | – |
+| ![Corner DFR](readme/tiny/corner-DFR.png) | `FRD` (_buffer_) | – | – | – |
+| ![Corner UBR](readme/tiny/corner-UBR.png) | `BRU` | `[LBU] L [LBU]` | `[BRU] R2 ([BRU])i` | `U'L' UL U'L' U  R2  U' LU L'U' LU` |
+| ![Corner UBR](readme/tiny/corner-UBR.png) | `RUB` | `([BRU])i` | `[RUB] R2 ([RUB])i` | `U' LU L'U' LU   R2  U'L' UL U'L' U` |
 
-| piece | RH | SM |
-| --- | --- | --- |
-| `RFU` | `(F'R) (UR2U') R' (FR) (UR2U') R` | `F'RU R2 U'R'F RU R2 U'R` |
-| `FUR` | `R2 U' RM'x L2M2 (ULU') R' (UL'U') L'R'U` | `R2 U'R M' x L2M2 ULU' R' UL'U'L' R' U` |
-| `RBD` | `R'U R2 (URF)' (RU R2 (RU)i) F` | `R'U R2 U'R'F' RU R2 U'R'F` |
-| `BDR` | `RUR' D (L2x2) U'RU (L2x2) U'D'R` | `RUR' D L2 x2 U'RU L2 x2 U' D' R` |
+| piece | name | RH | SM |
+| --- | --- | --- | --- |
+| ![Corner URF](readme/tiny/corner-URF.png) | `RFU` | `(F'R) (UR2U') R' (FR) (UR2U') R` | `F'RU R2 U'R'F RU R2 U'R` |
+| ![Corner URF](readme/tiny/corner-URF.png) | `FUR` | `R2 U' RM'x L2M2 (ULU') R' (UL'U') L'R'U` | `R2 U'R M' x L2M2 ULU' R' UL'U'L' R' U` |
+| ![Corner DRB](readme/tiny/corner-DRB.png) | `RBD` | `R'U R2 (URF)' (RU R2 (RU)i) F` | `R'U R2 U'R'F' RU R2 U'R'F` |
+| ![Corner DRB](readme/tiny/corner-DRB.png) | `BDR` | `RUR' D (L2x2) U'RU (L2x2) U'D'R` | `RUR' D L2 x2 U'RU L2 x2 U' D' R` |
 
 #### L face corners orientation and permutation
-| piece | RH Setup | RH full | SM full |
-| --- | --- | --- | --- |
-| `LBU` | `U'L'U` | `[LBU] R2 ([LBU])i` | `U' L' U       R2  U' L U` |
-| `BUL` | `y (RU) R2 (RU)i y'` | `[BUL] R2 ([BUL])i` | `y RU R2 U'R'  F2  RU R2 U'R' y'` |
-| `FLU` | `R' (ULU')` | `[FLU] R2 ([FLU])i` | `R' ULU'  R2  UL'U' R` |
-| `LUF` | `L' [LBU]` | `[LUF] R2 ([LUF])i` | `L'U'L'U  R2  U'LUL` |
-| `LFD` | `L2 [LBU]` | `[LFD] R2 ([LFD])i` | `L2 U'L'U        R2  U'LU L2` |
-| `FDL` | `[LBU] L' ([LBU])i` | `[FDL] R2 ([FDL])i` | `U'L' U L'U' LU  R2  U'L' UL U' LU` |
-| `BLD` | `([LBU])i` | `[BLD] R2 ([BLD])i` | `U'LU    R2  U'L'U` |
-| `LDB` | `L [LBU]` | `[LDB] R2 ([LDB])i` | `LU'L'U  R2  U'LUL'` |
+| piece | name | RH Setup | RH full | SM full |
+| --- | --- | --- | --- | --- |
+| ![Corner DLF](readme/tiny/corner-DLF.png) | `LFD` | `L2 [LBU]` | `[LFD] R2 ([LFD])i` | `L2 U'L'U        R2  U'LU L2` |
+| ![Corner DLF](readme/tiny/corner-DLF.png) | `FDL` | `[LBU] L' ([LBU])i` | `[FDL] R2 ([FDL])i` | `U'L' U L'U' LU  R2  U'L' UL U' LU` |
+| ![Corner ULB](readme/tiny/corner-ULB.png) | `LBU` | `U'L'U` | `[LBU] R2 ([LBU])i` | `U' L' U       R2  U' L U` |
+| ![Corner ULB](readme/tiny/corner-ULB.png) | `BUL` | `y (RU) R2 (RU)i y'` | `[BUL] R2 ([BUL])i` | `y RU R2 U'R'  F2  RU R2 U'R' y'` |
+| ![Corner UFL](readme/tiny/corner-UFL.png) | `FLU` | `R' (ULU')` | `[FLU] R2 ([FLU])i` | `R' ULU'  R2  UL'U' R` |
+| ![Corner UFL](readme/tiny/corner-UFL.png) | `LUF` | `L' [LBU]` | `[LUF] R2 ([LUF])i` | `L'U'L'U  R2  U'LUL` |
+| ![Corner DBL](readme/tiny/corner-DBL.png) | `BLD` | `([LBU])i` | `[BLD] R2 ([BLD])i` | `U'LU    R2  U'L'U` |
+| ![Corner DBL](readme/tiny/corner-DBL.png) | `LDB` | `L [LBU]` | `[LDB] R2 ([LDB])i` | `LU'L'U  R2  U'LUL'` |
 
 ## Parity
 (1 pattern)
