@@ -132,7 +132,7 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 - apply Setup/Unsetup logic to bring on the `U` face all edges that need orientation (this can include eventually the full cube rotation)
 
 | scope | RH | SM |
-| !---! | --- | --- |
+| --- | --- | --- |
 | `O2U` ![Orient 2 edges](readme/tiny/o2e.png) | `(M'U)3 U (MU)3 U` | `M'U M'U M'U2 MU MU MU2` |
 | `O4E` ![Orient 4 edges](readme/tiny/o4e.png) | `(M'U)4 (MU)4` | `M'U M'U M'U M'U MU MU MU MU` |
 
