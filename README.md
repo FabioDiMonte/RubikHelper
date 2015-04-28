@@ -79,7 +79,7 @@ eg. U’LU -> M2 -> U’L’U
 - M2R2 method foresee the permutation of one piece at a time from _buffer_ position to _"target"_ position (the correct one)
 - the buffer piece will be swapped with the one in target position at every permutation
 - the Setup move swap the piece in the _target_ position with the one opposite to _buffer_
-- when the second piece of a couple of permutations is the _buffer_ piece and every other piece of the same kind (edges or corners) are in their respective _target_ position (excluded the piece opposed to _buffer_), then is the case of _*parity*_ (about 50% of solving processes)
+- when the second piece of a couple of permutations is the _buffer_ piece and every other piece of the same kind (edges or corners) are in their respective _target_ position (excluded the piece opposed to _buffer_), then is the case of [Parity](#parity) (about 50% of solving processes)
 
 ### Before starting
 - get familiarity with pieces and moves naming starting with a solved cube
@@ -95,115 +95,123 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 ## Edges orientation
 (1 common use pattern, 2 rare patterns)
 
-### determinare quali spigoli orientare
-- per ogni spigolo da orientare, verificarne i colori e la loro posizione sulle facce
-- sulle facce `U`,`D`,`F`,`B` devono esserci solo i relativi colori (quindi né `L` né `R`)
-- i primi 2 pattern orientano 2 o 4 pezzi sulla faccia `U` (se 2, sono uno di fronte all’altro)
-- applicare il concetto di Setup e UnSetup per orientare gli spigoli non posizionati correttamente (quindi per portarli tutti sulla faccia `U` oppure ruotare il cubo finchè non sono tutti posizionati sulla faccia superiore)
+### establish which edges need to be oriented
+- check every piece's colors and their positions on its faces
+- on faces `U`, `D`, `F` and `B` there shouldn't be neither `L` neither `R`
+- edges that need to be oriented are always in pairs (can be 2, 4, 6, ...)
+- following first 2 patterns will orient 2 or 4 pieces on `U` face
+- apply Setup/Unsetup logic to bring on the `U` face all edges that need orientation (this can include eventually the full cube rotation)
 
-### orientare 2 spigoli sulla stessa faccia
+### 2 edges orientation
 - `[M'U]*3 U [MU]*3 U`
 
 ![Orient 2 edges](readme/small/o2e.png)
 
-### opzionale: 4 spigoli sulla stessa faccia
+### 4 edges orientation
 - `[M'U]*4 [MU]*4`
 
 ![Orient 4 edges](readme/small/o4e.png)
 
-### opzionale: 4 spigoli su 2 facce diverse
+### 4 edges orientation (2 of them on different face)
 - `[M'U]*4` oppure `[MU]*4`
 
-## Permutazione spigoli già orientati correttamente
+## Edges permutation
 (10 patterns)
 
-### Permutazione spigoli L e R
-NB: tutti i pattern della faccia `L` avranno la prima mossa di `U` in senso antiorario  
-NB: tutti i pattern della faccia `R` avranno la prima mossa di `U` in senso orario
+### Edges for faces L e R
+Note:
+- all pattern for `L` face have the first `U` move counterclockwise
+- all pattern for `R` face have the first `U` move clockwise
 
-#### Faccia L
+#### L face
 - `BL`: `U'LU    M2  U'L'U`
 - `FL`: `U'L'U   M2  U'LU`
 - `DL`: `U'L2U   M2  U'L2U`
 - `UL`: `LU'L'U  M2  U'LUL'`
 
-#### Faccia R
+#### R face
 - `BR`: `UR'U'   M2  URU'`
 - `FR`: `URU'    M2  UR'U'`
 - `DR`: `UR2U'   M2  UR2U'`
 - `UR`: `R'URU'  M2  UR'U'R`
 
-### Permutazione spigoli M-side
-NB: per questi pattern considerare la posizione target  
-NB: i pattern per `UF` e `DB` sono rispettivamente uno l’inverso dell’altro
+### M-edges permutation
+Note:
+- keep in mind the _target_ position
+- patterns `UF` and `DB` are respectively one the inverse of the other
 
 - `DF`: _buffer_
 - `UB`: `M2`
 - `UF`: `[U2M']*2`
 - `DB`: `[MU2]*2`
 
-## Orientamento angoli
+## Corners orientation
 (4 patterns)
 
-### determinare quali angoli orientare
-- per ogni angolo da orientare, verificarne i colori e la loro posizione sulle facce
-- sulle facce `U` e `D` devono esserci solo i relativi colori (giallo o bianco)
-- se sono solo 2 angoli, avranno orientamento inverso (uno orario e uno antiorario)
-- se sono 3 angoli, avranno lo stesso orientamento (tutti e 3 in senso orario o antiorario)
-- ciascuno dei seguenti pattern orienta l’angolo nella posizione `UFL`
-- per orientare 2 o 3 angoli, eseguire per ciascuno il pattern corretto alternandone la posizione ruotando la faccia `L`
-- applicare il concetto di Setup e UnSetup per orientare gli angoli non posizionati correttamente
-- NB: in ogni coppia di pattern, uno è l’inverso dell’altro
-- NB: se l’angolo in posizione `UFL` va orientato in senso orario, iniziare con il pattern che muove R in senso orario (e viceversa)
+### establish which corners need to be oriented
+- check every piece's colors and their positions on its faces
+- on faces `U` and `D` there should be only those colors (`U` or `D`)
+- corners that need to be oriented can be 2 or 3 (or multiples of)
+- if 2 corners need to be oriented, then they'll have **inverse** orientation
+- if 3 corners need to be oriented, then they'll have **the same** orientation
+- following patterns will orient the corner in `UFL` position
+- in order to orient 2 or 3 corners, execute the right pattern and rotate `L` face to swap pieces
+- apply Setup/Unsetup logic to bring on the `U` face all edges that need orientation (this can include eventually the full cube rotation)
 
-### orientare 2 angoli (1 pattern per senso orario)
-- `U' RUR'U'R  U` (orario)
-- `U' R'URU'R' U` (antiorario)
+Note:
+- in every pattern couple, one is the inverse of the other
+- if the corner in `UFL` needs a clockwise orientation, start with the pattern with `R` clockwise (and viceversa)
 
-### orientare 3 angoli (1 pattern per senso orario)
-- `R'U' RU R'U' RU` (orario)
-- `U'R' UR U'R' UR` (antiorario)
+### 2 corner orientation
+- `U' RUR'U'R  U` (clockwise)
+- `U' R'URU'R' U` (counterclockwise)
 
-## Permutazione angoli già orientati correttamente
+### 3 corners orientation
+- `R'U' RU R'U' RU` (clockwise)
+- `U'R' UR U'R' UR` (counterclockwise)
+
+## Corners permutation
 (6 patterns)
 
-### permutare angoli faccia L
-NB: la prima parte dei pattern Setup di `DBL` e `UFL` portano il relativo pezzo in posizione `ULB`  
-NB: la seconda parte dei pattern Setup di `DBL` e `UFL`, infatti, corrisponde al pattern per `ULB`
+### L face
+Note for `DBL` and `UFL` patterns:
+- first half of these Setup patterns move the piece in `ULB` position
+- second half of these Setup patterns **is** the `ULB` pattern
 
 - `ULB`: `L'U'LU         R2  U'L'UL`
 - `DLF`: `U'L2U          R2  U'L2U`
 - `DBL`: `U'L2U  L'U'LU  R2  U'L'UL U'L2U`
 - `UFL`: `LU'L'U L'U'LU  R2  U'L'UL U'LUL'`
 
-### permutare angoli faccia R
-NB: per questi pattern considerare la posizione target  
-NB: i pattern per URF e DRB sono rispettivamente uno l’inverso dell’altro
+### R face
+Note:
+- keep in mind the _target_ position
+- patterns `URF` and `DRB` are respectively one the inverse of the other
 
 - `DFR`: _buffer_
 - `UBR`: `R2`
 - `URF`: `U'RF'rU      R2  U'r'FRU R2`
 - `DRB`: `R2 U'R'F'rU  R2  U'r'FR'U`
 
-## Orientamento + permutazione spigoli
-(8 patterns: 1 nuovo pattern per ogni spigolo di L e R)
+## Edges orientation and permutation
+(8 patterns: 1 new pattern for every edge of L and R)
 
-#### Faccia L
+#### L face
 - `LB`: `x L'ULU'  M2  UL'U'L x'`
 - `LF`: `x UL2U'   M2  UL2U'  x'`
 - `LD`: `x ULU'    M2  UL'U'  x'`
 - `LU`: `x UL'U'   M2  ULU'   x'`
 
-#### Faccia R
+#### R face
 - `RB`: `x RU'R'U  M2  U'RUR' x'`
 - `RF`: `x U'R2U   M2  U'R2U  x'`
 - `RD`: `x U'R'U   M2  U'RU   x'`
 - `RU`: `x U'RU    M2  U'R'U  x'`
 
-## Orientamento + permutazione angoli
-(14 patterns: 2 nuovi patterns per ogni angolo ad esclusione del buffer)
+## Corners orientation and permutation
+(14 patterns: 2 new patterns for every corner but the buffer)
 
-### permutare e orientare angoli faccia L
+### L face
 - `BUL`: `y RU R2 U'R'  F2  RU R2 U'R' y'`
 - `LBU`: `U' L' U       R2  U' L U`
 - `FDL`: `U'L' U L'U' LU  R2  U'L' UL U' LU`
@@ -213,7 +221,7 @@ NB: i pattern per URF e DRB sono rispettivamente uno l’inverso dell’altro
 - `LUF`: `L'U'L'U  R2  U'LUL`
 - `FLU`: `R' ULU'  R2  UL'U' R`
 
-### permutare e orientare angoli faccia R
+### R face
 - `RDF`: _buffer_
 - `FRD`: _buffer_
 - `RUB`: `U' LU L'U' LU   R2  U'L' UL U'L' U`
@@ -223,24 +231,23 @@ NB: i pattern per URF e DRB sono rispettivamente uno l’inverso dell’altro
 - `BDR`: `RUR' D L2 x2 U'RU L2 x2 U' D' R`
 - `RBD`: `R'U R2 U'R'F' RU R2 U'R'F`
 
-## Parità
+## Parity
 (1 pattern)
 
-- questo pattern è più noto come J-Perm, che scambia 2 spigoli e 2 angoli tra di loro posizionati a forma di J (o di L), ereditato direttamente dal metodo Fridrich (PLL)
-- la mossa di Setup sposta i 4 pezzi interessati nella posizione adatta per il J-Perm e l’Unsetup li riporta alla loro posizione corretta.
+- the parity involves 2 edges and 2 corners that need to be swapped
+- in order to solve the parity, place your pieces in J-Perm position (a PLL pattern) and then execute the pattern
+- use Setup/Unsetup logic to set the pieces ready to be swapped
     - Setup:   `U'F2`
     - J-perm:  `L'U2 LU L'U2 RU' LUR'`
     - UnSetup: `F2U`
 
 | Parity | J-perm |
 | --- | --- |
+| ![Parity](readme/small/parity-colors.png) | ![J-perm](readme/small/j-perm-color.png) |
+
+| Parity | J-perm |
+| --- | --- |
 | ![Parity](readme/small/parity.png) | ![J-perm](readme/small/j-perm.png) |
 
-## Riepilogo
-TOTALE PATTERNS: 45  
-dei quali:  
-3 molto lunghi (difficilmente comprensibili)  
-28 molto semplici (corti e di facile comprensione)  
-14 pressoché inutili (orientamento+permutazione angoli)  
-
-reference: [Stefan Pochmann M2R2](http://www.stefan-pochmann.info/spocc/blindsolving/M2R2/)
+## Credits
+All patterns are taken from [Stefan Pochmann's M2R2 method](http://www.stefan-pochmann.info/spocc/blindsolving/M2R2/).
