@@ -24,7 +24,7 @@ Table of contents:
     - the RubikHelper notation use the same as Singmaster for simple rotations
     - uses parenthesis for grouping
     - uses `'` (prime) for negative a move or a group
-    - uses `i` letter for invert a group
+    - uses `i` letter for invert a group (goes backward inverting rotation for every single move)
     - uses `m` letter for mirror a group on M-slice
     - uses square brackets for a single Piece Setup
     - eg:  
@@ -56,11 +56,11 @@ Table of contents:
 there is a specific criteria in order to check a correctly oriented piece (for [edges](#edges-orientation) and [corners](#corners-orientation))
 - to determine a piece's name:
     - edges: read stickers colors starting from the one in position `U`, `D`, `F` or `B`  
-eg. `FR`, `BL`, `UL`, `DF`, `UB`, ... are correctly oriented.
-    - corners: read stickers colors starting from the one in position `U` or `D` and go on clockwise
-eg. `UFL`, `URF`, `ULB`, `DLF`, `DRB`, ... are correctly oriented.  
-eg. `LUF` should be oriented counterclockwise. `FLU` should be oriented clockwise.  
-to get practice, place your thumb on the first sticker, your index finger on the second one and the middle finger on the third: this way you'll read colors clockwise
+eg. `FR`, `BL`, `UL`, `DF`, `UB`, ... are correctly oriented
+    - corners: read stickers colors starting from the one in position `U` or `D` and go on clockwise  
+eg. `UFL`, `URF`, `ULB`, `DLF`, `DRB`, ... are correctly oriented  
+however `LUF` should be oriented counterclockwise and `FLU` should be oriented clockwise
+- to get practice, place your thumb on the first sticker, your index finger on the second one and the middle finger on the third: this way you'll read colors clockwise
 
 | Centers | Edges | Corners |
 | --- | --- | --- |
@@ -69,12 +69,12 @@ to get practice, place your thumb on the first sticker, your index finger on the
 ### Moves
 - clockwise (`F`, `R`, `U`) and counterclockwise (`F'`, `R'`, `U'` or `Fi`, `Ri`, `Ui`)
 - the full cube rotation is specified with the rotation axis in lower case: after the cube rotation, faces names won't matches anymore their original colors.
-    - eg. after executing `x'`, face `B` became `U`, face `U` became `F` and so on...
+    - note: after executing `x'`, face `B` became `U`, face `U` became `F` and so on...
 - eventually lower case letters can be used (`f`, `r'`, `ui`, ...): this is intended for specify more than one face or slice
-    - eg. the pattern `x'L'` equals `r'` (or `R'M`)
+    - eg. `r'` equals `x'L'` (or `R'M`)
 
 Note:
-- lower case letters are mostly used referring to bigger cubes (4x4, 5x5, ...) where, for instance, `r` means face `R` rotation along with all other slices between `R` and `M` (M not included)
+- lower case letters are mostly used referring to bigger cubes (4x4, 5x5, ...) where, for instance, `r` means face `R` rotation along with all other layers between `R` and `M` (latter not included)
 - keep in mind these comparisons when thinking about face/slice/cube rotations
     - `M` = `L`
     - `x` = `R`
