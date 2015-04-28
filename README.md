@@ -124,7 +124,7 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 ## Edges orientation
 (1 common use pattern, 2 rare patterns)
 
-### establish which edges need to be oriented
+### Establish which edges need to be oriented
 - check every piece's colors and their positions on its faces
 - on faces `U`, `D`, `F` and `B` there shouldn't be neither `L` neither `R`
 - edges that need to be oriented are always in pairs (can be 2, 4, 6, ...)
@@ -139,43 +139,45 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 ## Edges permutation
 (10 patterns)
 
-### R and L faces' edges
+### R and L faces
 Note:
 - all pattern for `R` face have the first `U` move clockwise
 - all pattern for `L` face have the first `U` move counterclockwise
 
 #### R face
-| piece | RH Setup | SM full |
-| --- | --- | --- |
-| `UR` | `(R'U RU')` | `R'URU'  M2  UR'U'R`
-| `DR` | `(U R RU')` | `UR2U'   M2  UR2U'`
-| `FR` | `(URU')` | `URU'    M2  UR'U'`
-| `BR` | `([FR])i` | `UR'U'   M2  URU'`
+| piece | RH Setup | RH full | SM full |
+| --- | --- | --- | --- |
+| `UR` | `(R'U RU')` | `[UR] M2 ([UR])i` | `R'URU'  M2  UR'U'R` |
+| `DR` | `(U R2 U')` | `[DR] M2 ([DR])i` | `UR2U'   M2  UR2U'` |
+| `FR` | `(U R U')` | `[FR] M2 ([FR])i` | `URU'    M2  UR'U'` |
+| `BR` | `([FR])i` | `[BR] M2 ([BR])i` | `UR'U'   M2  URU'` |
 
 #### L face
-| piece | RH Setup | SM full |
-| --- | --- | --- |
-| `UL` | `([UR])m` | `LU'L'U  M2  U'LUL'` |
-| `DL` | `([DR])m` | `U'L2U   M2  U'L2U` |
-| `FL` | `([FR])m` | `U'L'U   M2  U'LU` |
-| `BL` | `([BR])m` | `U'LU    M2  U'L'U` |
+| piece | RH Setup | RH full | SM full |
+| --- | --- | --- | --- |
+| `UL` | `([UR])m` | `[UL] M2 ([UL])i` | `LU'L'U  M2  U'LUL'` |
+| `DL` | `([DR])m` | `[DL] M2 ([DL])i` | `U'L2U   M2  U'L2U` |
+| `FL` | `([FR])m` | `[FL] M2 ([FL])i` | `U'L'U   M2  U'LU` |
+| `BL` | `([BR])m` | `[BL] M2 ([BL])i` | `U'LU    M2  U'L'U` |
 
 ### M-edges permutation
 Note:
+- M-edges cannot be oriented during permutation process; use [edges orientation](#edges-orientation) patterns
 - keep in mind the _target_ position
 - patterns `UF` and `DB` are respectively one the inverse of the other
+- patterns `UF` and `DB` don't have the usual format `Setup / M2 / Unsetup`
 
-| piece | RH Setup | SM full |
+| piece | RH | SM |
 | --- | --- | --- |
-| `DF` (_buffer_) | - | - |
-| `UB` | ` ` | `M2`  |
+| `DF` (_buffer_) | – | – |
+| `UB` | `M2` | `M2`  |
 | `UF` | `(U2M')2` | `U2M' U2M'` |
-| `DB` | `(MU2)2` | `MU2 MU2` |
+| `DB` | `([UF])i` | `MU2 MU2` |
 
 ## Corners orientation
 (4 patterns)
 
-### establish which corners need to be oriented
+### Establish which corners need to be oriented
 - check every piece's colors and their positions on its faces
 - on faces `U` and `D` there should be only those colors (`U` or `D`)
 - corners that need to be oriented can be 2 or 3 (or multiples of)
@@ -189,80 +191,93 @@ Note:
 - in every pattern couple, one is the inverse of the other
 - if the corner in `UFL` needs a clockwise orientation, start with the pattern with `R` clockwise (and viceversa)
 
-### 2 corner orientation
-| scope | RH Setup | SM full |
+#### 2 corner orientation
+| scope | RH | SM |
 | --- | --- | --- |
-| `CW2` (_clockwise_) | `(U'RU) R' (U'RU)` | `U' RUR'U'R  U` |
-| `CC2` (_counterclockwise_) | `([CW2])i` | `U' R'URU'R' U` |
+| `CW2` (_clockwise_) | `(U'RU) R' (U'RU)` | `U'RU R' U'RU` |
+| `CC2` (_counterclockwise_) | `([CW2])i` | `U'R'U R U'R'U` |
 
-### 3 corners orientation
-| scope | RH Setup | SM full |
+#### 3 corners orientation
+| scope | RH | SM |
 | --- | --- | --- |
-| `CW3` (_clockwise_) | `((UR)'UR)2` | `R'U' RU R'U' RU` |
-| `CC3` (_counterclockwise_) | `([CW3])i` | `U'R' UR U'R' UR` |
+| `CW3` (_clockwise_) | `((UR)' UR)2` | `U'R' UR U'R' UR` |
+| `CC3` (_counterclockwise_) | `([CW3])i` | `R'U' RU R'U' RU` |
 
 ## Corners permutation
 (6 patterns)
 
-### R face
+#### R face
 Note:
 - keep in mind the _target_ position
 - patterns `URF` and `DRB` are respectively one the inverse of the other
+- patterns `URF` and `DRB` don't have the usual format `Setup / R2 / Unsetup`
 
-Patterns:
-- `DFR`: _buffer_
-- `UBR`: `R2`
-- `URF`: `U'RF'rU      R2  U'r'FRU R2`
-- `DRB`: `R2 U'R'F'rU  R2  U'r'FR'U`
+| piece | RH | SM |
+| --- | --- | --- |
+| `DFR` (_buffer_) | – | – |
+| `UBR` | `R2` | `R2` |
+| `URF` | `U'R (F'RM'U) R2 (F'RM'U)i RU R2` | `U'R F'rU R2 U'r'F RU R2` |
+| `DRB` | `([URF])i` | `R2 U'R' F'rU R2 U'r'F R'U` |
 
-### L face
+#### L face
 Note for `DBL` and `UFL` patterns:
 - first half of these Setup patterns move the piece in `ULB` position
 - second half of these Setup patterns **is** the `ULB` pattern
 
-Patterns:
-- `ULB`: `L'U'LU         R2  U'L'UL`
-- `DLF`: `U'L2U          R2  U'L2U`
-- `DBL`: `U'L2U  L'U'LU  R2  U'L'UL U'L2U`
-- `UFL`: `LU'L'U L'U'LU  R2  U'L'UL U'LUL'`
+| piece | RH Setup | RH full | SM full |
+| --- | --- | --- | --- |
+| `ULB` | `(LU)' (LU)` | `[ULB] R2 ([ULB])i` | `L'U'LU         R2  U'L'UL` |
+| `DLF` | `[DL]` | `[DLF] R2 ([DLF])i` | `U'L2U          R2  U'L2U` |
+| `UFL` | `L [FL] [ULB]` | `[UFL] R2 ([UFL])i` | `L U'L'U L'U'LU  R2  U'L'UL U'LU L'` |
+| `DBL` | `[DLF] [ULB]` | `[DBL] R2 ([DBL])i` | `U'L2U  L'U'LU  R2  U'L'UL U'L2U` |
 
 ## Edges orientation and permutation
 (8 patterns: 1 new pattern for every edge of L and R)
 
 #### R face
-- `RB`: `x RU'R'U  M2  U'RUR' x'`
-- `RF`: `x U'R2U   M2  U'R2U  x'`
-- `RD`: `x U'R'U   M2  U'RU   x'`
-- `RU`: `x U'RU    M2  U'R'U  x'`
+| piece | RH Setup | RH full | SM full |
+| --- | --- | --- | --- |
+| `RB` | `x' ([UR])'` | `[RB] M2 ([RB])i` | `x RU'R'U  M2  U'RUR' x'` |
+| `RF` | `x' ([DR])'` | `[RF] M2 ([RF])i` | `x U'R2U   M2  U'R2U  x'` |
+| `RD` | `x' ([FR])'` | `[RD] M2 ([RD])i` | `x U'R'U   M2  U'RU   x'` |
+| `RU` | `x' ([BR])'` | `[RU] M2 ([RU])i` | `x U'RU    M2  U'R'U  x'` |
 
 #### L face
-- `LB`: `x L'ULU'  M2  UL'U'L x'`
-- `LF`: `x UL2U'   M2  UL2U'  x'`
-- `LD`: `x ULU'    M2  UL'U'  x'`
-- `LU`: `x UL'U'   M2  ULU'   x'`
+| piece | RH Setup | RH full | SM full |
+| --- | --- | --- | --- |
+| `LB` | `x' (([UR])')m` | `[LB] M2 ([LB])i` | `x L'ULU'  M2  UL'U'L x'` |
+| `LF` | `x' (([DR])')m` | `[LF] M2 ([LF])i` | `x UL2U'   M2  UL2U'  x'` |
+| `LD` | `x' (([FR])')m` | `[LD] M2 ([LD])i` | `x ULU'    M2  UL'U'  x'` |
+| `LU` | `x' (([BR])')m` | `[LU] M2 ([LU])i` | `x UL'U'   M2  ULU'   x'` |
 
 ## Corners orientation and permutation
 (14 patterns: 2 new patterns for every corner but the buffer)
 
-### R face
-- `RDF`: _buffer_
-- `FRD`: _buffer_
-- `RUB`: `U' LU L'U' LU   R2  U'L' UL U'L' U`
-- `BRU`: `U'L' UL U'L' U  R2  U' LU L'U' LU`
-- `FUR`: `R2 U'R M' x L2M2 ULU' R' UL'U'L' R' U`
-- `RFU`: `F'RU R2 U'R'F RU R2 U'R`
-- `BDR`: `RUR' D L2 x2 U'RU L2 x2 U' D' R`
-- `RBD`: `R'U R2 U'R'F' RU R2 U'R'F`
+#### R face
+note: patterns for pieces `URF` and `DRB` don't have the usual format `Setup / R2 / Unsetup`
 
-### L face
-- `BUL`: `y RU R2 U'R'  F2  RU R2 U'R' y'`
-- `LBU`: `U' L' U       R2  U' L U`
-- `FDL`: `U'L' U L'U' LU  R2  U'L' UL U' LU`
-- `LFD`: `L2 U'L'U        R2  U'LU L2`
-- `LDB`: `LU'L'U  R2  U'LUL'`
-- `BLD`: `U'LU    R2  U'L'U`
-- `LUF`: `L'U'L'U  R2  U'LUL`
-- `FLU`: `R' ULU'  R2  UL'U' R`
+| piece | RH Setup | RH full | SM full |
+| --- | --- | --- | --- |
+| `RDF` (_buffer_) | – | – | – |
+| `FRD` (_buffer_) | – | – | – |
+| `BRU` | `[LBU] L [LBU]` | `[BRU] R2 ([BRU])i` | `U'L' UL U'L' U  R2  U' LU L'U' LU` |
+| `RUB` | `([BRU])i` | `[RUB] R2 ([RUB])i` | `U' LU L'U' LU   R2  U'L' UL U'L' U` |
+| `RFU` | – | `(F'R) (UR2U') R' (FR) (UR2U') R` | `F'RU R2 U'R'F RU R2 U'R` |
+| `FUR` | – | `R2 U' RM'x L2M2 (ULU') R' (UL'U') L'R'U` | `R2 U'R M' x L2M2 ULU' R' UL'U'L' R' U` |
+| `RBD` | – | `R'U R2 (URF)' (RU R2 (RU)i) F` | `R'U R2 U'R'F' RU R2 U'R'F` |
+| `BDR` | – | `RUR' D (L2x2) U'RU (L2x2) U'D'R` | `RUR' D L2 x2 U'RU L2 x2 U' D' R` |
+
+#### L face
+| piece | RH Setup | RH full | SM full |
+| --- | --- | --- | --- |
+| `LBU` | `U'L'U` | `[LBU] R2 ([LBU])i` | `U' L' U       R2  U' L U` |
+| `BUL` | `y (RU) R2 (RU)i y'` | `[BUL] R2 ([BUL])i` | `y RU R2 U'R'  F2  RU R2 U'R' y'` |
+| `FLU` | `R' (ULU')` | `[FLU] R2 ([FLU])i` | `R' ULU'  R2  UL'U' R` |
+| `LUF` | `L' [LBU]` | `[LUF] R2 ([LUF])i` | `L'U'L'U  R2  U'LUL` |
+| `LFD` | `L2 [LBU]` | `[LFD] R2 ([LFD])i` | `L2 U'L'U        R2  U'LU L2` |
+| `FDL` | `[LBU] L' ([LBU])i` | `[FDL] R2 ([FDL])i` | `U'L' U L'U' LU  R2  U'L' UL U' LU` |
+| `BLD` | `([LBU])i` | `[BLD] R2 ([BLD])i` | `U'LU    R2  U'L'U` |
+| `LDB` | `L [LBU]` | `[LDB] R2 ([LDB])i` | `LU'L'U  R2  U'LUL'` |
 
 ## Parity
 (1 pattern)
