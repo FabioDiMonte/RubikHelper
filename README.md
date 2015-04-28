@@ -245,11 +245,13 @@ Patterns:
     - UnSetup: `F2U`
 
 The Parity case and the cube after the Parity Setup (`U'F2`)
+
 | Parity | J-perm |
 | --- | --- |
 | ![Parity](readme/small/parity-colors.png) | ![J-perm](readme/small/j-perm-color.png) |
 
 The Parity and J-perm involved pieces
+
 | Parity | J-perm |
 | --- | --- |
 | ![Parity](readme/small/parity.png) | ![J-perm](readme/small/j-perm.png) |
