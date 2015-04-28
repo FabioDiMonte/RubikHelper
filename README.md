@@ -140,6 +140,7 @@ Note:
 - keep in mind the _target_ position
 - patterns `UF` and `DB` are respectively one the inverse of the other
 
+Patterns:
 - `DF`: _buffer_
 - `UB`: `M2`
 - `UF`: `[U2M']*2`
@@ -178,6 +179,7 @@ Note for `DBL` and `UFL` patterns:
 - first half of these Setup patterns move the piece in `ULB` position
 - second half of these Setup patterns **is** the `ULB` pattern
 
+Patterns:
 - `ULB`: `L'U'LU         R2  U'L'UL`
 - `DLF`: `U'L2U          R2  U'L2U`
 - `DBL`: `U'L2U  L'U'LU  R2  U'L'UL U'L2U`
@@ -188,6 +190,7 @@ Note:
 - keep in mind the _target_ position
 - patterns `URF` and `DRB` are respectively one the inverse of the other
 
+Patterns:
 - `DFR`: _buffer_
 - `UBR`: `R2`
 - `URF`: `U'RF'rU      R2  U'r'FRU R2`
@@ -241,10 +244,12 @@ Note:
     - J-perm:  `L'U2 LU L'U2 RU' LUR'`
     - UnSetup: `F2U`
 
+The Parity case and the cube after the Parity Setup (`U'F2`)
 | Parity | J-perm |
 | --- | --- |
 | ![Parity](readme/small/parity-colors.png) | ![J-perm](readme/small/j-perm-color.png) |
 
+The Parity and J-perm involved pieces
 | Parity | J-perm |
 | --- | --- |
 | ![Parity](readme/small/parity.png) | ![J-perm](readme/small/j-perm.png) |
