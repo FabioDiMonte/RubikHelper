@@ -10,6 +10,13 @@ Table of contents:
 - [Naming](#naming)
 - [Introduction](#introduction)
 - [Edges orientation](#edges-orientation)
+- [Edges permutation](#edges-permutation)
+- [Corners orientation](#corners-orientation)
+- [Corners permutation](#corners-permutation)
+- [Edges orientation and permutation](#edges-orientation-and-permutation)
+- [Corners orientation and permutation](#corners-orientation-and-permutation)
+- [Parity](#parity)
+- [Credits](#credits)
 
 ## Naming
 
@@ -31,14 +38,14 @@ Table of contents:
 
 ### Pieces
 - centers (1 color), edges (2 colors), corners (3 colors)  
-there is a specific criteria in order to check a correctly oriented piece (for [edges](#orient-edges) and [corners](orient-corners))
+there is a specific criteria in order to check a correctly oriented piece (for [edges](#edges-orientation) and [corners](#corners-orientation))
 - to determine a piece's name:
+    - edges, read stickers colors starting from the one in position `U`, `D`, `F` or `B`  
+eg. `FR`, `BL`, `UL`, `DF`, `UB`, ... are correctly oriented.
     - corners: read stickers colors starting from the one in position `U` or `D` and go on clockwise
 eg. `UFL`, `URF`, `ULB`, `DLF`, `DRB`, ... are correctly oriented.  
 eg. `LUF` should be oriented counterclockwise. `FLU` should be oriented clockwise.  
 to get practice, place your thumb on the first sticker, your index finger on the second one and the middle finger on the third: this way you'll read colors clockwise
-    - edges, read stickers colors starting from the one in position `U`, `D`, `F` or `B`  
-eg. `FR`, `BL`, `UL`, `DF`, `UB`, ... are correctly oriented.
 
 | Centers | Edges | Corners |
 | --- | --- | --- |
@@ -50,18 +57,20 @@ eg. `FR`, `BL`, `UL`, `DF`, `UB`, ... are correctly oriented.
     - eg. after executing `x'`, face `B` became `U`, face `U` became `F` and so on...
 - eventually lower case letters can be used (`f`, `r'`, `ui`, ...): this is intended for specify more than one face or slice
     - eg. the pattern `x'L'` equals `r'` (or `R'M`)
-- Note: keep in mind these comparisons when thinking about face/slice/cube rotation
+
+Note:
+- lower case letters are mostly used referring to bigger cubes (4x4, 5x5, ...) where, for instance, `r` means face `R` rotation along with all other slices between `R` and `M` (M not included)
+- keep in mind these comparisons when thinking about face/slice/cube rotations
     - `M` = `L`
     - `x` = `R`
     - `y` e `E` = `U`
     - `z` e `S` = `F`
-- Note: lower case letters are mostly used referring to bigger cubes (4x4, 5x5, ...) where, for instance, `r` means face `R` rotation along with all other slices between `R` and `M` (M not included)
 
 ## Introduction
 
 ### How the blindfold method works (basis)
 - this method allows to solve the cube without rotate it, as other methods do ([“beginners”](http://www.youcandothecube.com/secret-unlocked/solution-stage-one.aspx), [Fridrich](http://en.wikipedia.org/wiki/CFOP_Method), ...), and placing on piece at a time keeping the rest of the cube unmodified.
-- this way is possible memorize the full sequence of pieces in order to solve the whole cube
+- this way is possible to memorize the full sequence of pieces in order to solve the whole cube
 - convention wants to have the cube facing the red face on position `F` and the yellow one on position `U` (so  `L`=blue, `R`=green, `B`=orange, `D`=white)
 
 ![Cube colors](readme/small/cube-colors.png)
@@ -72,19 +81,20 @@ Setup -> M2 or R2 -> UnSetup
 - every single piece have a Setup move
 - the Unsetup move is the exact inverse of its Setup move  
 eg. U’LU -> M2 -> U’L’U
-- every permutation pattern include `M2` or `R2` move, this way it needs 2 patterns to be executed in order to have the cube exactly the same it was before concerning pieces not interested in the patterns
+- every permutation pattern includes `M2` or `R2` move, this way it needs 2 patterns to be executed in order to have the cube exactly the same it was before concerning pieces not interested in the patterns  
+eg. after executing `FR` and `FL` the cube is the same as before, except pieces `FR` and `FL`
 
 ### What are and "buffer" pieces and what's their purpose
 - pieces in position `DF` (edge) and `DFR` (corner) are named _*buffer*_
 - M2R2 method foresee the permutation of one piece at a time from _buffer_ position to _"target"_ position (the correct one)
 - the buffer piece will be swapped with the one in target position at every permutation
-- the Setup move swap the piece in the _target_ position with the one opposite to _buffer_
+- the Setup move swap the piece in the _target_ position with the one opposite to _buffer_ (`UB` and `UBR`)
 - when the second piece of a couple of permutations is the _buffer_ piece and every other piece of the same kind (edges or corners) are in their respective _target_ position (excluded the piece opposed to _buffer_), then is the case of [Parity](#parity) (about 50% of solving processes)
 
 ### Before starting
 - get familiarity with pieces and moves naming starting with a solved cube
 - try to execute each following pattern twice (first time to understand its purpose, second one to get the cube back to initial state)
-- given this method place 2 pieces at a time, in order to permutate pieces on `M` slice (edges) or `R` face (corners) keep in mind their target position for in the second permutation `M` or `R` will be rotated by 180°
+- given this method places 2 pieces at a time, in order to permutate pieces on `M` slice (edges) or `R` face (corners) keep in mind their target position for in the second permutation `M` or `R` will be rotated by 180°
     - eg. edges:  
 if the first of 2 pieces to be permutated is `UF`, execute pattern `UF`  
 if `UF` is the second one (and so `M` is rotated), execute the opposite pattern (that is `DB`)
