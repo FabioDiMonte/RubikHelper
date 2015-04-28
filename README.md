@@ -4,40 +4,32 @@ Rubik Helper tools
 [RubikHelper test page](http://fabiodimonte.github.io/RubikHelper/)
 
 # Rubik Blindfold Tutorial
-###### vademecum for beginners
+#### vademecum for beginners
 
-Table of contents:
+## Table of contents
+
 - [Notation](#notation)
+    - [Faces and Slices](#faces-and-slices)
+    - [Pieces](#pieces)
+    - [Moves](#moves)
 - [Introduction](#introduction)
-- [Edges orientation](#edges-orientation)
-- [Edges permutation](#edges-permutation)
-- [Corners orientation](#corners-orientation)
-- [Corners permutation](#corners-permutation)
-- [Edges orientation and permutation](#edges-orientation-and-permutation)
-- [Corners orientation and permutation](#corners-orientation-and-permutation)
+    - [How the blindfold method works (basis)](#how-the-blindfold-method-works-basis)
+    - [How M2R2 works (basis)](#how-m2r2-works-basis)
+    - [What are "buffer" pieces and what's their purpose](#what-are-buffer-pieces-and-whats-their-purpose)
+    - [Before starting](#before-starting)
+- [Orient pieces](#orient-pieces)
+    - [Edges orientation](#edges-orientation)
+    - [Corners orientation](#corners-orientation)
+- [Permute pieces](#permute-pieces)
+    - [Edges permutation](#edges-permutation)
+    - [Corners permutation](#corners-permutation)
+- [Orient and Permute Pieces](#orient-and-permute-pieces)
+    - [Edges orientation and permutation](#edges-orientation-and-permutation)
+    - [Corners orientation and permutation](#corners-orientation-and-permutation)
 - [Parity](#parity)
 - [Credits](#credits)
 
 ## Notation
-- there are many ways to write down a sequence of moves (or _pattern_), but the most commonly used is the ["Singmaster notation"](http://en.wikipedia.org/wiki/Rubik%27s_Cube#Move_notation)
-- in this guide is used the Singmaster notation (referred as **SM**) along with the one used by the [RubikHelper](http://fabiodimonte.github.io/RubikHelper/) tool (referred as **RH**)
-    - the RubikHelper notation use the same as Singmaster for simple rotations
-    - uses parenthesis for grouping
-    - uses `'` (prime) for negative a move or a group
-    - uses `i` letter for invert a group (goes backward inverting rotation for every single move)
-    - uses `m` letter for mirror a group on M-slice
-    - uses Numbers to multiply a group
-    - uses square brackets for a single Piece Setup
-    - eg:  
-`FR'U r` = `FR'U RM'`  
-`(FR'U r)` = `FR'U RM'`  
-`(FR'U r)i` = `MR' U'RF'`  
-`(FR'U r)m` = `F'LU' L'M`  
-`(FR'U r)2` = `FR'U RM' FR'U RM'`  
-`[FR]` = `URU'`  
-`[BR]` = `([FR])i` = `UR'U'`
-
-Please note that RubikHelper threats lower case letters as upper case (aka face rotations).
 
 ### Faces and Slices
 - faces: **F**ront, **B**ack, **U**p, **D**own, **L**eft, **R**ight
@@ -71,19 +63,38 @@ however `LUF` should be oriented counterclockwise and `FLU` should be oriented c
 | ![Centers](readme/small/centers.png) | ![Edges](readme/small/edges.png) | ![Corners](readme/small/corners.png) |
 
 ### Moves
-- clockwise (`F`, `R`, `U`) and counterclockwise (`F'`, `R'`, `U'` or `Fi`, `Ri`, `Ui`)
+- there are many ways to write down a sequence of moves (or _pattern_), but the most commonly used is the ["Singmaster notation"](http://en.wikipedia.org/wiki/Rubik%27s_Cube#Move_notation)
+- to represent a clockwise rotation is used just the face name (`F`, `R`, `U`, ...)
+- to represent a counterclockwise rotation is used the face name followed by a `'` (prime sign) or `i` (`F'`, `R'`, `U'`, ... or `Fi`, `Ri`, `Ui`, ...)
 - the full cube rotation is specified with the rotation axis in lower case: after the cube rotation, faces names won't matches anymore their original colors.
-    - note: after executing `x'`, face `B` became `U`, face `U` became `F` and so on...
-- eventually lower case letters can be used (`f`, `r'`, `ui`, ...): this is intended for specify more than one face or slice
+    - note: after executing `x'`, face `B` became `U`, face `U` became `F` and so on.
+- eventually lower case letters can be used (`f`, `r'`, `ui`, ...)
+    - this is intended for specify the face and all other layers until the M-slice
     - eg. `r'` equals `x'L'` (or `R'M`)
-
-Note:
-- lower case letters are mostly used referring to bigger cubes (4x4, 5x5, ...) where, for instance, `r` means face `R` rotation along with all other layers between `R` and `M` (latter not included)
+    - lower case letters are mostly used referring to bigger cubes (4x4, 5x5, ...) where, for instance, `r` means face `R` rotation along with all other layers between `R` and `M` (latter not included)
 - keep in mind these comparisons when thinking about face/slice/cube rotations
     - `M` = `L`
     - `x` = `R`
     - `y` e `E` = `U`
     - `z` e `S` = `F`
+- in this guide is used the Singmaster notation (referenced as **SM**) along with the one used by the [RubikHelper](http://fabiodimonte.github.io/RubikHelper/) tool (referenced as **RH**)
+    - the RubikHelper notation use the same as Singmaster for simple rotations
+    - uses parenthesis for grouping
+    - uses `'` (prime) for negative a move or a group
+    - uses `i` for invert a group (goes backward inverting rotation for every single move)
+    - uses `m` letter for mirror a group on M-slice (swap `R` with `L` and back inverting rotations)
+    - uses Numbers to multiply a group
+    - uses square brackets for a single Piece Setup
+    - eg:  
+`FR'U r` = `FR'U RM'`  
+`(FR'U r)` = `FR'U RM'`  
+`(FR'U r)i` = `MR' U'RF'`  
+`(FR'U r)m` = `F'LU' L'M`  
+`(FR'U r)2` = `FR'U RM' FR'U RM'`  
+`[FR]` = `URU'`  
+`[BR]` = `([FR])i` = `UR'U'`
+
+Please note that RubikHelper threats lower case letters as upper case (aka face rotations).
 
 ## Introduction
 
@@ -121,13 +132,15 @@ if `UF` is the second one (and so `M` is rotated), execute the opposite pattern 
 if the first of 2 pieces to be permutated is `URF`, execute pattern `URF`  
 if `URF` is the second one (and so `R` is rotated), execute the opposite pattern (that is `DRB`)
 
-## Edges orientation
+## Orient pieces
+
+### Edges orientation
 (1 common use pattern, 2 rare patterns)
 
-### Establish which edges need to be oriented
-- check every piece's colors and their positions on its faces
-- on faces `U`, `D`, `F` and `B` there shouldn't be neither `L` neither `R`
-- edges that need to be oriented are always in pairs (can be 2, 4, 6, ...)
+- Evaluate which edges need to be oriented
+    - check every piece's colors and their positions on its faces
+    - on faces `U`, `D`, `F` and `B` there shouldn't be neither `L` neither `R`
+    - edges that need to be oriented are always in pairs (can be 2, 4, 6, ...)
 - following patterns will orient 2 or 4 pieces on `U` face
 - apply Setup/Unsetup logic to bring on the `U` face all edges that need orientation (this can include eventually the full cube rotation)
 
@@ -136,7 +149,38 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 | ![Orient 2 edges](readme/tiny/o2e.png) | `O2U` | `(M'U)3 U (MU)3 U` | `M'U M'U M'U2 MU MU MU2` |
 | ![Orient 4 edges](readme/tiny/o4e.png) | `O4E` | `(M'U)4 (MU)4` | `M'U M'U M'U M'U MU MU MU MU` |
 
-## Edges permutation
+### Corners orientation
+(4 patterns)
+
+- Evaluate which edges need to be oriented
+    - check every piece's colors and their positions on its faces
+    - on faces `U` and `D` there should be only those colors (`U` or `D`)
+    - corners that need to be oriented can be 2 or 3 (or multiples of)
+    - if 2 corners need to be oriented, then they'll have **inverse** orientation
+    - if 3 corners need to be oriented, then they'll have **the same** orientation
+- following patterns will orient the corner in `UFL` position
+- apply Setup/Unsetup logic to bring on the `L` face all corners that need orientation (this can include eventually the full cube rotation)
+- in order to orient 2 or 3 corners, execute the right pattern and rotate `L` face to swap pieces
+
+Notes:
+- in every pattern couple, one is the inverse of the other
+- if the corner in `UFL` needs a clockwise orientation, start with the pattern with `R` clockwise (and viceversa)
+
+#### 2 corner orientation
+| pieces | name | RH | SM |
+| --- | --- | --- | --- |
+| ![2 Corners Orientation](readme/tiny/corner-UFL.png) | `CW2` (_clockwise_) | `(U'RU) R' (U'RU)` | `U'RU R' U'RU` |
+| ![2 Corners Orientation](readme/tiny/corner-UFL.png) | `CC2` (_counterclockwise_) | `([CW2])i` | `U'R'U R U'R'U` |
+
+#### 3 corners orientation
+| pieces | name | RH | SM |
+| --- | --- | --- | --- |
+| ![3 Corners Orientation](readme/tiny/corner-UFL.png) | `CW3` (_clockwise_) | `((UR)' UR)2` | `U'R' UR U'R' UR` |
+| ![3 Corners Orientation](readme/tiny/corner-UFL.png) | `CC3` (_counterclockwise_) | `([CW3])i` | `R'U' RU R'U' RU` |
+
+## Permute pieces
+
+### Edges permutation
 (10 patterns)
 
 #### R face edges permutation
@@ -176,40 +220,11 @@ Notes:
 | ![Edge UF](readme/tiny/edge-UF.png) | `UF` | `(U2M')2` | `U2M' U2M'` |
 | ![Edge DB](readme/tiny/edge-DB.png) | `DB` | `([UF])i` | `MU2 MU2` |
 
-## Corners orientation
-(4 patterns)
-
-### Establish which corners need to be oriented
-- check every piece's colors and their positions on its faces
-- on faces `U` and `D` there should be only those colors (`U` or `D`)
-- corners that need to be oriented can be 2 or 3 (or multiples of)
-- if 2 corners need to be oriented, then they'll have **inverse** orientation
-- if 3 corners need to be oriented, then they'll have **the same** orientation
-- following patterns will orient the corner in `UFL` position
-- apply Setup/Unsetup logic to bring on the `L` face all corners that need orientation (this can include eventually the full cube rotation)
-- in order to orient 2 or 3 corners, execute the right pattern and rotate `L` face to swap pieces
-
-Note:
-- in every pattern couple, one is the inverse of the other
-- if the corner in `UFL` needs a clockwise orientation, start with the pattern with `R` clockwise (and viceversa)
-
-#### 2 corner orientation
-| pieces | name | RH | SM |
-| --- | --- | --- | --- |
-| ![2 Corners Orientation](readme/tiny/corner-UFL.png) | `CW2` (_clockwise_) | `(U'RU) R' (U'RU)` | `U'RU R' U'RU` |
-| ![2 Corners Orientation](readme/tiny/corner-UFL.png) | `CC2` (_counterclockwise_) | `([CW2])i` | `U'R'U R U'R'U` |
-
-#### 3 corners orientation
-| pieces | name | RH | SM |
-| --- | --- | --- | --- |
-| ![3 Corners Orientation](readme/tiny/corner-UFL.png) | `CW3` (_clockwise_) | `((UR)' UR)2` | `U'R' UR U'R' UR` |
-| ![3 Corners Orientation](readme/tiny/corner-UFL.png) | `CC3` (_counterclockwise_) | `([CW3])i` | `R'U' RU R'U' RU` |
-
-## Corners permutation
+### Corners permutation
 (6 patterns)
 
-#### R face
-Note:
+#### R face corners permutation
+Notes:
 - keep in mind the _target_ position
 - patterns `URF` and `DRB` are respectively one the inverse of the other
 - patterns `URF` and `DRB` don't have the usual format `Setup / R2 / Unsetup`
@@ -224,8 +239,8 @@ Note:
 | ![Corner URF](readme/tiny/corner-URF.png) | `URF` | `U'R (F'RM'U) R2 (F'RM'U)i RU R2` | `U'R F'rU R2 U'r'F RU R2` |
 | ![Corner DRB](readme/tiny/corner-DRB.png) | `DRB` | `([URF])i` | `R2 U'R' F'rU R2 U'r'F R'U` |
 
-#### L face
-Note for `DBL` and `UFL` patterns:
+#### L face corners permutation
+Notes for `DBL` and `UFL` patterns:
 - first half of these Setup patterns move the piece in `ULB` position
 - second half of these Setup patterns **is** the `ULB` pattern
 
@@ -236,10 +251,12 @@ Note for `DBL` and `UFL` patterns:
 | ![Corner UFL](readme/tiny/corner-UFL.png) | `UFL` | `L [FL] [ULB]` | `[UFL] R2 ([UFL])i` | `L U'L'U L'U'LU  R2  U'L'UL U'LU L'` |
 | ![Corner DBL](readme/tiny/corner-DBL.png) | `DBL` | `[DLF] [ULB]` | `[DBL] R2 ([DBL])i` | `U'L2U  L'U'LU  R2  U'L'UL U'L2U` |
 
-## Edges orientation and permutation
+## Orient and Permute Pieces
+
+### Edges orientation and permutation
 (8 patterns: 1 new pattern for every edge of L and R)
 
-#### R face
+#### R face edges orientation and permutation
 | piece | RH Setup | RH full | SM full |
 | --- | --- | --- | --- |
 | `RB` | `x' ([UR])'` | `[RB] M2 ([RB])i` | `x RU'R'U  M2  U'RUR' x'` |
@@ -247,7 +264,7 @@ Note for `DBL` and `UFL` patterns:
 | `RD` | `x' ([FR])'` | `[RD] M2 ([RD])i` | `x U'R'U   M2  U'RU   x'` |
 | `RU` | `x' ([BR])'` | `[RU] M2 ([RU])i` | `x U'RU    M2  U'R'U  x'` |
 
-#### L face
+#### L face edges orientation and permutation
 | piece | RH Setup | RH full | SM full |
 | --- | --- | --- | --- |
 | `LB` | `x' (([UR])')m` | `[LB] M2 ([LB])i` | `x L'ULU'  M2  UL'U'L x'` |
@@ -255,11 +272,11 @@ Note for `DBL` and `UFL` patterns:
 | `LD` | `x' (([FR])')m` | `[LD] M2 ([LD])i` | `x ULU'    M2  UL'U'  x'` |
 | `LU` | `x' (([BR])')m` | `[LU] M2 ([LU])i` | `x UL'U'   M2  ULU'   x'` |
 
-## Corners orientation and permutation
+### Corners orientation and permutation
 (14 patterns: 2 new patterns for every corner but the buffer)
 
-#### R face
-note: patterns for pieces `URF` and `DRB` don't have the usual format `Setup / R2 / Unsetup`
+#### R face corners orientation and permutation
+Note: patterns for pieces `URF` and `DRB` don't have the usual format `Setup / R2 / Unsetup`
 
 | piece | RH Setup | RH full | SM full |
 | --- | --- | --- | --- |
@@ -275,7 +292,7 @@ note: patterns for pieces `URF` and `DRB` don't have the usual format `Setup / R
 | `RBD` | `R'U R2 (URF)' (RU R2 (RU)i) F` | `R'U R2 U'R'F' RU R2 U'R'F` |
 | `BDR` | `RUR' D (L2x2) U'RU (L2x2) U'D'R` | `RUR' D L2 x2 U'RU L2 x2 U' D' R` |
 
-#### L face
+#### L face corners orientation and permutation
 | piece | RH Setup | RH full | SM full |
 | --- | --- | --- | --- |
 | `LBU` | `U'L'U` | `[LBU] R2 ([LBU])i` | `U' L' U       R2  U' L U` |
