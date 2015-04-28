@@ -4,7 +4,7 @@ Rubik Helper tools
 [RubikHelper test page](http://fabiodimonte.github.io/RubikHelper/)
 
 # Rubik Blindfold Tutorial
-#### vademecum for beginners
+###### vademecum for beginners
 
 Table of contents:
 - [Notation](#notation)
@@ -103,7 +103,7 @@ eg. U’LU -> M2 -> U’L’U
 - every permutation pattern includes `M2` or `R2` move, this way it needs 2 patterns to be executed in order to have the cube exactly the same it was before concerning pieces not interested in the patterns  
 eg. after executing `FR` and `FL` the cube is the same as before, except pieces `FR` and `FL`
 
-### What are and "buffer" pieces and what's their purpose
+### What are "buffer" pieces and what's their purpose
 - pieces in position `DF` (edge) and `DFR` (corner) are named _*buffer*_
 - M2R2 method foresee the permutation of one piece at a time from _buffer_ position to _"target"_ position (the correct one)
 - the buffer piece will be swapped with the one in target position at every permutation
@@ -139,12 +139,9 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 ## Edges permutation
 (10 patterns)
 
-### R and L faces
-Note:
-- all pattern for `R` face have the first `U` move clockwise
-- all pattern for `L` face have the first `U` move counterclockwise
+#### R face edges permutation
+Note: all patterns for `R` face have the first `U` move clockwise
 
-#### R face
 | piece | RH Setup | RH full | SM full |
 | --- | --- | --- | --- |
 | `UR` | `(R'U RU')` | `[UR] M2 ([UR])i` | `R'URU'  M2  UR'U'R` |
@@ -152,7 +149,9 @@ Note:
 | `FR` | `(U R U')` | `[FR] M2 ([FR])i` | `URU'    M2  UR'U'` |
 | `BR` | `([FR])i` | `[BR] M2 ([BR])i` | `UR'U'   M2  URU'` |
 
-#### L face
+#### L face edges permutation
+Note: all patterns for `L` face have the first `U` move counterclockwise
+
 | piece | RH Setup | RH full | SM full |
 | --- | --- | --- | --- |
 | `UL` | `([UR])m` | `[UL] M2 ([UL])i` | `LU'L'U  M2  U'LUL'` |
@@ -160,8 +159,8 @@ Note:
 | `FL` | `([FR])m` | `[FL] M2 ([FL])i` | `U'L'U   M2  U'LU` |
 | `BL` | `([BR])m` | `[BL] M2 ([BL])i` | `U'LU    M2  U'L'U` |
 
-### M-edges permutation
-Note:
+#### M-edges permutation
+Notes:
 - M-edges cannot be oriented during permutation process; use [edges orientation](#edges-orientation) patterns
 - keep in mind the _target_ position
 - patterns `UF` and `DB` are respectively one the inverse of the other
