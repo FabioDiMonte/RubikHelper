@@ -55,7 +55,7 @@ Table of contents:
 - centers (1 color), edges (2 colors), corners (3 colors)  
 there is a specific criteria in order to check a correctly oriented piece (for [edges](#edges-orientation) and [corners](#corners-orientation))
 - to determine a piece's name:
-    - edges, read stickers colors starting from the one in position `U`, `D`, `F` or `B`  
+    - edges: read stickers colors starting from the one in position `U`, `D`, `F` or `B`  
 eg. `FR`, `BL`, `UL`, `DF`, `UB`, ... are correctly oriented.
     - corners: read stickers colors starting from the one in position `U` or `D` and go on clockwise
 eg. `UFL`, `URF`, `ULB`, `DLF`, `DRB`, ... are correctly oriented.  
