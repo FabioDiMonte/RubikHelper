@@ -26,18 +26,22 @@ Table of contents:
     - uses `'` (prime) for negative a move or a group
     - uses `i` letter for invert a group (goes backward inverting rotation for every single move)
     - uses `m` letter for mirror a group on M-slice
+    - uses Numbers to multiply a group
     - uses square brackets for a single Piece Setup
     - eg:  
 `FR'U r` = `FR'U RM'`  
 `(FR'U r)` = `FR'U RM'`  
 `(FR'U r)i` = `MR' U'RF'`  
-`(FR'U r)m` = `F'LU L'M'`  
+`(FR'U r)m` = `F'LU' L'M`  
+`(FR'U r)2` = `FR'U RM' FR'U RM'`  
 `[FR]` = `URU'`  
-`[BR]` = `([FR])i` = `UR'U'`  
+`[BR]` = `([FR])i` = `UR'U'`
+
+Please note that RubikHelper threats lower case letters as upper case (aka face rotations).
 
 ### Faces and Slices
 - faces: **F**ront, **B**ack, **U**p, **D**own, **L**eft, **R**ight
-- slices: **M**edian, **E**quator, **S**tanding (o **S**ide)
+- slices: **M**edian, **E**quator, **S**tanding
 
 | Front | Up | Right |
 | --- | --- | --- |
@@ -124,21 +128,13 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 - check every piece's colors and their positions on its faces
 - on faces `U`, `D`, `F` and `B` there shouldn't be neither `L` neither `R`
 - edges that need to be oriented are always in pairs (can be 2, 4, 6, ...)
-- following first 2 patterns will orient 2 or 4 pieces on `U` face
+- following patterns will orient 2 or 4 pieces on `U` face
 - apply Setup/Unsetup logic to bring on the `U` face all edges that need orientation (this can include eventually the full cube rotation)
 
-### 2 edges orientation
-- `(M'U)*3 U (MU)*3 U`
-
-![Orient 2 edges](readme/small/o2e.png)
-
-### 4 edges orientation
-- `(M'U)*4 (MU)*4`
-
-![Orient 4 edges](readme/small/o4e.png)
-
-### 4 edges orientation (2 of them on different face)
-- `(M'U)*4` or `(MU)*4`
+| scope | RH | SM |
+| --- | --- | --- |
+| ![Orient 2 edges](readme/tiny/o2e.png) | `(M'U)3 U (MU)3 U` | `M'U M'U M'U2 MU MU MU2` |
+| ![Orient 4 edges](readme/tiny/o4e.png) | `(M'U)4 (MU)4` | `M'U M'U M'U M'U MU MU MU MU` |
 
 ## Edges permutation
 (10 patterns)
@@ -148,17 +144,21 @@ Note:
 - all pattern for `L` face have the first `U` move counterclockwise
 - all pattern for `R` face have the first `U` move clockwise
 
-#### L face
-- `BL`: `U'LU    M2  U'L'U`
-- `FL`: `U'L'U   M2  U'LU`
-- `DL`: `U'L2U   M2  U'L2U`
-- `UL`: `LU'L'U  M2  U'LUL'`
-
 #### R face
-- `BR`: `UR'U'   M2  URU'`
-- `FR`: `URU'    M2  UR'U'`
-- `DR`: `UR2U'   M2  UR2U'`
-- `UR`: `R'URU'  M2  UR'U'R`
+| piece | RH Setup | SM full |
+| --- | --- | --- |
+| `UR` | `(R'U RU')` | `R'URU'  M2  UR'U'R`
+| `DR` | `(U R RU')` | `UR2U'   M2  UR2U'`
+| `FR` | `(URU')` | `URU'    M2  UR'U'`
+| `BR` | `([FR])i` | `UR'U'   M2  URU'`
+
+#### L face
+| piece | RH Setup | SM full |
+| --- | --- | --- |
+| `UL` | `([UR])m` | `LU'L'U  M2  U'LUL'` |
+| `DL` | `([DR])m` | `U'L2U   M2  U'L2U` |
+| `FL` | `([FR])m` | `U'L'U   M2  U'LU` |
+| `BL` | `([BR])m` | `U'LU    M2  U'L'U` |
 
 ### M-edges permutation
 Note:
@@ -166,10 +166,12 @@ Note:
 - patterns `UF` and `DB` are respectively one the inverse of the other
 
 Patterns:
-- `DF`: _buffer_
-- `UB`: `M2`
-- `UF`: `[U2M']*2`
-- `DB`: `[MU2]*2`
+| piece | RH Setup | SM full |
+| --- | --- | --- |
+| `DF` (_buffer_) | - | - |
+| `UB` | ` ` | `M2`  |
+| `UF` | `(U2M')2` | `U2M' U2M'` |
+| `DB` | `(MU2)2` | `MU2 MU2` |
 
 ## Corners orientation
 (4 patterns)
