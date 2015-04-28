@@ -7,7 +7,7 @@ Rubik Helper tools
 #### vademecum for beginners
 
 Table of contents:
-- [Naming](#naming)
+- [Notation](#notation)
 - [Introduction](#introduction)
 - [Edges orientation](#edges-orientation)
 - [Edges permutation](#edges-permutation)
@@ -18,7 +18,22 @@ Table of contents:
 - [Parity](#parity)
 - [Credits](#credits)
 
-## Naming
+## Notation
+- there are many ways to write down a sequence of moves (or _pattern_), but the most commonly used is the ["Singmaster notation"](http://en.wikipedia.org/wiki/Rubik%27s_Cube#Move_notation)
+- in this guide is used the Singmaster notation (referred as **SM**) along with the one used by the [RubikHelper](http://fabiodimonte.github.io/RubikHelper/) tool (referred as **RH**)
+    - the RubikHelper notation use the same as Singmaster for simple rotations
+    - uses parenthesis for grouping
+    - uses `'` (prime) for negative a move or a group
+    - uses `i` letter for invert a group
+    - uses `m` letter for mirror a group on M-slice
+    - uses square brackets for a single Piece Setup
+    - eg:  
+`FR'U r` = `FR'U RM'`  
+`(FR'U r)` = `FR'U RM'`  
+`(FR'U r)i` = `MR' U'RF'`  
+`(FR'U r)m` = `F'LU L'M'`  
+`[FR]` = `URU'`  
+`[BR]` = `([FR])i` = `UR'U'`  
 
 ### Faces and Slices
 - faces: **F**ront, **B**ack, **U**p, **D**own, **L**eft, **R**ight
@@ -113,17 +128,17 @@ if `URF` is the second one (and so `R` is rotated), execute the opposite pattern
 - apply Setup/Unsetup logic to bring on the `U` face all edges that need orientation (this can include eventually the full cube rotation)
 
 ### 2 edges orientation
-- `[M'U]*3 U [MU]*3 U`
+- `(M'U)*3 U (MU)*3 U`
 
 ![Orient 2 edges](readme/small/o2e.png)
 
 ### 4 edges orientation
-- `[M'U]*4 [MU]*4`
+- `(M'U)*4 (MU)*4`
 
 ![Orient 4 edges](readme/small/o4e.png)
 
 ### 4 edges orientation (2 of them on different face)
-- `[M'U]*4` oppure `[MU]*4`
+- `(M'U)*4` or `(MU)*4`
 
 ## Edges permutation
 (10 patterns)
@@ -248,7 +263,7 @@ Patterns:
 (1 pattern)
 
 - the parity involves 2 edges and 2 corners that need to be swapped
-- in order to solve the parity, place your pieces in J-Perm position (a PLL pattern) and then execute the pattern
+- in order to solve the parity, place your pieces in J-Perm position (a PLL pattern from the [CFOP method](http://en.wikipedia.org/wiki/CFOP_Method)) and then execute the pattern
 - use Setup/Unsetup logic to set the pieces ready to be swapped
     - Setup:   `U'F2`
     - J-perm:  `L'U2 LU L'U2 RU' LUR'`
