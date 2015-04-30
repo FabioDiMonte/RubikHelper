@@ -311,7 +311,7 @@ var RubikUtils = (function(){
              * @param but {String|Array}  the move/moves to be NOT accepted
              * @returns {Boolean}         true if the move is accepted
              */
-            accepted : function(move, but, only) {
+            accepted : function(move, only, but) {
                 var doMe = ((!only && !but) || (only=='' && but==''));
                 if(only && typeof(only)=='string') doMe = (only.length==1 && only==move.charAt(0));
                 if(only && only instanceof Array)  doMe = (only.indexOf(move)>-1);
