@@ -46,7 +46,9 @@ var RubikUtils = (function(){
 
             /* -- parity -- */
             p_PTJ: " (L'U2) LU (L'U2) (RU') L (RU')i ",
+            p_PTN: " ((L'UR') U2 (L'UR')')2 U ",
             p_PAR: " (U'F2) [PTJ] (U'F2)i ",
+            p_PRN: " (F2y) [PTN] (F2y)i",
 
             /* ################### EDGES PERMUTATIONS ################### */
 
@@ -245,7 +247,7 @@ var RubikUtils = (function(){
              * @param m {String}  the pattern to search for
              * @returns {Boolean} true if the oriented piece is a property of RubikHelper.patterns
              */
-            pattern  : function(m) { return (/^(o2[udfb]|o4e|o6[lr]|c[cw][23]|ptj|par)$/i).test(m); },
+            pattern  : function(m) { return (/^(o2[udfb]|o4e|o6[lr]|c[cw][23]|ptj|ptn|par|prn)$/i).test(m); },
 
             /**
              * Returns TRUE if the given string is actually a cube's piece (edge or corner)
@@ -884,7 +886,7 @@ var RubikUtils = (function(){
              * @returns {String}
              */
             all: function(seq) {
-                return seq.replace(/[^udfblrmesxyz2-9i'\-\+\(\)\[\]_oecwptja]+/ig,'');
+                return seq.replace(/[^udfblrmesxyz2-9i'\-\+\(\)\[\]_oecwptjna]+/ig,'');
             },
 
             /**
@@ -898,7 +900,7 @@ var RubikUtils = (function(){
             pieces: function(seq) {
                 seq = seq.replace(/[i']+/ig,'-');
                 seq = seq.replace(/[,;\.\n\r ]+/g,',');
-                seq = seq.replace(/[^udfblrmesxyz2\-\+,_oecwptja346]+/ig,'');
+                seq = seq.replace(/[^udfblrmesxyz2\-\+,_oecwptjna346]+/ig,'');
 
                 return seq;
             },
