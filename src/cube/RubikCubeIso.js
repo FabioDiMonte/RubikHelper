@@ -21,7 +21,8 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
         this._renderOptions = {
             order: ['DBL','DB','DRB','DL','D','DR','DLF','DF','DFR','BL','B','BR','L','R','FL','F','FR','ULB','UB','UBR','UL','U','UR','UFL','UF','URF'],
             backfaces: false,
-            highlights: []
+            highlights: [],
+            highlightColored: false
         };
 
         this.iso = {
@@ -61,16 +62,18 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
         this._options.showAxis && this.iso.engine.drawUtils.axis(this.iso.layer,200);
     };
     RubikCubeISO.prototype.render = function(piecesToRender){
-        var stickers;
+        var stickers,
+            highlights = this._renderOptions.highlights,
+            hl_colored = this._renderOptions.highlightColored;
 
         this.willRender();
         this._renderOptions.order.forEach(function(piece){
-            if(this._renderOptions.highlights.length==0){
+            if(highlights.length==0){
                 stickers = this._currentCube[piece];
                 (!piecesToRender || piecesToRender.indexOf(piece)>-1) && drawPiece.call(this,piece,stickers,false,this._renderOptions.backfaces);
             }else{
-                stickers = this._renderOptions.highlights.indexOf(piece)>-1 ? 'light' : 'grey';
-                drawPiece.call(this,piece,stickers,true,this._renderOptions.backfaces);
+                stickers = highlights.indexOf(piece)>-1 ? (hl_colored ? this._currentCube[piece] : 'light') : 'grey';
+                drawPiece.call(this,piece,stickers,(stickers=='grey'||stickers=='light'),this._renderOptions.backfaces);
             }
         }.bind(this));
         this.didRender();
@@ -86,6 +89,7 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
     RubikCubeISO.prototype.backfaceState  = function() { return this._renderOptions.backfaces; };
     RubikCubeISO.prototype.backfaceToggle = function(f){ toggleRenderBackFaces.call(this,f); };
     RubikCubeISO.prototype.highlight      = function(p){ highlightPieces.call(this,p); };
+    RubikCubeISO.prototype.highlightColor = function(t){ this._renderOptions.highlightColored=t;this.render(); };
 
     /* *******************************
      * PRIVATE METHODS
