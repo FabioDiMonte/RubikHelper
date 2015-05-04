@@ -30,11 +30,14 @@ var RubikUtils = (function(){
             /* ################### ORIENTATION PATTERNS ################### */
 
             /* -- orient edges -- */
-            p_O4E: " (M'U)4   (MU)4 ",
+            p_O4U: " (M'U)4   (MU)4 ",
+            p_O4D: " (M'D)4   (MD)4 ",// x2 [O4U] x2
+            p_O4F: " (M'F)4   (MF)4 ",// x  [O4U] x'
+            p_O4B: " (M'B)4   (MB)4 ",// x' [O4U] x
             p_O2U: " (M'U)3 U (MU)3 U ",
-            p_O2D: " (M'D)3 D (MD)3 D ",
-            p_O2F: " (M'F)3 F (MF)3 F ",
-            p_O2B: " (M'B)3 B (MB)3 B ",
+            p_O2D: " (M'D)3 D (MD)3 D ",// x2 [O2U] x2
+            p_O2F: " (M'F)3 F (MF)3 F ",// x  [O2U] x'
+            p_O2B: " (M'B)3 B (MB)3 B ",// x' [O2U] x
             p_O6L: " (R'FRU)5 ",
             p_O6R: " ([O6L])m ",
 
@@ -225,7 +228,7 @@ var RubikUtils = (function(){
             modifier : function(m) { return (/^[2i'\-\+]$/).test(m); },
 
             /**
-             * Returns TRUE if the given string is actually a single rotation
+             * Returns TRUE if the given string is actually a single rotation (face, slice or axis followed by a modifier)
              *
              * @param m {String}  the move to search for
              * @returns {Boolean} true if the move is a rotation
@@ -247,7 +250,7 @@ var RubikUtils = (function(){
              * @param m {String}  the pattern to search for
              * @returns {Boolean} true if the oriented piece is a property of RubikHelper.patterns
              */
-            pattern  : function(m) { return (/^(o2[udfb]|o4e|o6[lr]|c[cw][23]|ptj|ptn|par|prn)$/i).test(m); },
+            pattern  : function(m) { return (/^(o[24][udfb]|o6[lr]|c[cw][23]|pt[jn]|par|prn)$/i).test(m); },
 
             /**
              * Returns TRUE if the given string is actually a cube's piece (edge or corner)
@@ -860,8 +863,8 @@ var RubikUtils = (function(){
                     if(move.length==1) move+='+';
 
                     move = RubikUtils.is.piece(move)||RubikUtils.is.pattern(move) ? move.toUpperCase() :
-                        RubikUtils.is.rotation(move) ? RubikUtils.clear.adjustCase(move.charAt(0))+move.charAt(1) :
-                            null;
+                           RubikUtils.is.rotation(move) ? RubikUtils.clear.adjustCase(move.charAt(0))+move.charAt(1) :
+                           null;
 
                     move && seq.push(move);
                 }
@@ -886,13 +889,13 @@ var RubikUtils = (function(){
              * @returns {String}
              */
             all: function(seq) {
-                return seq.replace(/[^udfblrmesxyz2-9i'\-\+\(\)\[\]_oecwptjna]+/ig,'');
+                return seq.replace(/[^udfblrmesxyz2-9i'\-\+\(\)\[\]ocwptjna]+/ig,'');
             },
 
             /**
              * Returns a comma separated string with only accepted moves and patterns (faces, slices, axis, pieces, orient, parity)
              * It accepts all from clear.sequence, plus
-             *      patterns: _o2u,_o2d,_o2f,_o2b,_o4e,_o6l,_o6r,_cw2,_cc2,_cw3,_cc3,_ptj,_par
+             *      patterns: o2u, o2d, o2f, o2b, o4u, o4d, o4f, o4b, o6l, o6r, cw2, cc2, cw3, cc3, ptj, ptn, par, prn
              *
              * @param seq {String}
              * @returns {String}
@@ -900,7 +903,7 @@ var RubikUtils = (function(){
             pieces: function(seq) {
                 seq = seq.replace(/[i']+/ig,'-');
                 seq = seq.replace(/[,;\.\n\r ]+/g,',');
-                seq = seq.replace(/[^udfblrmesxyz2\-\+,_oecwptjna346]+/ig,'');
+                seq = seq.replace(/[^udfblrmesxyz2\-\+,ocwptjna346]+/ig,'');
 
                 return seq;
             },
@@ -917,7 +920,7 @@ var RubikUtils = (function(){
              */
             sequence: function(seq) {
                 seq = seq.replace(/[i']+/ig,'-');
-                seq = seq.replace(/[^udfblrmesxyz2i'\-\+]+/ig,'');
+                seq = seq.replace(/[^udfblrmesxyz2\-\+]+/ig,'');
                 return seq;
             },
 
@@ -946,8 +949,8 @@ var RubikUtils = (function(){
             adjustCase: function(move) {
                 return (
                     RubikUtils.is.face(move)||RubikUtils.is.slice(move) ? move.toUpperCase():
-                        RubikUtils.is.axis(move)                            ? move.toLowerCase():
-                            move
+                    RubikUtils.is.axis(move)                            ? move.toLowerCase():
+                    move
                 );
             },
 
