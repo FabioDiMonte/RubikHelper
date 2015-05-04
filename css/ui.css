@@ -360,7 +360,7 @@
 #ic-highlights-predefined ul li {
     display: inline-block;
 }
-#ic-highlights label {
+#ic-highlights-predefined ul label {
     background-color: #eee;
     border: 1px solid #777;
     border-radius: 4px;
