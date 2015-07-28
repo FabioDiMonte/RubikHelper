@@ -873,6 +873,73 @@ var RubikUtils = (function(){
                 final = uncollapse ? RubikUtils.clear.uncollapseSequence(seq) : RubikUtils.clear.collapseSequence(seq);
 
                 return final;
+            },
+            
+            rex: function(sequence){
+                var p, mod, pref, seq = [];
+                var g = -1, group, groups = [];
+                var res, rx = /(\()|(?:(([udfblrmesxyz])(?:([-i'])|(2))?)|(\[((?:[ud][fb]|[fb][ud])(?:[lr]?)|(?:[fb][lr]|[lr][fb])(?:[ud]?)|(?:[ud][lr]|[lr][ud])(?:[fb]?))]))|(\)([1-9min'])?)/ig;
+                
+                var ro;//resultObject
+
+                function pushMove(m)    { (g>-1 ? groups[g] : seq).push(m); }
+                function concatMoves(m) { (g>-1 ? groups[g]=groups[g].concat(m) : seq=seq.concat(m)); }
+                
+                while((res = rx.exec(sequence)) !== null){
+                    ro = {
+                        rotation: {
+                            match: res[2],
+                            move: res[3] && RubikUtils.clear.adjustCase(res[3]),
+                            sign: res[4],
+                            double: res[5]
+                        },
+                        piece: {
+                            match: res[6],
+                            name: res[7] && res[7].toUpperCase()
+                        },
+                        group: {
+                            match: res[1],
+                            end: res[8],
+                            mod: res[9]
+                        }
+                    };
+                    
+                    if(ro.group.match){
+                        //startGroup
+                        groups[++g] = [];
+                    }else
+                    if(ro.rotation.match){
+                        //isRotation
+                        p = ro.rotation.move + (ro.rotation.sign?'-':'+');
+                        ro.rotation.double && pushMove(p);
+                        pushMove(p);
+                    }else
+                    if(ro.piece.match){
+                        //isPiece
+                        pref = RubikUtils.is.piece(ro.piece.name) ? 's_' : RubikUtils.is.pattern(ro.piece.name) ? 'p_' : null;
+                        pref && concatMoves(RubikUtils.parse.rex(RubikUtils.patterns[pref+ro.piece.name]));
+                    }else
+                    if(ro.group.end){
+                        //endGroup
+                        mod = ro.group.mod;
+                        group = groups[g];
+                        
+                        if(mod)
+                        if(mod==Number(mod))
+                            group = RubikUtils.math.multiply(group,Number(mod));
+                        else if(mod=='-'||mod=='\''||mod=='n')
+                            group = RubikUtils.math.negativePattern(group);
+                        else if(mod.toLowerCase()=='m')
+                            group = RubikUtils.math.mirrorPattern(group);
+                        else if(mod.toLowerCase()=='i')
+                            group = RubikUtils.math.inversePattern(group);
+                        
+                        g--;
+                        concatMoves(group);
+                    }
+                }
+                
+                return seq;
             }
 
         },
