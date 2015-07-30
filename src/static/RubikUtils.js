@@ -761,7 +761,7 @@ var RubikUtils = (function(){
              * @param keepCase {Boolean}      whether the returned string should contains lowercase face rotations (only if caseSensitive:true)
              * @returns {Array}               the array of simple face rotations
              */
-            moves: function(sequence, uncollapse, caseSensitive, keepCase) {
+            _moves: function(sequence, uncollapse, caseSensitive, keepCase) {
                 var final,seq = [];
                 var arr = RubikUtils.clear.all(sequence).split('');
                 var last,next,move,sign;
@@ -800,7 +800,7 @@ var RubikUtils = (function(){
                         if(RubikUtils.is.piece(piece)||RubikUtils.is.pattern(piece)){
                             var prefix = RubikUtils.is.piece(piece)?'s_':RubikUtils.is.pattern(piece)?'p_':'';
                             var moves = RubikUtils.patterns[prefix+piece];
-                            moves && addGroupToList(RubikUtils.parse.moves(moves));
+                            moves && addGroupToList(RubikUtils.parse._moves(moves));
                         }
 
                         piece=false;
@@ -875,7 +875,7 @@ var RubikUtils = (function(){
                 return final;
             },
             
-            rex: function(sequence){
+            moves: function(sequence){
                 var p, mod, pref, seq = [];
                 var g = -1, group, groups = [];
                 var res, ro, rx = /(\()|(?:(([udfblrmesxyz])(?:([-i'])|(2))?)|(\[((?:(?:[ud][fb]|[fb][ud])(?:[lr]?)|(?:[fb][lr]|[lr][fb])(?:[ud]?)|(?:[ud][lr]|[lr][ud])(?:[fb]?))|(?:o[24][udfb]|o6[lr]|c[cw][23]|pt[jn]|par|prn))]))|(\)([1-9min'])?)/ig;
@@ -917,7 +917,7 @@ var RubikUtils = (function(){
                     //isPiece
                     if(ro.piece.match){
                         pref = RubikUtils.is.piece(ro.piece.name) ? 's_' : RubikUtils.is.pattern(ro.piece.name) ? 'p_' : null;
-                        pref && concatMoves(RubikUtils.parse.rex(RubikUtils.patterns[pref+ro.piece.name]));
+                        pref && concatMoves(RubikUtils.parse.moves(RubikUtils.patterns[pref+ro.piece.name]));
                     }else
 
                     //endGroup
