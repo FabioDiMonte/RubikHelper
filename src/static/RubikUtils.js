@@ -878,9 +878,7 @@ var RubikUtils = (function(){
             rex: function(sequence){
                 var p, mod, pref, seq = [];
                 var g = -1, group, groups = [];
-                var res, rx = /(\()|(?:(([udfblrmesxyz])(?:([-i'])|(2))?)|(\[((?:[ud][fb]|[fb][ud])(?:[lr]?)|(?:[fb][lr]|[lr][fb])(?:[ud]?)|(?:[ud][lr]|[lr][ud])(?:[fb]?))]))|(\)([1-9min'])?)/ig;
-                
-                var ro;//resultObject
+                var res, ro, rx = /(\()|(?:(([udfblrmesxyz])(?:([-i'])|(2))?)|(\[((?:(?:[ud][fb]|[fb][ud])(?:[lr]?)|(?:[fb][lr]|[lr][fb])(?:[ud]?)|(?:[ud][lr]|[lr][ud])(?:[fb]?))|(?:o[24][udfb]|o6[lr]|c[cw][23]|pt[jn]|par|prn))]))|(\)([1-9min'])?)/ig;
 
                 function pushMove(m)    { (g>-1 ? groups[g] : seq).push(m); }
                 function concatMoves(m) { (g>-1 ? groups[g]=groups[g].concat(m) : seq=seq.concat(m)); }
@@ -904,23 +902,26 @@ var RubikUtils = (function(){
                         }
                     };
                     
+                    //startGroup
                     if(ro.group.match){
-                        //startGroup
                         groups[++g] = [];
                     }else
+
+                    //isRotation
                     if(ro.rotation.match){
-                        //isRotation
                         p = ro.rotation.move + (ro.rotation.sign?'-':'+');
                         ro.rotation.double && pushMove(p);
                         pushMove(p);
                     }else
+
+                    //isPiece
                     if(ro.piece.match){
-                        //isPiece
                         pref = RubikUtils.is.piece(ro.piece.name) ? 's_' : RubikUtils.is.pattern(ro.piece.name) ? 'p_' : null;
                         pref && concatMoves(RubikUtils.parse.rex(RubikUtils.patterns[pref+ro.piece.name]));
                     }else
+
+                    //endGroup
                     if(ro.group.end){
-                        //endGroup
                         mod = ro.group.mod;
                         group = groups[g];
                         
@@ -939,7 +940,7 @@ var RubikUtils = (function(){
                     }
                 }
                 
-                return seq;
+                return RubikUtils.clear.collapseSequence(seq);
             }
 
         },
