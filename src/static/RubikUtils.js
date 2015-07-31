@@ -30,23 +30,29 @@ var RubikUtils = (function(){
             /* ################### ORIENTATION PATTERNS ################### */
 
             /* -- orient edges -- */
-            p_O4E: " (M'U)4   (MU)4 ",
+            p_O4U: " (M'U)4   (MU)4 ",
+            p_O4D: " (M'D)4   (MD)4 ",// x2 [O4U] x2
+            p_O4F: " (M'F)4   (MF)4 ",// x  [O4U] x'
+            p_O4B: " (M'B)4   (MB)4 ",// x' [O4U] x
             p_O2U: " (M'U)3 U (MU)3 U ",
-            p_O2D: " (M'D)3 D (MD)3 D ",
-            p_O2F: " (M'F)3 F (MF)3 F ",
-            p_O2B: " (M'B)3 B (MB)3 B ",
+            p_O2D: " (M'D)3 D (MD)3 D ",// x2 [O2U] x2
+            p_O2F: " (M'F)3 F (MF)3 F ",// x  [O2U] x'
+            p_O2B: " (M'B)3 B (MB)3 B ",// x' [O2U] x
             p_O6L: " (R'FRU)5 ",
             p_O6R: " ([O6L])m ",
 
             /* -- orient corners -- */
             p_CW2: " (U'RU) R' (U'RU) ",
             p_CC2: " ([CW2])i ",
-            p_CW3: " ((UR)'UR)2 ",
+            p_CW3: " ((UR)n UR)2 ",
             p_CC3: " ([CW3])i ",
 
             /* -- parity -- */
             p_PTJ: " (L'U2) LU (L'U2) (RU') L (RU')i ",
-            p_PAR: " (U'F2) [PTJ] (U'F2)i ",
+            p_PTN: " ((L'UR') U2 (L'UR')n)2 U ",
+            p_PRJ: " (U'F2) [PTJ] (U'F2)i ",
+            p_PRN: " (F2y)  [PTN]  (F2y)i ",
+            p_PAR: " [PRJ] ",
 
             /* ################### EDGES PERMUTATIONS ################### */
 
@@ -55,9 +61,9 @@ var RubikUtils = (function(){
             s_UF: " (U2 M')2 ",
             s_DB: " ([UF])i ",
             /* -- right oriented -- */
-            s_UR: " R'U RU' ",
+            s_UR: " R' [FR] ",
             s_DR: " U R RU' ",
-            s_FR: "  URU' ",
+            s_FR: " U   RU' ",
             s_BR: " ([FR])i ",
             /* -- left oriented -- */
             s_UL: " ([UR])m ",
@@ -70,15 +76,15 @@ var RubikUtils = (function(){
             s_FU: " [UF] ",
             s_BD: " [DB] ",
             /* -- right not oriented -- */
-            s_RU: " x' ([BR])' ",
-            s_RD: " x' ([FR])' ",
-            s_RF: " x' ([DR])' ",
-            s_RB: " x' ([UR])' ",
+            s_RU: " x' ([BR])n ",
+            s_RD: " x' ([FR])n ",
+            s_RF: " x' ([DR])n ",
+            s_RB: " x' ([UR])n ",
             /* -- left not oriented -- */
-            s_LU: " x' (([BR])')m ",
-            s_LD: " x' (([FR])')m ",
-            s_LF: " x' (([DR])')m ",
-            s_LB: " x' (([UR])')m ",
+            s_LU: " x' (([BR])n)m ",
+            s_LD: " x' (([FR])n)m ",
+            s_LF: " x' (([DR])n)m ",
+            s_LB: " x' (([UR])n)m ",
 
             /* ################### CORNERS PERMUTATIONS ################### */
 
@@ -87,13 +93,13 @@ var RubikUtils = (function(){
             s_URF: " U' (R F' RM' U R2 U') (MR' F R U R2') ",//" U' R F' L x U R2 U' x' L' F R U R2 ",
             s_DRB: " ([URF])i ",
             /* -- left oriented -- */
-            s_ULB: " (LU)' (LU)",
-            s_UFL: " L U'L' U [ULB] ",// L [LBU] [ULB]
+            s_ULB: " (LU)n (LU) ",
+            s_UFL: " L [LBU] [ULB] ",
             s_DLF: " U' L2 U ",
             s_DBL: " [DLF] [ULB] ",
 
             /* -- UBR not oriented -- */
-            s_BRU: " (U'L'U) L (U'L'U) ",// [LBU] L [LBU]
+            s_BRU: " [LBU] L [LBU] ",
             s_RUB: " ([BRU])i ",
             /* -- URF not oriented -- */
             s_RFU: " (F'R) (UR2U') R' (FR) (UR2U') R ",
@@ -101,18 +107,19 @@ var RubikUtils = (function(){
             /* -- DRB not oriented -- */
             s_RBD: " R'UR2U'R'F'RUR2U'R'F ",
             s_BDR: " RUR' DL2 x2 U'RU L2x2 U'D'R ",
+            
             /* -- ULB not oriented -- */
             s_LBU: " (U'L'U) ",
             s_BUL: " y RUR2U'R' y' ",
             /* -- UFL not oriented -- */
-            s_FLU: " R' (ULU') ",
-            s_LUF: " L' (U'L'U) ",// L' [LBU]
+            s_FLU: " (R [LBU])n ",
+            s_LUF: " L' [LBU] ",
             /* -- DLF not oriented -- */
-            s_LFD: " L2 (U'L'U) ",// L2 [LBU]
-            s_FDL: " (U'L'U) L' (U'LU)",// [LBU] L' ([LBU])'
+            s_LFD: " L2 [LBU] ",
+            s_FDL: " [LBU] ([LBU] L)i ",
             /* -- DBL not oriented -- */
-            s_BLD: " (U'LU) ",// ([LBU])i
-            s_LDB: " L (U'L'U) "// L [LBU]
+            s_BLD: " ([LBU])i ",
+            s_LDB: " L [LBU] "
 
         },
 
@@ -223,7 +230,7 @@ var RubikUtils = (function(){
             modifier : function(m) { return (/^[2i'\-\+]$/).test(m); },
 
             /**
-             * Returns TRUE if the given string is actually a single rotation
+             * Returns TRUE if the given string is actually a single rotation (face, slice or axis followed by a modifier)
              *
              * @param m {String}  the move to search for
              * @returns {Boolean} true if the move is a rotation
@@ -245,7 +252,7 @@ var RubikUtils = (function(){
              * @param m {String}  the pattern to search for
              * @returns {Boolean} true if the oriented piece is a property of RubikHelper.patterns
              */
-            pattern  : function(m) { return (/^(o2[udfb]|o4e|o6[lr]|c[cw][23]|ptj|par)$/i).test(m); },
+            pattern  : function(m) { return (/^(o[24][udfb]|o6[lr]|c[cw][23]|p[tr][jn]|par)$/i).test(m); },
 
             /**
              * Returns TRUE if the given string is actually a cube's piece (edge or corner)
@@ -311,7 +318,7 @@ var RubikUtils = (function(){
              * @param but {String|Array}  the move/moves to be NOT accepted
              * @returns {Boolean}         true if the move is accepted
              */
-            accepted : function(move, but, only) {
+            accepted : function(move, only, but) {
                 var doMe = ((!only && !but) || (only=='' && but==''));
                 if(only && typeof(only)=='string') doMe = (only.length==1 && only==move.charAt(0));
                 if(only && only instanceof Array)  doMe = (only.indexOf(move)>-1);
@@ -745,10 +752,10 @@ var RubikUtils = (function(){
              * parseMoves('U2FitriX',true,true,true)  -> 'U+,U+,F-,r-,x+'
              *
              * you can also use parenthesis for grouping and square brackets for pieces
-             * eg. [dr] d'b (lu)' u2 (r'bu)4 [ulb]
+             * eg. [dr] d'b (lu)n u2 (r'bu)4 [ulb]
              * eg. ((RU[BR])m)i F [LB] (F'[LB])'
              *
-             * note: use (...)m to mirror, (...)i to invert and (...)' to negative the whole parenthesis content
+             * note: use ()m to mirror, ()i to invert and ()n or ()' to negative the whole parenthesis content
              *
              * @param sequence {String}       the user typed sequence of moves
              * @param uncollapse {Boolean}    whether double moves should be converted in a pair of positive single moves (F2 -> F+,F+)
@@ -756,7 +763,7 @@ var RubikUtils = (function(){
              * @param keepCase {Boolean}      whether the returned string should contains lowercase face rotations (only if caseSensitive:true)
              * @returns {Array}               the array of simple face rotations
              */
-            moves: function(sequence, uncollapse, caseSensitive, keepCase) {
+            _moves: function(sequence, uncollapse, caseSensitive, keepCase) {
                 var final,seq = [];
                 var arr = RubikUtils.clear.all(sequence).split('');
                 var last,next,move,sign;
@@ -795,7 +802,7 @@ var RubikUtils = (function(){
                         if(RubikUtils.is.piece(piece)||RubikUtils.is.pattern(piece)){
                             var prefix = RubikUtils.is.piece(piece)?'s_':RubikUtils.is.pattern(piece)?'p_':'';
                             var moves = RubikUtils.patterns[prefix+piece];
-                            moves && addGroupToList(RubikUtils.parse.moves(moves));
+                            moves && addGroupToList(RubikUtils.parse._moves(moves));
                         }
 
                         piece=false;
@@ -858,8 +865,8 @@ var RubikUtils = (function(){
                     if(move.length==1) move+='+';
 
                     move = RubikUtils.is.piece(move)||RubikUtils.is.pattern(move) ? move.toUpperCase() :
-                        RubikUtils.is.rotation(move) ? RubikUtils.clear.adjustCase(move.charAt(0))+move.charAt(1) :
-                            null;
+                           RubikUtils.is.rotation(move) ? RubikUtils.clear.adjustCase(move.charAt(0))+move.charAt(1) :
+                           null;
 
                     move && seq.push(move);
                 }
@@ -868,6 +875,74 @@ var RubikUtils = (function(){
                 final = uncollapse ? RubikUtils.clear.uncollapseSequence(seq) : RubikUtils.clear.collapseSequence(seq);
 
                 return final;
+            },
+            
+            moves: function(sequence){
+                var p, mod, pref, seq = [];
+                var g = -1, group, groups = [];
+                var res, ro, rx = /(\()|(?:(([udfblrmesxyz])(?:([-i'])|(2))?)|(\[((?:(?:[ud][fb]|[fb][ud])(?:[lr]?)|(?:[fb][lr]|[lr][fb])(?:[ud]?)|(?:[ud][lr]|[lr][ud])(?:[fb]?))|(?:o[24][udfb]|o6[lr]|c[cw][23]|p[tr][jn]|par))]))|(\)([0-9min'])?)/ig;
+
+                function pushMove(m)    { (g>-1 ? groups[g] : seq).push(m); }
+                function concatMoves(m) { (g>-1 ? groups[g]=groups[g].concat(m) : seq=seq.concat(m)); }
+                
+                while((res = rx.exec(sequence)) !== null){
+                    ro = {
+                        rotation: {
+                            match: res[2],
+                            move: res[3] && RubikUtils.clear.adjustCase(res[3]),
+                            sign: res[4],
+                            double: res[5]
+                        },
+                        piece: {
+                            match: res[6],
+                            name: res[7] && res[7].toUpperCase()
+                        },
+                        group: {
+                            match: res[1],
+                            end: res[8],
+                            mod: res[9]
+                        }
+                    };
+                    
+                    //startGroup
+                    if(ro.group.match){
+                        groups[++g] = [];
+                    }else
+
+                    //isRotation
+                    if(ro.rotation.match){
+                        p = ro.rotation.move + (ro.rotation.sign?'-':'+');
+                        ro.rotation.double && pushMove(p);
+                        pushMove(p);
+                    }else
+
+                    //isPiece
+                    if(ro.piece.match){
+                        pref = RubikUtils.is.piece(ro.piece.name) ? 's_' : RubikUtils.is.pattern(ro.piece.name) ? 'p_' : null;
+                        pref && concatMoves(RubikUtils.parse.moves(RubikUtils.patterns[pref+ro.piece.name]));
+                    }else
+
+                    //endGroup
+                    if(ro.group.end){
+                        mod = ro.group.mod;
+                        group = groups[g];
+                        
+                        if(mod)
+                        if(mod==Number(mod))
+                            group = RubikUtils.math.multiply(group,Number(mod));
+                        else if(mod=='-'||mod=='\''||mod=='n')
+                            group = RubikUtils.math.negativePattern(group);
+                        else if(mod.toLowerCase()=='m')
+                            group = RubikUtils.math.mirrorPattern(group);
+                        else if(mod.toLowerCase()=='i')
+                            group = RubikUtils.math.inversePattern(group);
+                        
+                        g--;
+                        concatMoves(group);
+                    }
+                }
+                
+                return RubikUtils.clear.collapseSequence(seq);
             }
 
         },
@@ -884,13 +959,13 @@ var RubikUtils = (function(){
              * @returns {String}
              */
             all: function(seq) {
-                return seq.replace(/[^udfblrmesxyz2-9i'\-\+\(\)\[\]_oecwptja]+/ig,'');
+                return seq.replace(/[^udfblrmesxyz2-9i'\-\+\(\)\[\]ocwptjna]+/ig,'');
             },
 
             /**
              * Returns a comma separated string with only accepted moves and patterns (faces, slices, axis, pieces, orient, parity)
              * It accepts all from clear.sequence, plus
-             *      patterns: _o2u,_o2d,_o2f,_o2b,_o4e,_o6l,_o6r,_cw2,_cc2,_cw3,_cc3,_ptj,_par
+             *      patterns: o2u, o2d, o2f, o2b, o4u, o4d, o4f, o4b, o6l, o6r, cw2, cc2, cw3, cc3, ptj, ptn, par, prn
              *
              * @param seq {String}
              * @returns {String}
@@ -898,7 +973,7 @@ var RubikUtils = (function(){
             pieces: function(seq) {
                 seq = seq.replace(/[i']+/ig,'-');
                 seq = seq.replace(/[,;\.\n\r ]+/g,',');
-                seq = seq.replace(/[^udfblrmesxyz2\-\+,_oecwptja346]+/ig,'');
+                seq = seq.replace(/[^udfblrmesxyz2\-\+,ocwptjna346]+/ig,'');
 
                 return seq;
             },
@@ -915,7 +990,7 @@ var RubikUtils = (function(){
              */
             sequence: function(seq) {
                 seq = seq.replace(/[i']+/ig,'-');
-                seq = seq.replace(/[^udfblrmesxyz2i'\-\+]+/ig,'');
+                seq = seq.replace(/[^udfblrmesxyz2\-\+]+/ig,'');
                 return seq;
             },
 
@@ -944,8 +1019,8 @@ var RubikUtils = (function(){
             adjustCase: function(move) {
                 return (
                     RubikUtils.is.face(move)||RubikUtils.is.slice(move) ? move.toUpperCase():
-                        RubikUtils.is.axis(move)                            ? move.toLowerCase():
-                            move
+                    RubikUtils.is.axis(move)                            ? move.toLowerCase():
+                    move
                 );
             },
 

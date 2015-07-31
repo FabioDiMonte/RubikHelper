@@ -18,10 +18,11 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
     function RubikCubeISO(ID,options) {
         RubikCube.call(this,ID,options);
 
-        this.renderOrder = ['DBL','DB','DRB','DL','D','DR','DLF','DF','DFR','BL','B','BR','L','R','FL','F','FR','ULB','UB','UBR','UL','U','UR','UFL','UF','URF'];
-        this.renderOptions = {
+        this._renderOptions = {
+            order: ['DBL','DB','DRB','DL','D','DR','DLF','DF','DFR','BL','B','BR','L','R','FL','F','FR','ULB','UB','UBR','UL','U','UR','UFL','UF','URF'],
             backfaces: false,
-            highlights: []
+            highlights: [],
+            highlightColored: false
         };
 
         this.iso = {
@@ -58,19 +59,21 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
     RubikCubeISO.prototype.willRender = function(){};
     RubikCubeISO.prototype.didRender = function(){
         this.iso.layer._render();
-        this.options.showAxis && this.iso.engine.drawUtils.axis(this.iso.layer,200);
+        this._options.showAxis && this.iso.engine.drawUtils.axis(this.iso.layer,200);
     };
     RubikCubeISO.prototype.render = function(piecesToRender){
-        var stickers;
+        var stickers,
+            highlights = this._renderOptions.highlights,
+            hl_colored = this._renderOptions.highlightColored;
 
         this.willRender();
-        this.renderOrder.forEach(function(piece){
-            if(this.renderOptions.highlights.length==0){
-                stickers = this.currentCube[piece];
-                (!piecesToRender || piecesToRender.indexOf(piece)>-1) && this.drawPiece(piece,stickers,false,this.renderOptions.backfaces);
+        this._renderOptions.order.forEach(function(piece){
+            if(highlights.length==0){
+                stickers = this._currentCube[piece];
+                (!piecesToRender || piecesToRender.indexOf(piece)>-1) && drawPiece.call(this,piece,stickers,false,this._renderOptions.backfaces);
             }else{
-                stickers = this.renderOptions.highlights.indexOf(piece)>-1 ? 'light' : 'grey';
-                this.drawPiece(piece,stickers,true,this.renderOptions.backfaces);
+                stickers = highlights.indexOf(piece)>-1 ? (hl_colored ? this._currentCube[piece] : 'light') : 'grey';
+                drawPiece.call(this,piece,stickers,(stickers=='grey'||stickers=='light'),this._renderOptions.backfaces);
             }
         }.bind(this));
         this.didRender();
@@ -83,33 +86,38 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
      * *******************************/
 
     RubikCubeISO.prototype.getImage       = function() { return this.iso.layer.getCanvas().toDataURL(); };
-    RubikCubeISO.prototype.backfaceState  = function() { return this.renderOptions.backfaces; };
-    RubikCubeISO.prototype.backfaceToggle = function(f){ this.toggleRenderBackFaces(f); };
-    RubikCubeISO.prototype.highlight      = function(p){ this.highlightPieces(p); };
+    RubikCubeISO.prototype.backfaceState  = function() { return this._renderOptions.backfaces; };
+    RubikCubeISO.prototype.backfaceToggle = function(f){ toggleRenderBackFaces.call(this,f); };
+    RubikCubeISO.prototype.highlight      = function(p){ highlightPieces.call(this,p); };
+    RubikCubeISO.prototype.highlightColor = function(t){ this._renderOptions.highlightColored=t;this.render(); };
+
+    /* *******************************
+     * PRIVATE METHODS
+     * *******************************/
 
     // ** RENDERING METHODS ** //
 
-    RubikCubeISO.prototype.highlightPieces = function(pieces){
+    function toggleRenderBackFaces(forceVal) {
+        this._renderOptions.backfaces = forceVal!=null?forceVal:!this._renderOptions.backfaces;
+        this.render();
+    }
+    function highlightPieces(pieces) {
         var targets=[];
         if(pieces){
             pieces.forEach(function(piece){
                 targets.push(RubikUtils.service.targetOf(piece));
             }.bind(this));
         }
-        this.renderOptions.highlights = targets;
+        this._renderOptions.highlights = targets;
         this.render();
-    };
-    RubikCubeISO.prototype.toggleRenderBackFaces = function(forceVal){
-        this.renderOptions.backfaces = forceVal!=null?forceVal:!this.renderOptions.backfaces;
-        this.render();
-    };
-
+    }
+    
     // ** DRAWING METHODS ** //
-
-    RubikCubeISO.prototype.drawPiece = function(position,stickers,fullColor,drawBack){
+    
+    function drawPiece(position,stickers,fullColor,drawBack) {
         stickers || (stickers=position);
 
-        var size = this.options.pieceSize;
+        var size = this._options.pieceSize;
         var origin = new Point(-size/2,-size/2,-size/2);
 
         var fills = [],
@@ -143,11 +151,11 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
         var isFull = true;
 
         if(!this.iso.layer._children['_piece_'+position])
-            this.addCube(position, origin.add(new Point(size*px,size*py,size*pz)), size, isFull);
+            addCube.call(this,position, origin.add(new Point(size*px,size*py,size*pz)), size, isFull);
 
-        this.drawCube(position, stickers, size, {fills:fills,stroke:RubikUtils.colors.core}, isFull);
-    };
-    RubikCubeISO.prototype.addCube = function(name, origin, size, full_cube) {
+        drawCube.call(this,position, stickers, size, {fills:fills,stroke:RubikUtils.colors.core}, isFull);
+    }
+    function addCube(name, origin, size, full_cube) {
 
         var cube = new Sprite('_piece_'+name);
         cube.set('position',name);
@@ -163,8 +171,8 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
 
         this.iso.layer.addChild(cube);
 
-    };
-    RubikCubeISO.prototype.drawCube = function(name, pieceName, size, colors, full_cube) {
+    }
+    function drawCube(name, pieceName, size, colors, full_cube) {
 
         var cube = this.iso.layer._children['_piece_'+name];
         if(!cube) return;
@@ -178,16 +186,16 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
         };
 
         if(full_cube && style.fills && style.fills.length==6) {
-            this.setShape( cube._children['_face_D'], arrayLastValue(names, 3), 'get3DPolygonSquare'     , size, !style.fills ? null : arrayLastValue(style.fills, 3), style.color );
-            this.setShape( cube._children['_face_B'], arrayLastValue(names, 4), 'get3DPolygonSquareLeft' , size, !style.fills ? null : arrayLastValue(style.fills, 4), style.color );
-            this.setShape( cube._children['_face_L'], arrayLastValue(names, 5), 'get3DPolygonSquareRight', size, !style.fills ? null : arrayLastValue(style.fills, 5), style.color );
+            setShape.call( this, cube._children['_face_D'], arrayLastValue(names, 3), 'get3DPolygonSquare'     , size, !style.fills ? null : arrayLastValue(style.fills, 3), style.color );
+            setShape.call( this, cube._children['_face_B'], arrayLastValue(names, 4), 'get3DPolygonSquareLeft' , size, !style.fills ? null : arrayLastValue(style.fills, 4), style.color );
+            setShape.call( this, cube._children['_face_L'], arrayLastValue(names, 5), 'get3DPolygonSquareRight', size, !style.fills ? null : arrayLastValue(style.fills, 5), style.color );
         }
-        this.setShape( cube._children['_face_U'], arrayLastValue(names, 0), 'get3DPolygonSquare'     , size, !style.fills ? null : arrayLastValue(style.fills, 0), style.color );
-        this.setShape( cube._children['_face_R'], arrayLastValue(names, 1), 'get3DPolygonSquareRight', size, !style.fills ? null : arrayLastValue(style.fills, 1), style.color );
-        this.setShape( cube._children['_face_F'], arrayLastValue(names, 2), 'get3DPolygonSquareLeft' , size, !style.fills ? null : arrayLastValue(style.fills, 2), style.color );
+        setShape.call( this, cube._children['_face_U'], arrayLastValue(names, 0), 'get3DPolygonSquare'     , size, !style.fills ? null : arrayLastValue(style.fills, 0), style.color );
+        setShape.call( this, cube._children['_face_R'], arrayLastValue(names, 1), 'get3DPolygonSquareRight', size, !style.fills ? null : arrayLastValue(style.fills, 1), style.color );
+        setShape.call( this, cube._children['_face_F'], arrayLastValue(names, 2), 'get3DPolygonSquareLeft' , size, !style.fills ? null : arrayLastValue(style.fills, 2), style.color );
 
-    };
-    RubikCubeISO.prototype.setShape = function(child, value, squareType, size, fill, stroke) {
+    }
+    function setShape(child, value, squareType, size, fill, stroke) {
 
         if(!fill)
             child.setRenderInfo( null );
@@ -196,11 +204,7 @@ var RubikCubeIso = (function(RubikUtils, RubikCube, GraphicEngine){
 
         child.set('sticker',value);
 
-    };
-
-    /* *******************************
-     * PRIVATE METHODS
-     * *******************************/
+    }
 
     function arrayLastValue(array,index) {
         return array.length>index ? array[index] : array[array.length-1];

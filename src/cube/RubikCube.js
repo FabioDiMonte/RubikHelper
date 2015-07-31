@@ -14,21 +14,21 @@ var RubikCube = (function($, RubikUtils){
         this.$el = $('#'+ID);
         if(this.$el.length==0) throw new Error('rubik cube not drawn: given ID does not exists in dom');
 
-        this.options = {
+        this._options = {
             pieceSize: 30,
             showAxis: false
         };
 
-        this.currentCube = RubikUtils.service.cloneCube(RubikUtils.pieces.cube);
+        this._currentCube = RubikUtils.service.cloneCube(RubikUtils.pieces.cube);
 
-        $.extend(this.options,options);
+        $.extend(this._options,options);
 
     }
 
     /**
      * RubikCube prototype
      *
-     * @type {{willRender: Function, didRender: Function, render: Function, getCube: Function, setCube: Function, execute: Function, getObjectFromCube: Function, setCubeFromObject: Function, setCubeFromSequence: Function, getPiece: Function, setPiece: Function, setPieceFromStickers: Function, updateColors: Function, axisRotation: Function, rotatedPieces: Function, orientedPiece: Function}}
+     * @type {{willRender: Function, didRender: Function, render: Function, getCube: Function, setCube: Function, execute: Function, getPiece: Function, setPiece: Function, updateColors: Function, axisRotation: Function, rotatedPieces: Function, orientedPiece: Function}}
      */
     RubikCube.prototype = {
 
@@ -38,9 +38,9 @@ var RubikCube = (function($, RubikUtils){
 
         willRender: function(){},
         didRender: function(){},
-        render: function(piecesToRender){
+        render: function(pieces){
             this.willRender();
-            //do something with piecesToRender
+            //do something with pieces
             this.didRender();
         },
 
@@ -49,59 +49,24 @@ var RubikCube = (function($, RubikUtils){
          ******************************/
 
         getCube: function(){
-            return this.getObjectFromCube();
+            return getObjectFromCube.call(this);
         },
         setCube: function(c){
-            this.setCubeFromObject(c);
+            setCubeFromObject.call(this,c);
         },
         execute: function(s,d){
-            this.setCubeFromSequence(s,d);
-        },
-
-        // ** CUBE getters/setters ** //
-        getObjectFromCube: function(){
-            return RubikUtils.service.cloneCube(this.currentCube);
-        },
-        setCubeFromObject: function(cube){
-            this.currentCube = RubikUtils.service.cloneCube(cube);
-            this.render();
-        },
-        setCubeFromSequence: function(sequence,duration){
-            var C = this.getObjectFromCube();
-            var move,m=0;
-            var _this = this;
-
-            function iteration(move){
-                $.extend(C, _this.rotatedPieces(move));
-                _this.setCubeFromObject(C);
-            }
-            function timeout(){
-                if(sequence.length>0){
-                    setTimeout(function(){
-                        iteration(sequence[m++]);
-                        if(m<sequence.length) timeout();
-                    },duration);
-                }
-            }
-
-            if(duration) timeout();
-            else for(move=0;move<sequence.length;move++) iteration(sequence[move]);
+            setCubeFromSequence.call(this,s,d);
         },
 
         // ** PIECE getters/setters ** //
 
         getPiece: function(p){
-            return RubikUtils.service.getStickersFromPiece(p,this.currentCube,true);
+            return RubikUtils.service.getStickersFromPiece(p,this._currentCube,true);
         },
         setPiece: function(p,s){
-            this.setPieceFromStickers(p,s);
+            setPieceFromStickers.call(this,p,s);
         },
-
-        setPieceFromStickers: function(piece,stickers){
-            this.currentCube[RubikUtils.service.targetOf(piece)] = RubikUtils.service.rotate(stickers, RubikUtils.service.getRotation(piece,true));
-            this.render();
-        },
-
+        
         // ** SERVICE METHODS ** //
 
         updateColors: function(colorsObject) {
@@ -140,7 +105,7 @@ var RubikCube = (function($, RubikUtils){
                     if(pieces.hasOwnProperty(t)){
                         target = RubikUtils.service.targetOf(pieces[t]);
                         piece = this.orientedPiece(target,move);
-                        ret[target] = RubikUtils.service.getStickersFromPiece(piece,this.currentCube,true);
+                        ret[target] = RubikUtils.service.getStickersFromPiece(piece,this._currentCube,true);
                     }
                 }
             }
@@ -179,6 +144,40 @@ var RubikCube = (function($, RubikUtils){
      * PRIVATE METHODS
      ******************************/
 
+    // ** CUBE getters/setters ** //
+    function getObjectFromCube(){
+        return RubikUtils.service.cloneCube(this._currentCube);
+    }
+    function setCubeFromObject(cube){
+        this._currentCube = RubikUtils.service.cloneCube(cube);
+        this.render();
+    }
+    function setCubeFromSequence(sequence,duration){
+        var C = getObjectFromCube.call(this);
+        var move,m=0;
+        var _this = this;
+
+        function iteration(move){
+            $.extend(C, _this.rotatedPieces(move));
+            setCubeFromObject.call(_this,C);
+        }
+        function timeout(){
+            if(sequence.length>0){
+                setTimeout(function(){
+                    iteration(sequence[m++]);
+                    if(m<sequence.length) timeout();
+                },duration);
+            }
+        }
+
+        if(duration) timeout();
+        else for(move=0;move<sequence.length;move++) iteration(sequence[move]);
+    }
+
+    function setPieceFromStickers(piece,stickers){
+        this._currentCube[RubikUtils.service.targetOf(piece)] = RubikUtils.service.rotate(stickers, RubikUtils.service.getRotation(piece,true));
+        this.render();
+    }
 
     return RubikCube;
 
