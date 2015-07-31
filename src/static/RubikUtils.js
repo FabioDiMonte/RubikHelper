@@ -44,14 +44,15 @@ var RubikUtils = (function(){
             /* -- orient corners -- */
             p_CW2: " (U'RU) R' (U'RU) ",
             p_CC2: " ([CW2])i ",
-            p_CW3: " ((UR)'UR)2 ",
+            p_CW3: " ((UR)n UR)2 ",
             p_CC3: " ([CW3])i ",
 
             /* -- parity -- */
             p_PTJ: " (L'U2) LU (L'U2) (RU') L (RU')i ",
-            p_PTN: " ((L'UR') U2 (L'UR')')2 U ",
-            p_PAR: " (U'F2) [PTJ] (U'F2)i ",
-            p_PRN: " (F2y) [PTN] (F2y)i",
+            p_PTN: " ((L'UR') U2 (L'UR')n)2 U ",
+            p_PRJ: " (U'F2) [PTJ] (U'F2)i ",
+            p_PRN: " (F2y)  [PTN]  (F2y)i ",
+            p_PAR: " [PRJ] ",
 
             /* ################### EDGES PERMUTATIONS ################### */
 
@@ -60,9 +61,9 @@ var RubikUtils = (function(){
             s_UF: " (U2 M')2 ",
             s_DB: " ([UF])i ",
             /* -- right oriented -- */
-            s_UR: " R'U RU' ",
+            s_UR: " R' [FR] ",
             s_DR: " U R RU' ",
-            s_FR: "  URU' ",
+            s_FR: " U   RU' ",
             s_BR: " ([FR])i ",
             /* -- left oriented -- */
             s_UL: " ([UR])m ",
@@ -75,15 +76,15 @@ var RubikUtils = (function(){
             s_FU: " [UF] ",
             s_BD: " [DB] ",
             /* -- right not oriented -- */
-            s_RU: " x' ([BR])' ",
-            s_RD: " x' ([FR])' ",
-            s_RF: " x' ([DR])' ",
-            s_RB: " x' ([UR])' ",
+            s_RU: " x' ([BR])n ",
+            s_RD: " x' ([FR])n ",
+            s_RF: " x' ([DR])n ",
+            s_RB: " x' ([UR])n ",
             /* -- left not oriented -- */
-            s_LU: " x' (([BR])')m ",
-            s_LD: " x' (([FR])')m ",
-            s_LF: " x' (([DR])')m ",
-            s_LB: " x' (([UR])')m ",
+            s_LU: " x' (([BR])n)m ",
+            s_LD: " x' (([FR])n)m ",
+            s_LF: " x' (([DR])n)m ",
+            s_LB: " x' (([UR])n)m ",
 
             /* ################### CORNERS PERMUTATIONS ################### */
 
@@ -92,13 +93,13 @@ var RubikUtils = (function(){
             s_URF: " U' (R F' RM' U R2 U') (MR' F R U R2') ",//" U' R F' L x U R2 U' x' L' F R U R2 ",
             s_DRB: " ([URF])i ",
             /* -- left oriented -- */
-            s_ULB: " (LU)' (LU)",
-            s_UFL: " L U'L' U [ULB] ",// L [LBU] [ULB]
+            s_ULB: " (LU)n (LU) ",
+            s_UFL: " L [LBU] [ULB] ",
             s_DLF: " U' L2 U ",
             s_DBL: " [DLF] [ULB] ",
 
             /* -- UBR not oriented -- */
-            s_BRU: " (U'L'U) L (U'L'U) ",// [LBU] L [LBU]
+            s_BRU: " [LBU] L [LBU] ",
             s_RUB: " ([BRU])i ",
             /* -- URF not oriented -- */
             s_RFU: " (F'R) (UR2U') R' (FR) (UR2U') R ",
@@ -106,18 +107,19 @@ var RubikUtils = (function(){
             /* -- DRB not oriented -- */
             s_RBD: " R'UR2U'R'F'RUR2U'R'F ",
             s_BDR: " RUR' DL2 x2 U'RU L2x2 U'D'R ",
+            
             /* -- ULB not oriented -- */
             s_LBU: " (U'L'U) ",
             s_BUL: " y RUR2U'R' y' ",
             /* -- UFL not oriented -- */
-            s_FLU: " R' (ULU') ",
-            s_LUF: " L' (U'L'U) ",// L' [LBU]
+            s_FLU: " (R [LBU])n ",
+            s_LUF: " L' [LBU] ",
             /* -- DLF not oriented -- */
-            s_LFD: " L2 (U'L'U) ",// L2 [LBU]
-            s_FDL: " (U'L'U) L' (U'LU)",// [LBU] L' ([LBU])'
+            s_LFD: " L2 [LBU] ",
+            s_FDL: " [LBU] ([LBU] L)i ",
             /* -- DBL not oriented -- */
-            s_BLD: " (U'LU) ",// ([LBU])i
-            s_LDB: " L (U'L'U) "// L [LBU]
+            s_BLD: " ([LBU])i ",
+            s_LDB: " L [LBU] "
 
         },
 
@@ -250,7 +252,7 @@ var RubikUtils = (function(){
              * @param m {String}  the pattern to search for
              * @returns {Boolean} true if the oriented piece is a property of RubikHelper.patterns
              */
-            pattern  : function(m) { return (/^(o[24][udfb]|o6[lr]|c[cw][23]|pt[jn]|par|prn)$/i).test(m); },
+            pattern  : function(m) { return (/^(o[24][udfb]|o6[lr]|c[cw][23]|p[tr][jn]|par)$/i).test(m); },
 
             /**
              * Returns TRUE if the given string is actually a cube's piece (edge or corner)
@@ -750,10 +752,10 @@ var RubikUtils = (function(){
              * parseMoves('U2FitriX',true,true,true)  -> 'U+,U+,F-,r-,x+'
              *
              * you can also use parenthesis for grouping and square brackets for pieces
-             * eg. [dr] d'b (lu)' u2 (r'bu)4 [ulb]
+             * eg. [dr] d'b (lu)n u2 (r'bu)4 [ulb]
              * eg. ((RU[BR])m)i F [LB] (F'[LB])'
              *
-             * note: use (...)m to mirror, (...)i to invert and (...)' to negative the whole parenthesis content
+             * note: use ()m to mirror, ()i to invert and ()n or ()' to negative the whole parenthesis content
              *
              * @param sequence {String}       the user typed sequence of moves
              * @param uncollapse {Boolean}    whether double moves should be converted in a pair of positive single moves (F2 -> F+,F+)
@@ -878,7 +880,7 @@ var RubikUtils = (function(){
             moves: function(sequence){
                 var p, mod, pref, seq = [];
                 var g = -1, group, groups = [];
-                var res, ro, rx = /(\()|(?:(([udfblrmesxyz])(?:([-i'])|(2))?)|(\[((?:(?:[ud][fb]|[fb][ud])(?:[lr]?)|(?:[fb][lr]|[lr][fb])(?:[ud]?)|(?:[ud][lr]|[lr][ud])(?:[fb]?))|(?:o[24][udfb]|o6[lr]|c[cw][23]|pt[jn]|par|prn))]))|(\)([1-9min'])?)/ig;
+                var res, ro, rx = /(\()|(?:(([udfblrmesxyz])(?:([-i'])|(2))?)|(\[((?:(?:[ud][fb]|[fb][ud])(?:[lr]?)|(?:[fb][lr]|[lr][fb])(?:[ud]?)|(?:[ud][lr]|[lr][ud])(?:[fb]?))|(?:o[24][udfb]|o6[lr]|c[cw][23]|p[tr][jn]|par))]))|(\)([0-9min'])?)/ig;
 
                 function pushMove(m)    { (g>-1 ? groups[g] : seq).push(m); }
                 function concatMoves(m) { (g>-1 ? groups[g]=groups[g].concat(m) : seq=seq.concat(m)); }
